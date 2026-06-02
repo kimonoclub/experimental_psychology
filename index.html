@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理学実験 講義資料ポータル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 心理学実験の格調高い雰囲気に合わせた配色（仕様書の深緑・煉瓦色のトーンを維持） */
+        .sage-bg { background-color: #f2f6f3; }
+        .card-active { 
+            border-left: 4px solid #b34d38; 
+            transition: transform 0.2s; 
+        }
+        .card-active:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="sage-bg min-h-screen text-gray-800 p-6 md:p-12">
+
+    <div class="max-w-3xl mx-auto">
+        <header class="mb-12">
+            <h1 class="text-3xl font-bold text-[#1a3022] mb-2">心理学実験 講義資料ポータル</h1>
+            <p class="text-gray-600">各回の実験資料およびフォローアップ資料はこちらから確認してください。</p>
+        </header>
+
+        <div id="course-cards" class="grid grid-cols-1 gap-4">
+            </div>
+    </div>
+
+    <script>
+        async function loadCourses() {
+            const container = document.getElementById('course-cards');
+            
+            // 心理学実験用に回数を調整（必要に応じて変更してください）
+            for (let i = 1; i <= 15; i++) {
+                const folder = `class_${i.toString().padStart(2, '0')}`;
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-lg shadow-sm border border-gray-100";
+                
+                try {
+                    const response = await fetch(`./${folder}/index.html`);
+                    if (response.ok) {
+                        const text = await response.text();
+                        const titleMatch = text.match(/<title>(.*?)<\/title>/);
+                        
+                        // タイトルクレンジング処理：心理学実験用に調整
+                        let title = titleMatch ? titleMatch[1].replace(/心理学実験：/g, '').replace(/（ビジュアル副読本）/g, '') : `第${i}回`;
+                        
+                        card.classList.add('card-active');
+                        card.innerHTML = `
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-lg text-[#1a3022]">${title}</h3>
+                                <a href="./${folder}/index.html" class="bg-[#af5239] text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-[#943d2b] transition">閲覧する</a>
+                            </div>
+                        `;
+                    } else {
+                        // 未公開の場合の表示
+                        card.className = "bg-gray-50 p-6 rounded-lg border border-gray-200 opacity-60";
+                        card.innerHTML = `<h3 class="font-bold text-gray-400">第${i}回（未公開）</h3>`;
+                    }
+                } catch (e) {
+                    card.className = "bg-gray-50 p-6 rounded-lg border border-gray-200 opacity-60";
+                    card.innerHTML = `<h3 class="font-bold text-gray-400">第${i}回（未公開）</h3>`;
+                }
+                container.appendChild(card);
+            }
+        }
+        loadCourses();
+    </script>
+</body>
+</html>

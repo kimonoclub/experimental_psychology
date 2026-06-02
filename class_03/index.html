@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理学実験：効果の判定と実験計画</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --primary-color: #1a3022; --accent-color: #af5239; --bg-color: #f6f8f6; --text-color: #2b3530; }
+        body { background-color: #e2e7e4; color: var(--text-color); font-family: 'Noto Serif JP', serif; line-height: 1.9; padding: 40px 20px; }
+        .book-container { background-color: var(--bg-color); max-width: 840px; margin: 0 auto; padding: 80px 90px; box-shadow: 0 15px 45px rgba(27, 41, 33, 0.15); }
+        h1, h2, h3 { color: var(--primary-color); font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+        .bold-text { font-weight: 700; color: var(--primary-color); }
+        .highlight { border-bottom: 2px solid rgba(175, 82, 57, 0.3); font-weight: 700; color: var(--primary-color); }
+        .definition-box { background: #fff; border-left: 4px solid var(--primary-color); border: 1px solid #d8e0da; border-radius: 0 8px 8px 0; padding: 25px 30px; margin: 30px 0; }
+        .linkage-column { background: #f4f7f5; border: 1px solid var(--primary-color); padding: 30px 35px; margin: 45px 0; border-radius: 8px; }
+        .assignment-section { background-color: var(--primary-color); color: #fff; padding: 60px 50px; border-radius: 12px; margin-top: 100px; }
+        .submit-btn { background-color: var(--accent-color); color: #fff; border: none; padding: 18px 40px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 700; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="book-container">
+    <header class="text-center mb-16">
+        <h1 class="text-4xl mb-4">心理学実験 第3回</h1>
+        <p class="text-xl text-accent-color italic">効果の判定と実験計画 ―母集団・推定・実験計画―</p>
+    </header>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">1. 母集団と標本 ―「全体」と「一部」を繋ぐ論理―</h2>
+        <p>心理学実験における最大の目的は、目の前のわずか数十人のデータから、人間という種全体に共通する心理的法則を見つけ出すことにあります。しかし、私たちが本当に知りたい「全人類（あるいは全日本人）」という対象を<strong class="highlight">母集団</strong>と呼び、実際に実験室に来てくれた少数の参加者を<strong class="highlight">標本</strong>と呼びます。</p>
+        <p>ここで多くの学生が陥る誤解が、「100人のデータが取れたから、これが真実だ」と思い込むことです。くじ引きを想像してください。毎回引くたびにメンバーは入れ替わり、その都度、平均身長や錯視の強さは微妙に異なります。この「サンプリングのたびにデータが揺らぐ」現象こそが、統計学が立ち向かうべき敵です。統計学とは、この「ズレ」を「偶然の誤差」として処理するのか、それとも「何らかの法則（効果）」によるものなのかを判別するための、極めて誠実な数学的ツールなのです。</p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">2. ミューラーリヤー図形と「錯視」の定量化</h2>
+        <p>実験の一例として用いるミューラーリヤー図形は、なぜ心理学実験の定番なのでしょうか。それは、主観的な「見え方」をミリ単位の「数値」に置き換えられるからです。</p>
+        <p>「錯視が起きている」とは、単に「なんとなく歪んで見える」という曖昧な状態ではありません。実験的に見れば、「本来の線分の長さ」と「参加者が調整した長さ」の間にどれだけの差（錯視量）が生じたかを測定することを意味します。「錯視量が0より大きい」という状態は、私たちの脳が網膜の情報だけでなく、周囲の矢羽という「文脈」に騙され、本来の物理的実体とは異なる情報を構築しているという「脳の戦略的な偏り」を明らかにしているのです。この「0からのズレ」こそが、実験者が求める「効果」の第一歩です。</p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">3. 推定の二つの道：点推定と区間推定</h2>
+        <p>標本から得られた平均値をどう扱うかには、大きく分けて二つの考え方があります。</p>
+        <p><strong class="bold-text">点推定（Point Estimation）</strong>: 標本の平均値（例：錯視量3.0mm）を、そのまま「母集団の平均値」であると仮定する方法です。直感的には分かりやすいですが、標本が持つ「バラつき」を無視しており、非常に不安定な推測と言えます。</p>
+        <p><strong class="bold-text">区間推定（Interval Estimation）</strong>: 「本当の平均値は、たぶん2.5mmから3.5mmの幅にあるだろう」と予測する方法です。心理学実験において、点推定は「参考値」に過ぎません。私たちが本当に知りたいのは、その値がどれくらいの信頼度を持って分布しているかという「範囲」なのです。</p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">4. 95％信頼区間の持つ「科学的な約束」</h2>
+        <p>統計学で頻繁に登場する「95％信頼区間」には、科学的な約束があります。それは、「同じ実験を100回繰り返したとき、その計算手順で出した区間のうち、95回は母集団の真の平均値を含んでいる」という確率的な保証です。</p>
+        <p>ここで重要なのは、「区間に0（差がない状態）が含まれるか否か」という判定基準です。例えば、「錯視を誘発する条件」と「誘発しない条件」の差を計算し、その95％信頼区間を求めたとします。もしこの区間に「0」が含まれていれば、私たちは「本当の差は0（＝何の効果もない）かもしれない」という可能性を否定できません。逆に、区間に「0」が含まれなければ、「偶然の誤差の範囲を超えて、確実にこの条件には差がある」と断言できます。</p>
+        <div class="definition-box">
+            <h3 class="text-lg font-bold">エクセルを用いた95％信頼区間の算出（実践ガイド）</h3>
+            <p>1. <strong class="bold-text">標準偏差の算出</strong>: =STDEV.S(データ範囲) を使用します。<br>
+               2. <strong class="bold-text">データ個数の算出</strong>: =COUNT(データ範囲) でサンプルの数（n）を求めます。<br>
+               3. <strong class="bold-text">信頼区間の幅の算出</strong>: =CONFIDENCE.T(0.05, 標準偏差, 個数) を入力します。<br>
+               結果の解釈: 平均値 ± 算出された幅 = 「本当の値が存在する95％の範囲」となります。</p>
+        </div>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">5. 統計的仮説検定：なぜ「帰無」という言葉を使うのか</h2>
+        <p>実験の結果を論じる際、「統計的仮説検定」という手続きを踏みます。ここでの論理は非常に逆説的です。「A群とB群には差がない（帰無仮説）」という仮定を立てたとき、今回のようなデータが得られる可能性（p値）を計算し、それが5％以下という極めて稀な事象であることを示すことで、「帰無仮説を棄却する」のです。「差がないはずなのに、こんなデータが出るのはおかしい」という背理法的なアプローチによって、初めて私たちは「効果がある」と胸を張れるのです。</p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">6. 剰余変数と実験計画の誠実さ</h2>
+        <p>実験結果が正しいと言い切るためには、統計手法だけでなく「計画の誠実さ」が必要です。本来の研究目的以外で結果に影響を与える要因を<strong class="highlight">剰余変数</strong>と呼びます。練習効果や疲労などは、結果を歪めるノイズです。特に、一人の参加者が複数の条件を行う場合、最初の条件の経験が次に影響する「順序効果」が必ず発生します。</p>
+        <p>この順序効果を回避するための最も効果的な手法が、条件提示の順番を制御する計画法です。ラテン方格法（巡回法）は、条件をずらして提示しますが、これでは「Aの直後にBが来る」という隣接の順序による影響（キャリーオーバー効果）までは完全には解消できません。そこで登場するのが<strong class="highlight">ウィリアムズ方格（バランス型）</strong>です。これは順番だけでなく、「どの条件の次にどの条件が来るか」という組み合わせの回数まで完全に等しく設計された特別な配置です。これは、すべての条件を公平に比較するための、実験者の美学といえる計画法なのです。</p>
+    </section>
+
+    <div class="linkage-column">
+        <h3 class="text-lg font-bold mb-3"><i class="fa-solid fa-graduation-cap"></i> 学びの繋がり：データの正しさを支える論理</h3>
+        <p>皆さんが高校数学で学んだ「確率」の考え方は、社会を生き抜くための「真偽を見極めるフィルター」そのものです。メディアで流れる「〇〇という成分の効果」という情報に対し、「信頼区間はどうなっているのか？」「条件提示の順番に偏りはないか？」と疑いの目を向ける力は、現代社会において最も重要な知的武装です。今回の実験計画の厳密さは、単なるルールの遵守ではなく、皆さんが将来、真実と偶然を区別するためのトレーニングであると捉えてください。</p>
+    </div>
+
+    <section class="assignment-section">
+        <h2 class="text-2xl mb-6 text-white"><i class="fa-solid fa-pen-to-square"></i> 今日の確認テスト</h2>
+        <form id="submission-form">
+            <div class="mb-6 bg-white/10 p-5 rounded-lg">
+                <p class="font-bold mb-3">問1：母集団から標本を抽出する際、同じ母集団でも毎回データが変動するのはなぜですか？</p>
+                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 母集団の平均値が毎回変化しているから</label>
+                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. サンプリングによって選ばれるメンバーの組み合わせが毎回異なり、誤差が生じるから</label>
+            </div>
+            <div class="mb-6 bg-white/10 p-5 rounded-lg">
+                <p class="font-bold mb-3">問2：二つのグループ間の平均値の差を95％信頼区間で推定したとき、その区間に「0」が含まれていました。どう解釈すべきですか？</p>
+                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. A群がB群よりも有意に高いことが証明された</label>
+                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 偶然の誤差の範囲内であり、条件間に確実な差があるとは言えない</label>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 font-bold">学籍番号</label>
+                <input type="text" id="student-id" placeholder="例：24A000" required class="w-full p-3 rounded text-black">
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 font-bold">質問・感想</label>
+                <textarea id="question" rows="3" class="w-full p-3 rounded text-black"></textarea>
+            </div>
+            <button type="button" class="submit-btn" onclick="sendMail()">提出する</button>
+        </form>
+    </section>
+</div>
+
+<script>
+    function sendMail() {
+        const studentId = document.getElementById('student-id').value;
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        if (!studentId || !q1 || !q2) { alert('すべて入力してください'); return; }
+        const score = Math.floor((( (q1.value === "1") + (q2.value === "1") ) / 2) * 100);
+        const body = encodeURIComponent(`学籍番号:${studentId}\n得点:${score}点\n\n【質問・感想】\n${document.getElementById('question').value}`);
+        window.location.href = `mailto:yoshinori-shibasaki@shikoku-u.ac.jp?subject=[フォローアップ提出]${studentId}&body=${body}`;
+    }
+</script>
+</body>
+</html>

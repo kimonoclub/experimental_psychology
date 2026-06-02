@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理学実験：研究倫理と分散分析の数学的本質</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --primary-color: #1a3022; --accent-color: #af5239; --bg-color: #f6f8f6; --text-color: #2b3530; }
+        body { background-color: #e2e7e4; color: var(--text-color); font-family: 'Noto Serif JP', serif; line-height: 1.9; padding: 40px 20px; }
+        .book-container { background-color: var(--bg-color); max-width: 840px; margin: 0 auto; padding: 80px 90px; box-shadow: 0 15px 45px rgba(27, 41, 33, 0.15); }
+        h1, h2, h3 { color: var(--primary-color); font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+        .bold-text { font-weight: 700; color: var(--primary-color); }
+        .highlight { border-bottom: 2px solid rgba(175, 82, 57, 0.3); font-weight: 700; color: var(--primary-color); }
+        .definition-box { background: #fff; border-left: 4px solid var(--primary-color); border: 1px solid #d8e0da; border-radius: 0 8px 8px 0; padding: 25px 30px; margin: 30px 0; }
+        .assignment-section { background-color: var(--primary-color); color: #fff; padding: 60px 50px; border-radius: 12px; margin-top: 100px; }
+        .submit-btn { background-color: var(--accent-color); color: #fff; border: none; padding: 18px 40px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 700; margin-top: 20px; }
+        .math-block { background: #eef2ef; padding: 15px; margin: 20px 0; border-radius: 8px; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+<div class="book-container">
+    <header class="text-center mb-16">
+        <h1 class="text-4xl mb-4">心理学実験 第6回</h1>
+        <p class="text-xl text-accent-color italic">研究倫理の深層と分散分析の数学的本質</p>
+    </header>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">第1部：研究倫理 ―人間を扱う研究者の責務―</h2>
+        <p>心理学実験において「倫理」とは、単なる事務的な手続きではありません。それは、研究の成果そのものの科学的信頼性を保証する根幹です。私たちは人間を対象にデータを収集しますが、そこには常に「人間としての尊厳」という不可侵の領域が存在します。</p>
+        
+        <h3 class="text-xl font-bold mt-8 mb-4">1. 研究倫理の具体的ケーススタディ</h3>
+        <p>以下の事例は、研究目的と参加者の保護が衝突する代表的なケースです。</p>
+        <ul class="list-disc pl-6 mb-6">
+            <li class="mb-2"><strong>ケースA（欺瞞と同意）</strong>: 実験目的を偽る「欺瞞」は、参加者の自己決定権を侵害します。何を行うのか可能な限り正確に伝える同意が必要です。</li>
+            <li class="mb-2"><strong>ケースB（心理的ストレス）</strong>: 実験後に長期間のストレスを抱えさせるような実験は、研究の代償として不適切です。徹底したデブリーフィングが不可欠です。</li>
+            <li class="mb-2"><strong>ケースC（データ管理）</strong>: 学籍番号と得点を紐付けたままの管理は重大な倫理違反です。匿名化の徹底は研究者の資質そのものです。</li>
+            <li class="mb-2"><strong>ケースD（上下関係と強制）</strong>: 教員と学生という上下関係を悪用し、成績とリンクさせる示唆を行うことは、参加者の「拒否権」を奪う行為です。</li>
+            <li class="mb-2"><strong>ケースE（評価のフィードバック）</strong>: 専門外の研究者が安易に診断的フィードバックを行うことは、参加者の自己概念を傷つけるリスクがあります。</li>
+        </ul>
+        <p>参加者は実験のための「道具」ではなく、真理を追究する「協力者」です。この対等な関係こそが、研究倫理の第一歩となります。</p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl mb-6">第2部：分散分析の論理 ―ノイズとシグナルの分離―</h2>
+        <p>分散分析（ANOVA）は、実験における「平均値の差」が偶然か、意味のあるものかを判別する手法です。</p>
+        
+        <h3 class="text-xl font-bold mt-8 mb-4">1. F値の哲学 ―ノイズに対するシグナルの比率―</h3>
+        <div class="math-block">
+            F値 ＝ シグナル（意味のある変化） / ノイズ（偶然のバラつき）
+        </div>
+        <p>F値が大きければ大きいほど、「偶然のノイズよりも、条件による効果（シグナル）が上回っている」と解釈できます。</p>
+
+        <h3 class="text-xl font-bold mt-8 mb-4">2. 平方和（SS）の分解</h3>
+        <div class="definition-box">
+            <p><strong class="bold-text">SStotal（全平方和）</strong>: 実験全体のバラつき総量。</p>
+            <p><strong class="bold-text">SSa（要因平方和）</strong>: 条件の違いによって生まれた「意味のあるズレ（シグナル）」。</p>
+            <p><strong class="bold-text">SSs（参加者平方和）</strong>: 個人差によるズレ。</p>
+            <p><strong class="bold-text">SSer（残差平方和）</strong>: 説明できない「純粋なノイズ」。</p>
+        </div>
+
+        <h3 class="text-xl font-bold mt-8 mb-4">3. 平均平方（MS）とF値の算出</h3>
+        <div class="math-block">
+            MS（平均平方） ＝ SS（平方和） / df（自由度）<br>
+            F値 ＝ MSa / MSer
+        </div>
+        <p>平方和を自由度で割ることで、公平な比較が可能になります。</p>
+
+        <h3 class="text-xl font-bold mt-8 mb-4">4. ExcelとHADの活用</h3>
+        <p>Excelでは、`F.DIST.RT(F値, 自由度a, 自由度er)` 関数で「p値」を算出します。心理統計ソフト「HAD」を使えば、データセットを流し込むだけでこの煩雑な計算と判定を自動で行ってくれます。これは、皆さんが「何が心理的効果を引き起こしたか」という解釈の深度に集中するための強力な武器となります。</p>
+    </section>
+
+    <section class="assignment-section">
+        <h2 class="text-2xl mb-6 text-white"><i class="fa-solid fa-pen-to-square"></i> 確認テスト</h2>
+        <form id="submission-form">
+            <div class="mb-6 bg-white/10 p-5 rounded-lg">
+                <p class="font-bold mb-3">問1：欺瞞を用いた際、実験後に必ず行うべきことは何ですか？</p>
+                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 実験結果を参加者に伝え、知能の診断を行う</label>
+                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. デブリーフィングを行い、真実の説明と心のケアを行う</label>
+            </div>
+            <div class="mb-6 bg-white/10 p-5 rounded-lg">
+                <p class="font-bold mb-3">問2：分散分析における「F値」の分母「ノイズ」とは何を指しますか？</p>
+                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. すべての条件の平均値が一致している状態</label>
+                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 個人差や測定誤差などの「偶然のバラつき」</label>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 font-bold">学籍番号</label>
+                <input type="text" id="student-id" placeholder="例：24A000" required class="w-full p-3 rounded text-black">
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 font-bold">質問・感想</label>
+                <textarea id="question" rows="3" class="w-full p-3 rounded text-black"></textarea>
+            </div>
+            <button type="button" class="submit-btn" onclick="sendMail()">提出する</button>
+        </form>
+    </section>
+</div>
+
+<script>
+    function sendMail() {
+        const studentId = document.getElementById('student-id').value;
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        if (!studentId || !q1 || !q2) { alert('すべて入力してください'); return; }
+        const score = Math.floor((( (q1.value === "1") + (q2.value === "1") ) / 2) * 100);
+        const body = encodeURIComponent(`学籍番号:${studentId}\n得点:${score}点\n\n【質問・感想】\n${document.getElementById('question').value}`);
+        window.location.href = `mailto:yoshinori-shibasaki@shikoku-u.ac.jp?subject=[フォローアップ提出]${studentId}&body=${body}`;
+    }
+</script>
+</body>
+</html>
