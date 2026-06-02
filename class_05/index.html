@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>発達心理学：能動的様相と世界の再構築</title>
+    <title>心理学実験：ミューラーリヤー錯視と統計的推論</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -13,8 +13,7 @@
         h1, h2, h3 { color: var(--primary-color); font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
         .bold-text { font-weight: 700; color: var(--primary-color); }
         .highlight { border-bottom: 2px solid rgba(175, 82, 57, 0.3); font-weight: 700; color: var(--primary-color); }
-        .definition-box { background: #fff; border-left: 4px solid var(--primary-color); border: 1px solid #d8e0da; border-radius: 0 8px 8px 0; padding: 25px 30px; margin: 30px 0; }
-        .linkage-column { background: #f4f7f5; border: 1px solid var(--primary-color); padding: 30px 35px; margin: 45px 0; border-radius: 8px; }
+        .math-block { background: #eef2ef; padding: 25px; margin: 30px 0; border-radius: 8px; font-family: monospace; border: 1px solid #d8e0da; }
         .assignment-section { background-color: var(--primary-color); color: #fff; padding: 60px 50px; border-radius: 12px; margin-top: 100px; }
         .submit-btn { background-color: var(--accent-color); color: #fff; border: none; padding: 18px 40px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 700; margin-top: 20px; }
     </style>
@@ -23,62 +22,46 @@
 
 <div class="book-container">
     <header class="text-center mb-16">
-        <h1 class="text-4xl mb-4">発達心理学 第5回</h1>
-        <p class="text-xl text-accent-color italic">能動的様相 ―世界を構造化する身体と脳―</p>
+        <h1 class="text-4xl mb-4">心理学実験 第5回</h1>
+        <p class="text-xl text-accent-color italic">ミューラーリヤー錯視と統計的推論 ―視覚のメカニズムを解明する―</p>
     </header>
 
     <section class="mb-12">
-        <h2 class="text-2xl mb-6">イントロダクション：受動的な器ではない「乳児」の能動性</h2>
-        <p>私たちは長らく、乳児を「親からの刺激をただ受動的に受け取るだけの未熟な器」と見なしてきました。しかし、現代の発達心理学は、乳児が生まれながらにして<strong class="highlight">能動的様相（Active Aspect）</strong>を持つ存在であることを証明しています。人間がなぜ「生理的早産」という、極めて未熟な状態で生まれてくるのか。それは、特定の環境に適応しきってしまう前に、生まれた後の広大な環境と多様な文化を脳に直接書き込むための「高い学習能力（可塑性）」を確保するためです。乳児は、五感を駆使し、身体を動かし、世界の構造を見つけ出し、それを脳内に「コピー」しようとする小さな科学者なのです。</p>
+        <h2 class="text-2xl mb-6">1. 錯視研究の歴史：なぜ私たちは騙されるのか</h2>
+        <p>1889年、フランツ・ミューラーリヤーが報告したこの図形は、心理学の歴史において「視覚の本質」を問う象徴として存在し続けてきました。なぜ矢羽の向きだけで、等しい線分が異なる長さに知覚されるのか。この問いは、単なる視覚のバグとして片付けられるべきではありません。</p>
+        <p>20世紀半ば、リチャード・グレゴリーは「奥行き恒常性」という仮説を提示しました。私たちは3次元空間を歩む際、網膜上の像が小さくても「遠くにあるからだ」と脳内で自動的にサイズを補正します。ミューラーリヤー図形は、この補正システムを平面に持ち込むことで、脳の「適応的な騙され方」を浮き彫りにしたのです。内向きの矢羽は、建物の内角（凹）を、外向きは外角（凸）を連想させ、脳はそのヒントを「距離」として誤読し、補正をかけてしまうのです。今回の実験は、この脳の深層的な演算プロセスを、数値という客観的な言葉で描き出す試みです。</p>
     </section>
 
     <section class="mb-12">
-        <h2 class="text-2xl mb-6">第1章：身体による世界のマッピング（能動的様相間マッピング：AIM）</h2>
-        <p>乳児の学習における最大の武器は、自分の身体を他者と同期させる能力です。赤ちゃんは、他者の顔（視覚情報）を、自分自身の顔の筋肉の動き（運動感覚）へと即座に変換し、模倣します。このプロセスを<strong class="highlight">能動的様相間マッピング（Active Intermodal Mapping: AIM）</strong>と呼びます。</p>
-        <p>例えば、母親が口を動かして「ん」という音を出すとき、赤ちゃんはそれを視覚として捉えるだけでなく、自分自身の発声器官の動きとしてシミュレーションしています。私たちは「あんぱん」と「反対」の「ん」を、次に続く音に合わせて無意識に口の形を変えて発音していますが、これも幼少期の身体的マッピングの蓄積によるものです。自分の身体を使って他者の動きを「再演」することで、私たちは世界の構造を理解し、自己の地図を構築しています。</p>
+        <h2 class="text-2xl mb-6">2. 統計的仮説検定：偶然という壁を越えて</h2>
+        <p>心理学実験が「科学」として認められるのは、そこに厳密な統計的推論が存在するからです。例えば「この条件で錯視が強まる」というとき、それは「偶然」ではありません。ここで用いられるのが「統計的仮説検定」です。</p>
+        <p>思考実験として、「超能力がある」と主張する人がいたとしましょう。科学者は「超能力はない」という<strong class="highlight">帰無仮説</strong>を立てます。この仮説が正しい（＝超能力はない）世界において、目の前で起きた現象が「偶然に起こる確率（p値）」を算出します。もしその確率が5%（0.05）を下回るほど稀であれば、「そんなことが偶然起きるはずがない」と判断し、帰無仮説を棄却します。心理学実験における錯視も同様です。「錯視の差はない」という帰無仮説に対し、得られたデータがどれほど「偶然の境界線」を突破しているかを判定することで、私たちは初めて「脳は確かにこの文脈で錯視を生んでいる」と言えるのです。</p>
     </section>
 
     <section class="mb-12">
-        <h2 class="text-2xl mb-6">第2章：脳内の予測と修正システム（運動・認知の統合）</h2>
-        <p>「運動」と「認知」は脳内で切り離せないプロセスです。私たちが目をつぶっていても自分の鼻を正確に触れるのは、脳が常に「意図した動き」と「実際の動き」を照らし合わせているからです。</p>
-        <p>ここには精緻なシステムが存在します。運動野が筋肉に指令を出す際、その内容を小脳にも送る<strong class="highlight">遠心性コピー（Efferent Copy）</strong>という複製データが作られます。脳は、運動結果が返ってきたとき、このコピーと実際の感覚（固有受容感覚）を比較します。もしズレがあれば、小脳がそれを予測誤差として検知し、瞬時に脳の回路を修正します。この「予測と修正」のサイクルこそが、ハイハイや歩行という身体運動を通じて、乳児の知能を物理的に構築するエンジンとなっているのです。</p>
+        <h2 class="text-2xl mb-6">3. 分析マニュアルに基づく解析手順</h2>
+        <p>「分析マニュアル」に基づき、個人のデータから客観的法則を抽出する手順を整理します。心理統計における解析とは、個人の錯視量のバラつき（ノイズ）の中から、条件（矢羽の角度）が与える平均的な影響（シグナル）を分離する作業に他なりません。</p>
+        <div class="math-block">
+            Step 1: データのクリーニングと平均値の確認<br>
+            Step 2: 参加者要因と角度要因の分離（分散分析の適用）<br>
+            Step 3: 各条件間での錯視量の比較（多重比較）<br>
+            Step 4: p値の解釈と仮説の棄却判定
+        </div>
+        <p>ここで重要なのは「個人差」の扱い方です。同じ矢羽を見ても、AさんとBさんでは錯視の感じ方が異なります。分散分析の最大の利点は、参加者個人の錯視の強さ（SSs）を分析の誤差から差し引くことで、角度という「実験条件そのもの」が持つ純粋な効果（SSa）を鮮明に抽出できる点にあります。</p>
     </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">第3章：記憶の物理的基盤 ―短期記憶と反響回路―</h2>
-        <p>新生児は、なぜ自分で過去の情報を再生できないのでしょうか。それは、情報を保持するための物理的な脳回路が未発達だからです。短期記憶を支える仕組みの一つに、<strong class="highlight">反響回路（リバーバレーション回路）</strong>があります。これは、神経細胞の間で興奮信号がぐるぐると循環し続けることで、外部刺激が消えた後も「それがあったこと」を保持し続ける仕組みです。</p>
-        <p>生後6ヶ月頃の子どもは、おもちゃが隠されると「おもちゃがなくなった」かのように振る舞います。これは<strong class="highlight">物の永続性</strong>がまだ確立されていないためです。しかし、バウアーが行った心拍数の実験では、ものがあった場所に「何もない」ことを見たとき、乳児の心拍数が上昇しました。これは乳児が「そこにあるはずのもの」を脳内に予測している証拠であり、感覚や運動という物理的な繋がりを通じて、世界を保持する力があることを示しています。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">第4章：教育の本質と長期的発達 ―EPPEプロジェクトからの洞察―</h2>
-        <p>教育（Educate）の本来の意味は、外から知識を詰め込むことではなく、内側にある可能性を「引き出すこと」です。子どもが「こうなるのでは？」と世界に対して予測を立て、実際に動いてみて、大人から適切なフィードバックを受ける。この能動的な対話の質が、将来の論理的思考力や社会性の土台を作ります。</p>
-        <p>英国の<strong class="highlight">EPPEプロジェクト</strong>は、約3,000人の子どもを16歳まで追跡調査し、質の高い就学前教育が将来の算数能力や社会性に決定的な影響を与えることを明らかにしました。知能は、頭の中だけで育つのではありません。ハイハイや歩行といった身体の動きが、脳の認知発達を物理的に加速させているのです。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">第5章：レポートを書くということ ―「目的」の論理構造―</h2>
-        <p>心理学レポートにおいて、もっとも重要なのは「なぜこの実験を行う必要があるのか」という<strong class="highlight">目的</strong>の明示です。例えばミューラー・リヤー錯視の実験であれば、単に「長さを測る」のではなく、「脳がいかにして2次元の網膜像から3次元の奥行き世界を再構成（再演）しているか」という問いを立てます。</p>
-        <p>先行研究を引き合いに出し、グレゴリーの奥行き仮説のように「内向き矢羽は部屋の内角（凹）」として処理されるという理論的背景と、本実験で検証したい仮説を論理的に繋ぐことが、説得力あるレポートの条件となります。物理的な対象（2D図形）と、脳の補正プロセス（3Dへのマッピング）との乖離をどう記述するかが鍵です。</p>
-    </section>
-
-    <div class="linkage-column">
-        <h3 class="text-lg font-bold mb-3"><i class="fa-solid fa-graduation-cap"></i> 学びの繋がり：科学的思考を育む身体</h3>
-        <p>部活動での身体的な練習も、数学の抽象的な計算練習も、根底にあるプロセスは同じです。能動的に世界（対象）に働きかけ、予測と結果のズレ（予測誤差）を修正し、回路を書き換えるという「能動的様相」のサイクルです。皆さんにとって、身体を使って何かを学ぶことは、脳の回路を自ら再構築し、自身の知能を形作るプロセスそのものなのです。</p>
-    </div>
 
     <section class="assignment-section">
         <h2 class="text-2xl mb-6 text-white"><i class="fa-solid fa-pen-to-square"></i> 確認テスト</h2>
         <form id="submission-form">
             <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問1：能動的様相間マッピング（AIM）の説明として、最も適切なものはどれですか？</p>
-                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 他者の視覚的な動きを、自分の運動感覚へ変換してシミュレーションする能力</label>
-                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. 刺激に対して受動的に反応し、反射的に筋肉を動かす能力</label>
+                <p class="font-bold mb-3">問1：グレゴリーが提唱した「奥行き恒常性」仮説に基づくミューラーリヤー錯視の解釈として正しいものは？</p>
+                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 脳が網膜の像をそのまま忠実に再現しようとするから</label>
+                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. 脳が奥行きを推論するための補正プロセスが、平面図形に対して誤って適用されるから</label>
             </div>
             <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問2：レポートの「目的」の欄において、最も重視すべきことは何ですか？</p>
-                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. 実験の全手順を事細かに書き連ねること</label>
-                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 先行研究を参照し、なぜこの実験を通して人間の心理を探るのかという論理を立てること</label>
+                <p class="font-bold mb-3">問2：統計的仮説検定において「帰無仮説を棄却する」ために必要な判断基準はどれか？</p>
+                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. 実験データの差が物理的に見えること</label>
+                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 差がないと仮定した場合、現在のデータが得られる確率が極めて低い（p < 0.05など）こと</label>
             </div>
             <div class="mb-4">
                 <label class="block mb-2 font-bold">学籍番号</label>
