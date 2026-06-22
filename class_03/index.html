@@ -3,114 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心理学実験：効果の判定と実験計画</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>心理学実験：データの向こう側にある不確実性を記述する：サンプリング、信頼区間、および仮説検定の論理</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            chtml: {
+                matchFontHeight: false
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
-        :root { --primary-color: #1a3022; --accent-color: #af5239; --bg-color: #f6f8f6; --text-color: #2b3530; }
-        body { background-color: #e2e7e4; color: var(--text-color); font-family: 'Noto Serif JP', serif; line-height: 1.9; padding: 40px 20px; }
-        .book-container { background-color: var(--bg-color); max-width: 840px; margin: 0 auto; padding: 80px 90px; box-shadow: 0 15px 45px rgba(27, 41, 33, 0.15); }
-        h1, h2, h3 { color: var(--primary-color); font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
-        .bold-text { font-weight: 700; color: var(--primary-color); }
-        .highlight { border-bottom: 2px solid rgba(175, 82, 57, 0.3); font-weight: 700; color: var(--primary-color); }
-        .definition-box { background: #fff; border-left: 4px solid var(--primary-color); border: 1px solid #d8e0da; border-radius: 0 8px 8px 0; padding: 25px 30px; margin: 30px 0; }
-        .linkage-column { background: #f4f7f5; border: 1px solid var(--primary-color); padding: 30px 35px; margin: 45px 0; border-radius: 8px; }
-        .assignment-section { background-color: var(--primary-color); color: #fff; padding: 60px 50px; border-radius: 12px; margin-top: 100px; }
-        .submit-btn { background-color: var(--accent-color); color: #fff; border: none; padding: 18px 40px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 700; margin-top: 20px; }
+        /* 学術的気品を表現するハイライト装飾 */
+        .highlight {
+            background: linear-gradient(transparent 60%, #fef08a 60%);
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .text-justified {
+            text-align: justify;
+            text-justify: inter-character;
+        }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased line-height-relaxed">
 
-<div class="book-container">
-    <header class="text-center mb-16">
-        <h1 class="text-4xl mb-4">心理学実験 第3回</h1>
-        <p class="text-xl text-accent-color italic">効果の判定と実験計画 ―母集団・推定・実験計画―</p>
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-950 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <p id="subject_label" class="text-xs font-bold text-blue-300 uppercase tracking-wider">心理学実験</p>
+                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第3回：データの向こう側にある不確実性を記述する</h1>
+            </div>
+            <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">科目ポータルへ戻る</a>
+        </div>
     </header>
 
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">1. 母集団と標本 ―「全体」と「一部」を繋ぐ論理―</h2>
-        <p>心理学実験における最大の目的は、目の前のわずか数十人のデータから、人間という種全体に共通する心理的法則を見つけ出すことにあります。しかし、私たちが本当に知りたい「全人類（あるいは全日本人）」という対象を<strong class="highlight">母集団</strong>と呼び、実際に実験室に来てくれた少数の参加者を<strong class="highlight">標本</strong>と呼びます。</p>
-        <p>ここで多くの学生が陥る誤解が、「100人のデータが取れたから、これが真実だ」と思い込むことです。くじ引きを想像してください。毎回引くたびにメンバーは入れ替わり、その都度、平均身長や錯視の強さは微妙に異なります。この「サンプリングのたびにデータが揺らぐ」現象こそが、統計学が立ち向かうべき敵です。統計学とは、この「ズレ」を「偶然の誤差」として処理するのか、それとも「何らかの法則（効果）」によるものなのかを判別するための、極めて誠実な数学的ツールなのです。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">2. ミューラーリヤー図形と「錯視」の定量化</h2>
-        <p>実験の一例として用いるミューラーリヤー図形は、なぜ心理学実験の定番なのでしょうか。それは、主観的な「見え方」をミリ単位の「数値」に置き換えられるからです。</p>
-        <p>「錯視が起きている」とは、単に「なんとなく歪んで見える」という曖昧な状態ではありません。実験的に見れば、「本来の線分の長さ」と「参加者が調整した長さ」の間にどれだけの差（錯視量）が生じたかを測定することを意味します。「錯視量が0より大きい」という状態は、私たちの脳が網膜の情報だけでなく、周囲の矢羽という「文脈」に騙され、本来の物理的実体とは異なる情報を構築しているという「脳の戦略的な偏り」を明らかにしているのです。この「0からのズレ」こそが、実験者が求める「効果」の第一歩です。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">3. 推定の二つの道：点推定と区間推定</h2>
-        <p>標本から得られた平均値をどう扱うかには、大きく分けて二つの考え方があります。</p>
-        <p><strong class="bold-text">点推定（Point Estimation）</strong>: 標本の平均値（例：錯視量3.0mm）を、そのまま「母集団の平均値」であると仮定する方法です。直感的には分かりやすいですが、標本が持つ「バラつき」を無視しており、非常に不安定な推測と言えます。</p>
-        <p><strong class="bold-text">区間推定（Interval Estimation）</strong>: 「本当の平均値は、たぶん2.5mmから3.5mmの幅にあるだろう」と予測する方法です。心理学実験において、点推定は「参考値」に過ぎません。私たちが本当に知りたいのは、その値がどれくらいの信頼度を持って分布しているかという「範囲」なのです。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">4. 95％信頼区間の持つ「科学的な約束」</h2>
-        <p>統計学で頻繁に登場する「95％信頼区間」には、科学的な約束があります。それは、「同じ実験を100回繰り返したとき、その計算手順で出した区間のうち、95回は母集団の真の平均値を含んでいる」という確率的な保証です。</p>
-        <p>ここで重要なのは、「区間に0（差がない状態）が含まれるか否か」という判定基準です。例えば、「錯視を誘発する条件」と「誘発しない条件」の差を計算し、その95％信頼区間を求めたとします。もしこの区間に「0」が含まれていれば、私たちは「本当の差は0（＝何の効果もない）かもしれない」という可能性を否定できません。逆に、区間に「0」が含まれなければ、「偶然の誤差の範囲を超えて、確実にこの条件には差がある」と断言できます。</p>
-        <div class="definition-box">
-            <h3 class="text-lg font-bold">エクセルを用いた95％信頼区間の算出（実践ガイド）</h3>
-            <p>1. <strong class="bold-text">標準偏差の算出</strong>: =STDEV.S(データ範囲) を使用します。<br>
-               2. <strong class="bold-text">データ個数の算出</strong>: =COUNT(データ範囲) でサンプルの数（n）を求めます。<br>
-               3. <strong class="bold-text">信頼区間の幅の算出</strong>: =CONFIDENCE.T(0.05, 標準偏差, 個数) を入力します。<br>
-               結果の解釈: 平均値 ± 算出された幅 = 「本当の値が存在する95％の範囲」となります。</p>
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        
+        <div class="text-center mb-16">
+            <p class="text-indigo-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第3回 講義資料・副読本</p>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                データの向こう側にある不確実性を記述する<br>
+                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">サンプリング、信頼区間、および仮説検定の論理</span>
+            </h1>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto rounded"></div>
         </div>
-    </section>
 
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">5. 統計的仮説検定：なぜ「帰無」という言葉を使うのか</h2>
-        <p>実験の結果を論じる際、「統計的仮説検定」という手続きを踏みます。ここでの論理は非常に逆説的です。「A群とB群には差がない（帰無仮説）」という仮定を立てたとき、今回のようなデータが得られる可能性（p値）を計算し、それが5％以下という極めて稀な事象であることを示すことで、「帰無仮説を棄却する」のです。「差がないはずなのに、こんなデータが出るのはおかしい」という背理法的なアプローチによって、初めて私たちは「効果がある」と胸を張れるのです。</p>
-    </section>
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第1章：私たちは「全体」を見ることはできない（母集団と標本）
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                心理学が対象とするのは、人間の心や行動という直接見ることのできない複雑な現象です。私たちが「人間はミューラー・リヤー錯視において、どれくらいの錯視量を示すのか」という問いに科学的な答えを出そうとするとき、理想を言えば、その研究が対象とするすべての人々を測定するのが最も確実です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                このように、私たちが真に調査・研究の対象としたいと願う「理論上関心を持つ対象集団（たとえば、成人、あるいは視覚障害のない人など）」のことを、心理学および統計学では臨時に<strong class="highlight">「母集団（Population）」</strong>と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                しかし、現実的にその対象となるすべての人々を大学の実験室に集めて測定することは不可能です。時間的にも、経済的にも、私たちの物理的な資源には限界があります。そこで私たちは、母集団のうち「現実的に測定可能な一部の人々」を切り出してくることになります。この母集団から一部のデータを取り出す手続きを<strong class="highlight">「サンプリング（標本抽出：Sampling）」</strong>と呼び、その結果として得られた実際の測定データの集まりを<strong class="highlight">「標本（Sample）」</strong>と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                心理学実験とは、この「限られた標本（サンプル）」を観察することによって、その奥に隠れている直接見ることのできない「母集団」の性質を推測する試みに他なりません。この学問体系を「推測統計学」と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                ただし、ここで実験心理学における重要な前提が登場します。サンプリングされた標本が、もし「実験の順番による疲れや慣れ（順序効果）」や「直前に見た刺激の影響（隣接効果）」によって歪んでしまっていたら、どれだけ高度な統計処理を行っても意味がありません。そのため、前回の実験デザインで学んだように、私たちは「ウィリアムズ方格（バランス型ラテン方格法）」という実験設計を用いました。これは、順序効果や隣接効果による系統的偏り（系統誤差）を可能な限り相殺・軽減するための方法です。実験デザインによってこのような系統的な歪みを事前にコントロールしておくからこそ、これから解説する「偶然のブレ（偶然誤差）」を、統計学によって正しく評価できるようになるのです。
+            </p>
+        </section>
 
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">6. 剰余変数と実験計画の誠実さ</h2>
-        <p>実験結果が正しいと言い切るためには、統計手法だけでなく「計画の誠実さ」が必要です。本来の研究目的以外で結果に影響を与える要因を<strong class="highlight">剰余変数</strong>と呼びます。練習効果や疲労などは、結果を歪めるノイズです。特に、一人の参加者が複数の条件を行う場合、最初の条件の経験が次に影響する「順序効果」が必ず発生します。</p>
-        <p>この順序効果を回避するための最も効果的な手法が、条件提示の順番を制御する計画法です。ラテン方格法（巡回法）は、条件をずらして提示しますが、これでは「Aの直後にBが来る」という隣接の順序による影響（キャリーオーバー効果）までは完全には解消できません。そこで登場するのが<strong class="highlight">ウィリアムズ方格（バランス型）</strong>です。これは順番だけでなく、「どの条件の次にどの条件が来るか」という組み合わせの回数まで完全に等しく設計された特別な配置です。これは、すべての条件を公平に比較するための、実験者の美学といえる計画法なのです。</p>
-    </section>
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第2章：サンプリングは、必ず「ブレる」
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                実験デザインによって系統的なノイズをどれだけ綺麗に相殺したとしても、私たちはもう一つの宿命から逃れることはできません。それが「サンプリングに伴う偶然のブレ（サンプリング誤差）」です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                今、実験室にいる学生の皆さんの中からランダムに20人を選んで、ミューラー・リヤー錯視の実験を行ったとしましょう。その 20 人のデータから計算された「錯視量の平均値」は、例えば「15.4mm」といった一つの数値として得られます。このように、標本データから母集団の真の値を「一つの値」として言い当てる手法を「点推定（Point Estimation）」と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                しかし、もし別の20人をランダムに選んで全く同じ実験を行ったら、平均値は「14.2mm」になるかもしれませんし、別のグループでは「16.1mm」になるかもしれません。母集団（全体）から標本（一部）を切り出す以上、誰がサンプルとして選ばれるかという偶然によって、計算される平均値は毎回必ずバラバラに変動します。このように、何度も標本抽出を繰り返したときに得られる標本平均の分布のことを「サンプリング分布」と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                つまり、「点推定によって得られた一つの平均値は、本当の平均値（母平均）の近くにはいるだろうが、完全に一致していることはほぼゼロである」というのが、統計学的な事実なのです。データとは、サンプリングのたびに毎回姿を変えて揺らぐ不確実なものです。この点推定の限界を乗り越えるために提唱されたのが、一つの数値ではなく「これくらいの範囲の中に、本当の値が含まれているだろう」と、幅を持たせて推定を行う<strong class="highlight">「区間推定（Interval Estimation）」</strong>です。偶然のブレをあらかじめ織り込み、範囲（区間）で母集団の姿を捉えようとするアプローチの始まりです。
+            </p>
+        </section>
 
-    <div class="linkage-column">
-        <h3 class="text-lg font-bold mb-3"><i class="fa-solid fa-graduation-cap"></i> 学びの繋がり：データの正しさを支える論理</h3>
-        <p>皆さんが高校数学で学んだ「確率」の考え方は、社会を生き抜くための「真偽を見極めるフィルター」そのものです。メディアで流れる「〇〇という成分の効果」という情報に対し、「信頼区間はどうなっているのか？」「条件提示の順番に偏りはないか？」と疑いの目を向ける力は、現代社会において最も重要な知的武装です。今回の実験計画の厳密さは、単なるルールの遵守ではなく、皆さんが将来、真実と偶然を区別するためのトレーニングであると捉えてください。</p>
-    </div>
-
-    <section class="assignment-section">
-        <h2 class="text-2xl mb-6 text-white"><i class="fa-solid fa-pen-to-square"></i> 今日の確認テスト</h2>
-        <form id="submission-form">
-            <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問1：母集団から標本を抽出する際、同じ母集団でも毎回データが変動するのはなぜですか？</p>
-                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 母集団の平均値が毎回変化しているから</label>
-                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. サンプリングによって選ばれるメンバーの組み合わせが毎回異なり、誤差が生じるから</label>
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第3章：「95%信頼区間」が意味する本当のこと
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                区間推定において、心理学や多くの科学領域で最も広く用いられる基準が<strong class="highlight">「95%信頼区間（95% Confidence Interval: 95% CI）」</strong>です。Excelの関数を使用することで、標本の平均値を中心としたこの不確実性の幅（上限値と下限値）を算出することができます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                ここで、科学的な誠実さを保つために、「95%信頼区間」の解釈に関する極めて重大な、かつ非常によくある誤解を正しておかなければなりません。初学者向けの解説書では、しばしば「95%の確率で、この区間のなかに本当の平均値（母平均）がある」と説明されますが、これは頻度論的な統計学においては不正確な記述です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                なぜなら、母集団の本当の平均値（母平均 $\mu$）は、私たちがまだ知らないだけで、すでに固定された「一つの定数」としてそこに存在しているからです。母平均の側が、確率的にあちこちへ動いたり、区間に飛び込んできたりするのではありません。
+            </p>
+            <div class="bg-blue-50 border border-blue-100 p-5 rounded-xl text-indigo-950 mb-4 text-sm sm:text-base">
+                <p class="font-bold mb-1">💡 頻度論統計学における正しい解釈</p>
+                <p class="text-justified">
+                    「もし、母集団からまったく同じ手順でサンプリングを100回繰り返し、100個の異なる 95%信頼区間を作成したとする。このとき、変動する100個の区間のうち、およそ95個の区間が、固定された真の母平均をその内部に包み込んでいる（捉えている）」
+                </p>
             </div>
-            <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問2：二つのグループ間の平均値の差を95％信頼区間で推定したとき、その区間に「0」が含まれていました。どう解釈すべきですか？</p>
-                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. A群がB群よりも有意に高いことが証明された</label>
-                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 偶然の誤差の範囲内であり、条件間に確実な差があるとは言えない</label>
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 font-bold">学籍番号</label>
-                <input type="text" id="student-id" placeholder="例：24A000" required class="w-full p-3 rounded text-black">
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 font-bold">質問・感想</label>
-                <textarea id="question" rows="3" class="w-full p-3 rounded text-black"></textarea>
-            </div>
-            <button type="button" class="submit-btn" onclick="sendMail()">提出する</button>
-        </form>
-    </section>
-</div>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                動くのは「世界（母平均）」ではなく、私たちが計算した「不完全な地図（区間）」の側であるという大原則を、まず理解してください。
+            </p>
+        </section>
 
-<script>
-    function sendMail() {
-        const studentId = document.getElementById('student-id').value;
-        const q1 = document.querySelector('input[name="q1"]:checked');
-        const q2 = document.querySelector('input[name="q2"]:checked');
-        if (!studentId || !q1 || !q2) { alert('すべて入力してください'); return; }
-        const score = Math.floor((( (q1.value === "1") + (q2.value === "1") ) / 2) * 100);
-        const body = encodeURIComponent(`学籍番号:${studentId}\n得点:${score}点\n\n【質問・感想】\n${document.getElementById('question').value}`);
-        window.location.href = `mailto:yoshinori-shibasaki@shikoku-u.ac.jp?subject=[フォローアップ提出]${studentId}&body=${body}`;
-    }
-</script>
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第4章：ミューラー・リヤー錯視実験への適用
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                では、この信頼区間の論理を、皆さんが実際に測定した「ミューラー・リヤー錯視」のデータに適用してみましょう。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                本実験における「錯視量」とは、参加者が主観的に判断した「矢羽のついた線分が、中央の基準線と同じ長さに生じたときの物理的なズレ」を指します。客観的な長さからのズレが錯視量です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                もし、人間にとってミューラー・リヤーの図形が「集団レベルで錯視を生じさせない」ものであるならば、現実からのズレはプラスにもマイナスにも偏らず、偶然のブレ（誤差）として相殺されるため、母集団における平均的な錯視量（母平均 $\mu$）は「0」であると仮定することができます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                私たちが科学的に「この図形は、偶然のブレという可能性を考慮しても、母平均が0であるという仮説を維持することは困難である（＝集団レベルで錯視がある）」と推測するためには、自分たちのデータから計算された「95%信頼区間」という数直線の範囲を覗き込む必要があります。もし、計算された95%信頼区間の範囲が、例えば「$[12.5\text{mm} \sim 18.3\text{mm}]$」のように、数直線上で「0」を内部に含んでいない（完全に0をまたがずにプラスの領域に独立している）ならば、私たちは<strong class="highlight">「偶然のブレという不確実性を考慮しても、母平均が0であるという仮説を維持することは困難である」</strong>と論理的に判断する根拠を手に入れることができるのです。
+            </p>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第5章：たまま生じる「2つの過ち」と「検出力」
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                しかし、統計学的な意思決定には、常に「過ち（エラー）」のリスクが伴います。どれほど完璧な実験デザインを用いても、サンプリングという手続きを行う以上、たまたま偏ったサンプルを引いてしまう確率をゼロにはできないからです。心理学の意思決定には、以下の「2つの過ち」と、それを防ぐ「検出力」という概念が存在します。
+            </p>
+
+            <div class="space-y-4 my-6 text-sm sm:text-base">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-rose-900 mb-1">① 第1種の誤り（$\alpha$ エラー：偽陽性）</p>
+                    <p class="text-slate-700 text-justified">
+                        本当は母集団において「集団全体の平均的な錯視量は0（差はない）」のに、サンプリングの偶然の偏りによって、たまたま錯視量が非常に大きい特殊なサンプルばかりを引いてしまい、データ上「差がある」と誤って判断してしまう確率です。これは、何も起きていないのに「オオカミが来た！」と誤認する過ち（オオカミ少年エラー）に例えられます。心理学実験では、この第1種の誤りを犯す確率をあらかじめ<strong class="highlight">「5%（有意水準 $\alpha=0.05$）」</strong>以下に厳しく抑え込むことで、でっち上げのリスクをコントロールしています。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-slate-900 mb-1">② 第2種の誤り（$\beta$ エラー：偽陰性）</p>
+                    <p class="text-slate-700 text-justified">
+                        本当は母集団において「明確な差がある（母平均 $\mu \neq 0$）」のに、データのブレが大きすぎたりしたせいで、計算された信頼区間が「0」をまたいでしまい、「差はない（錯視はない）」と誤って見落としてしまう確率です。これは、目の前に本物のオオカミがいるのに「気のせいだ」と見逃してしまう過ち（見逃しエラー）に相当します。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-indigo-900 mb-1">③ 検出力（Power：$1 - \beta$）</p>
+                    <p class="text-slate-700 text-justified">
+                        第2種の誤り（$\beta$）の裏返しとして重要なのが、<strong class="highlight">「検出力（Power）」</strong>という概念です。これは、「本当は母集団に差があるときに、正しく『差がある』と見抜くことができる確率（$1 - \beta$）」を指します。検出力を高める（見落としを減らす）ためには、データ自体のバラつきを抑えること、そして何より<strong class="highlight">「サンプルサイズ（測定する人数 $n$）を十分に大きくすること」</strong>が不可欠です。人数が少なすぎる実験では、たとえ大きな錯視が存在していても、サンプリングのブレに隠れて「差がない」と見落とされてしまう（検出力が不足する）ことになります。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-indigo-600 pl-4 mb-6">
+                第6章：統計的仮説検定の思想：信頼区間から検定の論理へ
+            </h2>
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">帰無仮説の論理と、信頼区間との表裏一体性</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                この「95%信頼区間に『0』が含まれるか否か」という論理を、さらにシステム化させたのが、次回から本格的に学ぶ「統計的仮説検定（Statistical Hypothesis Testing）」の思想です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                仮説検定の最大の特徴は、自分が本当に証明したい主張（対立仮説）を直接証明しようとしない点にあります。あえて最初に、自分の主張とは真逆の、あらかじめ検証の基準点として立てられる仮説――「集団全体の平均的な錯視量は0である（差などない）」という仮説を立てます。この仮説のことを<strong class="highlight">「帰無仮説（Null Hypothesis）」</strong>と呼びます。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                そして、この帰無仮説のもとで、私たちが今回サンプリングしたデータ、あるいはそれ以上に極端なデータが得られる確率を計算します。これが皆さんよく耳にする<strong class="highlight">「$p$値（p-value）」</strong>です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                本講義で扱う一標本 $t$検定の範囲では、95%信頼区間と5%有意水準の両側検定は表裏一体の関係にあります。「95%信頼区間が『0』を含まない」ということと、「帰無仮説（$\mu=0$）を5%の有意水準で両側検定したときに、確率（$p$値）が0.05未満になって帰無仮説が棄却される」ということは数理的に対応しているのです。信頼区間と検定は、同じ不確実性を異なる角度から眺めている地図に他なりません。
+            </p>
+
+            <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl my-6 text-sm sm:text-base">
+                <p class="font-bold text-amber-900 mb-1">⚠️ 重要：$p$値に関する最も重大な誤解</p>
+                <p class="text-slate-750 text-justified">
+                    $p$値は「帰無仮説が正しい確率」では絶対にありません。$p$値とは、<strong class="highlight">「帰無仮説が正しい（差がゼロである）と仮定したときに、今回の標本データ、あるいはそれ以上に極端な結果が確率的に得られる度合い」</strong>を記述した指標にすぎません。統計学において、この確率の前提条件を誤読することは致命的な過ちとなります。
+                </p>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">結び：標本という不完全な地図を携えて</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                私たちは母集団そのもの（関心のある対象集団のすべて）を直接見ることはできません。それでも私たちは、標本（サンプル）という不完全な「地図」を使いながら、世界の不確実性を引き受け、それを受け入れた上で、世界についてよりよい推測を行おうとしています。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                統計学とは、数字を計算して絶対的な真理を暴く装置ではありません。限られたデータから世界を推測するときに生じる「不確実性」を客観的に定量化し、その不確実性に騙されないための論理の防具なのです。次回から、この防具を使って実際のデータから帰無仮説を検討する「$t$検定」の世界へと進んでいきましょう。
+            </p>
+        </section>
+
+        <hr class="border-slate-200 my-12">
+
+        <section class="bg-white border border-slate-200 rounded-2xl shadow-md p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded-md mr-3">確認テスト</span>
+                第3回 理解度確認・感想の提出
+            </h2>
+
+            <form id="lecture_form" onsubmit="submitForm(event)" class="space-y-6">
+                <div>
+                    <label for="student_id" class="block text-sm font-bold text-slate-700 mb-2">学籍番号</label>
+                    <input type="text" id="student_id" required placeholder="例: 13（半角数字）" 
+                           class="w-full sm:w-64 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-800">
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問1】推測統計学における「95%信頼区間（95% CI）」の解釈として、現代の学術的標準の見地から最も適切な説明はどれですか。
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">A) 母平均 $\mu$ はサンプリングのたびに確率的に変動する変数であり、計算された固定の区間の内側へと95%の確率で飛び込んでくる。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">B) まったく同じ手順でサンプリングを100回繰り返して100個の信頼区間を作ったとき、その変動する100個の区間のうち、およそ95個の区間が、固定された真の母平均を内部に包み込んでいる。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">C) 標本から計算された特定の「一つの95%信頼区間」の内部に、集団の真の母平均が位置している確率が、客観的にちょうど「95%」である。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">D) 測定された標本平均が、次回サンプリングした際にも全く同じ値（ブレのない値）として再現される確率の範囲が95%であることを意味する。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問2】統計的仮説検定における「検出力（Power）」および「過ち（エラー）」に関する記述として、最も正しいものはどれですか。
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">A) 第1種の誤り（$\alpha$）とは、本当は母集団に明確な差があるのに、データに騙されて「差がない」と見落としてしまう確率のことである。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">B) 検出力（Power）とは、本当は母集団に差がないときに、正しく「差がない（帰無仮説が正しい）」と判断できる確率のことである。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">C) 第2種の誤り（$\beta$）を減らし、本当にある差を正しく見抜く力（検出力）を高めるためには、サンプルサイズ（測定人数）を十分に大きくすることが有効である。</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-slate-700">D) 有意水準を $\alpha=0.05$ に設定することは、第2種の誤り（$\beta$）を犯すリスクを自動的に5%以下に完全に抑え込むことを意味する。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">講義の感想・質問（自由記述）</label>
+                    <textarea id="student_feedback" rows="4" required placeholder="今回の実験や統計処理の論理について考えたこと、疑問などを自由に記述してください。"
+                              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="submit_btn" 
+                            class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-98 cursor-pointer text-sm sm:text-base">
+                        解答と質問を送信する
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800 mt-20">
+        <p>&copy; 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const classNum = "class_03"; // 第3回固定値
+            const studentId = document.getElementById("student_id").value;
+            const feedback = document.getElementById("student_feedback").value;
+            const btn = document.getElementById("submit_btn");
+
+            // クイズの自動採点
+            let scoreCount = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked').value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked').value;
+
+            if (q1Answer === "B") scoreCount++;
+            if (q2Answer === "C") scoreCount++;
+
+            const finalScore = `${scoreCount} / 2`;
+            const scoreRate = (scoreCount / 2) * 100 + "%";
+
+            // 送信用JSONデータオブジェクトの整形
+            const subjectLabel = document.getElementById("subject_label").innerText;
+            const lectureTitle = document.title;
+
+            const payloadData = {
+                "科目区分": subjectLabel,
+                "講義回": lectureTitle,
+                "学籍番号": studentId,
+                "クイズ得点率": scoreRate,
+                "学生からの質問・感想": feedback
+            };
+
+            // ===================================================
+            // ★先生のFormspree トークンIDを設定済み
+            // ===================================================
+            const FORMSPREE_ID = "xjgqbqnl"; 
+
+            btn.disabled = true;
+            btn.innerText = "送信中...";
+
+            // Formspreeの暗号化エンドポイントへ非同期POST通信
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: "POST",
+                headers: {
+                    "Application/json": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(payloadData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`正常に記録されました（あなたのクイズ得点率: ${scoreRate}）。お疲れ様でした。`);
+                    btn.innerText = "送信完了";
+                } else {
+                    throw new Error("API通信エラー");
+                }
+            })
+            .catch(error => {
+                console.error("Submission Error:", error);
+                alert("送信に失敗しました。時間をおいて再度お試しください。");
+                btn.disabled = false;
+                btn.innerText = "解答と質問を送信する";
+            });
+        }
+    </script>
 </body>
 </html>
