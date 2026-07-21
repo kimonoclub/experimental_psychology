@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ポータルの自動スキャナーが収集・クレンジングするタイトルタグ -->
+    <title>心理学実験：第12回 調査前のデータ分析計画と正規性の検証 ―データの形を見極め、正しい相関分析を選ぶ―（フォローアップ・学習テキスト）</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            chtml: {
+                matchFontHeight: false
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        /* 学術的気品を表現するハイライト装飾 */
+        .highlight {
+            background: linear-gradient(transparent 60%, #fef08a 60%);
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .text-justified {
+            text-align: justify;
+            text-justify: inter-character;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased line-height-relaxed">
+
+    <!-- 講義ヘッダー -->
+    <header class="bg-gradient-to-r from-teal-900 to-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <p id="subject_label" class="text-xs font-bold text-teal-300 uppercase tracking-wider">心理学実験</p>
+                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第12回：調査前のデータ分析計画と正規性の検証 ―データの形を見極め、正しい相関分析を選ぶ―</h1>
+            </div>
+            <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">実験ポータルへ戻る</a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        
+        <!-- タイトルエリア -->
+        <div class="text-center mb-16">
+            <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第12回 フォローアップ・学習テキスト</p>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                調査前のデータ分析計画と正規性の検証<br class="hidden sm:inline">
+                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">―データの形を見極め、正しい相関分析を選ぶ―</span>
+            </h1>
+            <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
+        </div>
+
+        <!-- 導入・概要リード文 -->
+        <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
+            <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                    本テキストは、第12回目の心理学実験の授業を休んだ人が、授業で扱った「調査前にデータ分析方法を決めておくことの重要性」「ピアソンの相関分析の前提条件（正規性）」「ヒストグラム描画・歪度・尖度による正規性の見分け方」「正規分布に従わない場合の適切な相関分析の選択（スピアマン・ケンドール等）」「R言語を用いた実習と不適切な分析が招く誤解」について網羅的に学習できるように作成されたフォロー教材です。
+                </p>
+            </div>
+        </div>
+
+        <!-- 1. なぜ「調査前に」データ分析方法を決めておくのか？ -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                1. なぜ「調査前に」データ分析方法を決めておくのか？
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                研究や調査を行う際、「データを取ってから、どう分析するか考える」のは極めて危険です。
+            </p>
+
+            <div class="space-y-4 my-6 text-sm sm:text-base">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ 前提条件（仮定）の崩壊を防ぐため</p>
+                    <p class="text-slate-700">
+                        多くの統計には「データがどのような分布をしているか」という前提条件が存在します。例えば、最も標準的な「ピアソンの積率相関係数」は、データが正規分布（左右対称の釣り鐘型の分布）に従っていることを大前提としています。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ 研究倫理と客観性の担保（$p$-hacking や HARKing の防止）</p>
+                    <p class="text-slate-700">
+                        データを見てから都合の良い分析方法を選んだり（$p$-hacking）、後付けで仮説を書き換えたり（HARKing：Hypothesizing After Results are Known）すると、科学的な信頼性が失われます。調査を始める前に、仮説や統計手法はあらかじめ計画しておく必要があります。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ データ取得後のトラブル防止</p>
+                    <p class="text-slate-700">
+                        データが正規分布に従わない（著しく歪んでいる、外れ値があるなど）場合、事前に対処法を考えておかないと、集めたデータが無駄になってしまいます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 正規分布とは？そしてそれを見分ける3つの指標 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                2. 正規分布とは？そしてそれを見分ける3つの指標
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                <strong class="highlight">正規分布（Normal Distribution）</strong>とは、平均値を中心に左右対称にデータが分布し、中央（平均値付近）に最もデータが集まり、両端（裾）に行くほどなだらかに減少する「釣り鐘型（ベルカーブ）」の分布です。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                データが正規分布に従っているかを確認するため、以下の3つのステップを踏みます。
+            </p>
+
+            <div class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm text-sm sm:text-base mb-8 space-y-2 font-medium text-center">
+                <p class="text-teal-900">[Step 1] ヒストグラムを描いて視覚的に確認する</p>
+                <p class="text-slate-400">↓</p>
+                <p class="text-teal-900">[Step 2] 歪度（Skewness）を算出する（左右の偏り）</p>
+                <p class="text-slate-400">↓</p>
+                <p class="text-teal-900">[Step 3] 尖度（Kurtosis）を算出する（上下のとがりと裾の厚み）</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- 指標① -->
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📊 指標①：ヒストグラム（Histogram）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> データの区間ごとの度数（人数）を棒グラフにしたもの。</p>
+                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-2">Excelの手順： 分析したい列（例：脅威得点）を範囲選択し、「挿入」 → 「統計グラフの挿入」 → 「ヒストグラム」を選ぶ。その後、軸の書式設定で「ビン幅」を「1」に設定する。</p>
+                    <p class="text-slate-700 text-justified"><strong>視覚的確認：</strong> 描いたグラフを見て、中央に山があり、左右対称の釣り鐘型になっているかを確認します。</p>
+                </div>
+
+                <!-- 指標② -->
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📐 指標②：歪度（Skewness：ゆがみ）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「左右の偏り（左右非対称性）」を表す指標です。</p>
+                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">算出方法（Excel関数）： =SKEW(範囲)</p>
+                    <div class="space-y-1 text-slate-700 text-xs sm:text-sm text-justified">
+                        <p>・<strong>歪度 $= 0$：</strong> 完全に左右対称（正規分布）。</p>
+                        <p>・<strong>正の値（歪度 $> 0$）：</strong> 山が左に偏り、右側に裾が長く伸びている分布（Positively Skewed）。</p>
+                        <p>・<strong>負の値（歪度 $< 0$）：</strong> 山が右に偏り、左側に裾が長く伸びている分布（Negatively Skewed）。</p>
+                    </div>
+                    <div class="bg-teal-50/60 p-3 rounded-lg border border-teal-100 mt-3 text-xs sm:text-sm space-y-1">
+                        <p class="font-bold text-teal-950">【判定基準】</p>
+                        <p>・$|\text{歪度}| < 1$ ： ほぼ正規分布とみなせる。</p>
+                        <p>・$1 \le |\text{歪度}| < 2$ ： やや歪んでいる（注意が必要）。</p>
+                        <p>・$|\text{歪度}| \ge 2$ ： 著しく歪んでいる（深刻な非正規性）。</p>
+                    </div>
+                </div>
+
+                <!-- 指標③ -->
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">🏔️ 指標③：尖度（Kurtosis：とがり）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「山の尖り具合」と「裾（両端）の厚さ」を表す指標です。</p>
+                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">算出方法（Excel関数）： =KURT(範囲)</p>
+                    <div class="space-y-1 text-slate-700 text-xs sm:text-sm text-justified">
+                        <p>・<strong>尖度 $= 0$（定義により3を基準とする場合もある）：</strong> 正規分布と同等の尖り具合。</p>
+                        <p>・<strong>正の値（尖度 $> 0$）：</strong> 正規分布よりも山が急峻で、裾（両端）にデータが多い（尖っている）分布。</p>
+                        <p>・<strong>負の値（尖度 $< 0$）：</strong> 山がなだらかで、平らな分布。</p>
+                    </div>
+                    <div class="bg-teal-50/60 p-3 rounded-lg border border-teal-100 mt-3 text-xs sm:text-sm space-y-1">
+                        <p class="font-bold text-teal-950">【判定基準】</p>
+                        <p>・$|\text{尖度}| < 2$ ： 正規分布に近い。</p>
+                        <p>・$2 \le |\text{尖度}| < 7$ ： 尖りすぎているか平坦すぎる（注意が必要）。</p>
+                        <p>・$|\text{尖度}| \ge 7$ ： 極端な異常値が混入している、あるいは特異な分布（深刻な非正規性）。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. データに応じた各種相関係数の使い分け -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                3. データに応じた各種相関係数の使い分け
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                データが正規分布に従わない場合、あるいは尺度の種類が異なる場合は、適切な相関係数を選択する必要があります。
+            </p>
+
+            <!-- 相関係数一覧テーブル -->
+            <div class="overflow-x-auto my-6">
+                <table class="w-full text-xs sm:text-sm text-left border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                    <thead class="bg-teal-900 text-white font-bold">
+                        <tr>
+                            <th class="p-3 border-b border-teal-800">相関係数の名称</th>
+                            <th class="p-3 border-b border-teal-800">データの種類（尺度）</th>
+                            <th class="p-3 border-b border-teal-800">適用条件・特徴</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">ピアソンの積率相関係数</td>
+                            <td class="p-3">連続尺度（間隔・比例）</td>
+                            <td class="p-3">最も標準的。正規分布に従うことが大前提。線形関係を測定。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">スピアマンの順位相関係数</td>
+                            <td class="p-3">順序尺度（または連続）</td>
+                            <td class="p-3">ピアソンの順位版。正規分布を前提としない。外れ値に強い。サンプルサイズが大きい（$N > 100$ 程度）場合に安定。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">ケンドールの順位相関係数 ($\tau$)</td>
+                            <td class="p-3">順序尺度（または連続）</td>
+                            <td class="p-3">順位相関の一種。サンプルサイズが小さい（今回のように $N < 30$ 程度）場合や、同順位が多い場合にスピアマンより精緻。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">点二系列相関係数</td>
+                            <td class="p-3">一方が連続、一方が二値</td>
+                            <td class="p-3">「性別（0/1）」と「テスト点数」のような組み合わせ。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">ファイ係数 ($\phi$)</td>
+                            <td class="p-3">両方が二値（$2 \times 2$ 表）</td>
+                            <td class="p-3">「Yes/No」のアンケート結果同士の相関など。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">四分相関係数 / ポリコリック相関係数</td>
+                            <td class="p-3">順序尺度（潜在的連続変数）</td>
+                            <td class="p-3">リッカート尺度（1〜5点）を扱う場合などに用いられる。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold text-teal-950">カッパ係数 (Kappa)</td>
+                            <td class="p-3">名義尺度（カテゴリ）</td>
+                            <td class="p-3">相関というより「一致度」を見る指標。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- フローチャート -->
+            <div class="bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md space-y-4 my-6 text-sm sm:text-base">
+                <p class="text-amber-300 font-bold border-b border-slate-700 pb-2">💡 相関分析を選ぶフローチャート</p>
+                <div class="space-y-3 text-slate-300 text-justified">
+                    <p>
+                        <strong class="text-white">1. データが正規分布に従っているか？</strong><br>
+                        ・はい $\rightarrow$ **ピアソンの積率相関係数**を使用。<br>
+                        ・いいえ（歪んでいる・外れ値がある） $\rightarrow$ ノンパラメトリックな**順位相関係数**を使用。
+                    </p>
+                    <p>
+                        <strong class="text-white">2. 正規分布に従わない場合、サンプルサイズ（$N$）は？</strong><br>
+                        ・$N > 100$ 程度 $\rightarrow$ **スピアマンの順位相関係数**が適している。<br>
+                        ・$N < 30$ 程度（今回のようにグループ分けして人数が少ない場合） $\rightarrow$ <strong class="highlight">ケンドールの順位相関係数 ($\tau$)</strong> の方が誤差が出にくい。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 外れ値の検定（IQR法：四分位範囲による検出） -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                4. 外れ値の検定（IQR法：四分位範囲による検出）
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                データの正規性を乱したり、分析結果を大きく歪めたりする要因の一つが「外れ値（アウトライヤー）」です。 授業では、箱ひげ図の考え方に基づき、四分位範囲（IQR）を用いた外れ値の検出方法を学びました。
+            </p>
+
+            <div class="bg-white border border-slate-200 p-5 rounded-xl my-4 text-sm sm:text-base space-y-4 shadow-sm">
+                <div>
+                    <p class="font-bold text-teal-950 mb-1">■ 四分位数とIQRの計算</p>
+                    <div class="text-xs sm:text-sm text-slate-700 space-y-1 font-mono pl-2">
+                        <p>・ $q_1$： 第1四分位数（下から25%点）</p>
+                        <p>・ $q_2$： 第2四分位数（中央値、下から50%点）</p>
+                        <p>・ $q_3$： 第3四分位数（下から75%点）</p>
+                    </div>
+                    <div class="bg-teal-50/50 p-2.5 rounded-lg text-center font-bold font-mono text-teal-900 text-xs sm:text-sm mt-2">
+                        $$\text{IQR（四分位範囲）} = q_3 - q_1$$
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 pt-3">
+                    <p class="font-bold text-teal-950 mb-1">■ 外れ値の判定基準</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm font-mono text-center">
+                        <div class="bg-slate-100 p-2 rounded border border-slate-200">
+                            下限の基準： $q_1 - 1.5 \times \text{IQR}$
+                        </div>
+                        <div class="bg-slate-100 p-2 rounded border border-slate-200">
+                            上限の基準： $q_3 + 1.5 \times \text{IQR}$
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-justified">この範囲を外れたデータは「外れ値」とみなして除外を検討します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 授業内実習（R言語によるケンドール・タウの算出）と不適切な分析の罠 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                5. 授業内実習（R言語によるケンドール・タウの算出）と不適切な分析の罠
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                授業では、ブラウザで使えるRの実行環境（<a href="https://rdrr.io/snippets/" target="_blank" rel="noopener noreferrer" class="text-teal-600 underline font-mono">https://rdrr.io/snippets/</a>）を用いて、実際に自己効力感の高群・低群に分けたデータに対するケンドールの順位相関係数（$\tau$）の計算を行いました。
+            </p>
+
+            <div class="bg-white border border-slate-200 p-5 rounded-xl my-4 text-sm sm:text-base space-y-4 shadow-sm">
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-2">【分析結果の比較】</p>
+                
+                <div>
+                    <p class="font-bold text-rose-600 mb-1">❌ 不適切な分析（ピアソンの相関係数 $r$ を使った場合）</p>
+                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 pl-2 font-mono">
+                        <li>自己効力感【高群】($N=30$)： $r = 0.116$ （弱い正の相関）</li>
+                        <li>自己効力感【低群】($N=21$)： $r = -0.251$ （負の相関）</li>
+                    </ul>
+                    <p class="text-xs text-rose-600 font-bold mt-1">$\rightarrow$ 「自信がない人は、脅威を感じるほど逆に行動しなくなる」という結果に見えました。</p>
+                </div>
+
+                <div class="border-t border-slate-100 pt-3">
+                    <p class="font-bold text-teal-900 mb-1">⭕ 適切な分析（非パラメトリックなケンドールの順位相関係数 $\tau$ を使った場合）</p>
+                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 pl-2 font-mono">
+                        <li>自己効力感【高群】($N=30$)： $\tau = 0.103 \ (p = .486)$</li>
+                        <li>自己効力感【低群】($N=21$)： $\tau = 0.144 \ (p = .427)$</li>
+                    </ul>
+                    <p class="text-xs text-teal-900 font-bold mt-1">$\rightarrow$ 正しく非正規性や小サンプルに対応した分析を行うと、実際にはいずれも有意な差や強い関連はなく、仮説通りの明確な差はデータ上では示されなかったことが分かります。</p>
+                </div>
+            </div>
+
+            <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified">
+                <p class="font-bold text-teal-950 mb-2">まとめ</p>
+                <p class="text-slate-800">
+                    前提条件（正規性）を無視して不適切な分析（ピアソン）を強行すると、データに潜むノイズや外れ値に引きずられて<strong class="highlight">「存在しない傾向」を事実だと誤認してしまう（間違った結論を導く）</strong>ことになります。調査の前からデータの性質を想定し、適切な分析手法を計画・選択することの重要性がここにあります。
+                </p>
+            </div>
+        </section>
+
+        <hr class="border-slate-200 my-12">
+
+        <!-- 理解度確認テスト ＆ 出席・提出フォーム -->
+        <section class="bg-white border border-slate-200 rounded-2xl shadow-md p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="bg-teal-600 text-white text-xs px-2.5 py-1 rounded-md mr-3">課題提出</span>
+                💡 理解度確認テスト ＆ 出席・提出フォーム
+            </h2>
+
+            <form id="lecture_form" onsubmit="submitForm(event)" class="space-y-6">
+                
+                <!-- 問1 -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問1】データの分布の「山の尖り具合」や「裾の厚さ」を表す統計的指標の名前として正しいものはどれですか？
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">A) 歪度（Skewness）</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">B) 尖度（Kurtosis）</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">C) 相関係数（Correlation coefficient）</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">D) 決定係数（Coefficient of determination）</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 問2 -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問2】データが正規分布に従わず、かつサンプルサイズが $N < 30$ と非常に小さい場合に、ピアソンの相関分析の代わりに用いるべき適切な手法はどれですか？
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">A) t検定</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">B) ケンドールの順位相関係数 ($\tau$)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">C) ファイ係数</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">D) ボンフェローニ補正</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 学籍番号 & 氏名入力 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="student_id" class="block text-sm font-bold text-slate-700 mb-2">学籍番号</label>
+                        <input type="text" id="student_id" required placeholder="例: 13（半角数字）" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                    <div>
+                        <label for="student_name" class="block text-sm font-bold text-slate-700 mb-2">氏 名</label>
+                        <input type="text" id="student_name" required placeholder="例: 四国 太郎" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                </div>
+
+                <!-- 質問・感想 -->
+                <div>
+                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">今回の講義の感想・学び（任意）</label>
+                    <textarea id="student_feedback" rows="4" placeholder="今回の復習内容（正規性の見分け方や外れ値検定、R実習を通じた不適切な分析の罠など）について、学んだことや感想を自由に入力してください。"
+                              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
+                </div>
+
+                <!-- 送信ボタン -->
+                <div class="pt-2">
+                    <button type="submit" id="submit_btn" 
+                            class="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-98 cursor-pointer text-sm sm:text-base">
+                        すべての内容を理解し、芝崎先生へ送信する
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800 mt-20">
+        <p>&copy; 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</p>
+    </footer>
+
+    <!-- ページ個別スクリプト：Formspree送信ロジック -->
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const studentId = document.getElementById("student_id").value.trim();
+            const studentName = document.getElementById("student_name").value.trim();
+            const feedback = document.getElementById("student_feedback").value.trim() || "特になし";
+            const btn = document.getElementById("submit_btn");
+
+            // 1. クイズの自動採点（問1: B, 問2: B）
+            let scoreCount = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked').value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked').value;
+
+            if (q1Answer === "B") scoreCount++;
+            if (q2Answer === "B") scoreCount++;
+
+            const scoreRate = Math.floor((scoreCount / 2) * 100) + "%";
+            const subjectLabel = document.getElementById("subject_label").innerText;
+            const lectureTitle = document.title;
+
+            // 送信データ構造の整形
+            const payloadData = {
+                "科目区分": subjectLabel,
+                "講義回": lectureTitle,
+                "学籍番号": studentId,
+                "氏名": studentName,
+                "クイズ得点率": scoreRate,
+                "問1解答": q1Answer,
+                "問2解答": q2Answer,
+                "学生からの質問・感想": feedback
+            };
+
+            // ★FormspreeトークンIDをバインド
+            const FORMSPREE_ID = "xjgqbqnl"; 
+
+            btn.disabled = true;
+            btn.innerText = "送信中...";
+
+            // Formspreeのエンドポイントへ非同期POST通信
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payloadData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`正常に記録されました（学籍番号: ${studentId}、得点率: ${scoreRate}）。第12回欠席フォロー完了として受領しました。`);
+                    btn.innerText = "送信完了";
+                } else {
+                    throw new Error("APIエラー");
+                }
+            })
+            .catch(error => {
+                console.error("Submission Error:", error);
+                alert("送信に失敗しました。時間をおいて再度送信ボタンを押してください。");
+                btn.disabled = false;
+                btn.innerText = "すべての内容を理解し、芝崎先生へ送信する";
+            });
+        }
+    </script>
+</body>
+</html>
