@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ポータルの自動スキャナーが収集・クレンジングするタイトルタグ -->
+    <title>心理学実験：第4回 ミュラー・リヤー錯視における矢羽の角度効果と統計分析・レポート執筆の実践（フォローアップ・学習テキスト）</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            chtml: {
+                matchFontHeight: false
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        /* 学術的気品を表現するハイライト装飾 */
+        .highlight {
+            background: linear-gradient(transparent 60%, #fef08a 60%);
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .text-justified {
+            text-align: justify;
+            text-justify: inter-character;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased line-height-relaxed">
+
+    <!-- 講義ヘッダー -->
+    <header class="bg-gradient-to-r from-teal-900 to-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <p id="subject_label" class="text-xs font-bold text-teal-300 uppercase tracking-wider">心理学実験</p>
+                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第4回：ミュラー・リヤー錯視における矢羽の角度効果と統計分析・レポート執筆の実践</h1>
+            </div>
+            <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">実験ポータルへ戻る</a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        
+        <!-- タイトルエリア -->
+        <div class="text-center mb-16">
+            <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第4回 フォローアップ・学習テキスト</p>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                ミュラー・リヤー錯視における<br class="hidden sm:inline">矢羽の角度効果と統計分析・レポート執筆の実践
+            </h1>
+            <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
+        </div>
+
+        <!-- イントロダクション・概要リード文 -->
+        <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
+            <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                    本テキストは、第4回目の心理学実験の授業を休んだ人が、授業で実施した「実験の内容」「理論的背景」「統計量の算出方法と意味」「条件間の差の検討方法（$t$検定と多重比較）」および「レポートの書き方」を網羅的に学習できるように作成されたフォロー教材です[cite: 1, 2]。
+                </p>
+            </div>
+        </div>
+
+        <!-- 1. 今回の授業で実施したことの全体像 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                1. 今回の授業で実施したことの全体像
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                第4回の授業では、主に以下の4つのステップを実施・学習しました[cite: 3]。
+            </p>
+            <div class="space-y-4 my-6 text-sm sm:text-base">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">■ 実習実験の実施</p>
+                    <p class="text-slate-700 text-justified">
+                        ミュラー・リヤー錯視図形を用い、「矢羽の角度（30度・45度・60度）」を変えることで、主直線に対する錯視量（px）がどのように変化するかを調整法によって測定しました。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">■ 仮説と結果の予測</p>
+                    <p class="text-slate-700 text-justified">
+                        知覚心理学におけるグレゴリー（Gregory）の「奥行き仮説（不適切な恒常性スケーリング説）」に基づき、なぜ矢羽の角度によって錯視量が変化するのかという理論的メカニズムと予測を整理しました。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">■ 統計数値の算出と意味の復習</p>
+                    <p class="text-slate-700 text-justified">
+                        取得した実験データから、各条件の平均値（Mean, $M$）、標準偏差（Standard Deviation, $SD$）、95%信頼区間（95% Confidence Interval, 95% CI）を算出し、それぞれの数値が持つ意味を再確認しました。
+                    </p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">■ 条件間の差の検討と多重比較の処理</p>
+                    <p class="text-slate-700 text-justified">
+                        3つの角度条件間に有意な差があるかを調べるため、対応のある$t$検定を実施しました。その際、複数回の検定を繰り返すことで生じる「多重比較の危険性（第1種の過誤の蓄積）」と、その対処法である<strong class="highlight">「ボンフェローニ（Bonferroni）法」</strong>を学びました。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 理論的背景と実験結果の予測 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                2. 理論的背景と実験結果の予測
+            </h2>
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）グレゴリーの「奥行き仮説（不適切な恒常性スケーリング説）」とは？</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                私たちは平面（二次元）の図形を見るときでも、脳が無意識のうちに「三次元の空間構造（奥行き）」として解釈・マッピングしようとする適応的仕組みを持っています。
+            </p>
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs sm:text-sm space-y-2 mb-4">
+                <p class="text-slate-700"><strong>・外向きの矢羽（＜―＞）：</strong> 建物の外側の角（凸構造：手前に出っ張っている）として処理される。</p>
+                <p class="text-slate-700"><strong>・内向きの矢羽（＞―＜）：</strong> 部屋の隅の角（凹構造：奥に引っ込んでいる）として処理される。</p>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                網膜上に映る直線の長さ（二次元の像）が同じであっても、脳が「奥にある（遠くにある）」と判断した対象に対しては、「遠くにあるのにこの大きさで見えるなら、実際はもっと大きいはずだ」と不適切に恒常性補正（拡大補正）を行います。これが錯視の発生要因です。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（2）矢羽の角度による錯視量の予測</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                この奥行きマッピングの仕組みを考えると、矢羽の角度が鋭角（角度が小さく）になるほど、図形が示す三次元構造の奥行き勾配（急さ）は強く知覚されます。したがって、脳による拡大補正量（錯視量）も増大すると予想されます。
+            </p>
+            <div class="bg-teal-50 border border-teal-200 p-4 rounded-xl font-bold text-teal-950 text-center text-sm sm:text-base mb-4">
+                予測される錯視量の順序： <span class="text-teal-700">30度条件 ＞ 45度条件 ＞ 60度条件</span>
+                <p class="text-xs font-normal text-slate-600 mt-1">（※角度が小さくなるほど、錯視量は大きくなる）</p>
+            </div>
+        </section>
+
+        <!-- 3. 実験手法とデータ処理 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                3. 実験手法とデータ処理
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                実験では、標準刺激（矢羽つき直線）と等しい長さに感じるように比較刺激（直線のみ）を参加者自身がマウス操作で合わせる<strong class="highlight">「調整法」</strong>を採用しました。
+            </p>
+            <div class="space-y-3 text-sm my-4">
+                <p class="text-slate-700 text-justified"><strong class="text-teal-900">・主観的等価点（PSE）：</strong> 参加者が「同じ長さだ」と判断した比較刺激の平均値。</p>
+                <p class="text-slate-700 text-justified"><strong class="text-teal-900">・錯視量（px）の算出式：</strong> $\text{錯視量} = \text{PSE（主観的等価点）} - \text{標準刺激の物理的長さ}$</p>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-justified">
+                また、提示順序による「疲労効果」や「練習効果」を防ぐためにカウンターバランス（ラテン方格法）を用い、調整の開始位置による影響を防ぐために「上昇系列（短 $\rightarrow$ 長）」と「下降系列（長 $\rightarrow$ 短）」を同回数ずつ実施しました。
+            </p>
+        </section>
+
+        <!-- 4. 基礎統計量の算出方法とその意味 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                4. 基礎統計量の算出方法とその意味
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                実験データから各角度条件の傾向を把握するために算出した3つの指標（記述統計）について復習します。
+            </p>
+
+            <div class="space-y-4 text-sm sm:text-base mb-8">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">① 平均値（Mean, $M$）</p>
+                    <p class="text-slate-600 text-xs mb-2">算出方法：全員の錯視量の合計をサンプルサイズ（有効参加者数 $N$）で割る。</p>
+                    <p class="text-slate-700 text-justified"><strong>心理学的な意味：</strong> その条件における「集団としての代表的な錯視の大きさ」を表します。</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">② 標準偏差（Standard Deviation, $SD$）</p>
+                    <p class="text-slate-600 text-xs mb-2">算出方法：各データの偏差（個人の値 $- M$）を二乗して合計し、不偏分散とするために $N-1$ で割った値の平方根をとる。</p>
+                    <p class="text-slate-700 text-justified"><strong>心理学的な意味：</strong> データの「ばらつき（個人差）の大きさ」を表します。$SD$ が小さいほど、参加者全員が似たような錯視量を示した（個人差が少ない）ことを意味します。</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-1">③ 95%信頼区間（95% Confidence Interval, 95% CI）</p>
+                    <p class="text-slate-600 text-xs mb-2">算出方法：標準誤差 $SE = \frac{SD}{\sqrt{N}}$ を求め、$t$ 分布の限界値を用いて $\text{95\% CI} = [M - t_{.025} \times SE, M + t_{.025} \times SE]$ で算出。</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>心理学的な意味：</strong> 「同じ実験を100回繰り返した際、95回はその区間の中に母集団の真の平均値が含まれる」という推定の信頼範囲を示します。</p>
+                    <p class="text-slate-700 text-justified"><strong>グラフでの見方：</strong> 2つの条件の95%信頼区間のエラーバーが大きく重なっていない場合、母集団においても条件間に明確な差が存在する可能性が高いという視覚的目安になります。</p>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mb-3">【参考】今回の実験結果（Table 1 のデータ）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                授業で集計した有効データ（$N=21$）の統計量は以下の通りです。
+            </p>
+
+            <!-- Table 1 の実装 -->
+            <div class="overflow-x-auto my-6">
+                <table class="w-full text-sm text-left border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                    <caption class="text-xs text-slate-500 text-left mb-2 font-mono">Table 1. 矢羽の角度ごとの錯視量の平均値，標準偏差，95%信頼区間 ($N=21$)</caption>
+                    <thead class="bg-teal-900 text-white font-bold">
+                        <tr>
+                            <th class="p-3 border-b border-teal-800">角度条件</th>
+                            <th class="p-3 border-b border-teal-800">平均錯視量 ($M$) [px]</th>
+                            <th class="p-3 border-b border-teal-800">標準偏差 ($SD$)</th>
+                            <th class="p-3 border-b border-teal-800">95%信頼区間 [下限, 上限]</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold">30度</td>
+                            <td class="p-3">30.8</td>
+                            <td class="p-3">12.9</td>
+                            <td class="p-3 font-mono">[24.9, 36.7]</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold">45度</td>
+                            <td class="p-3">25.6</td>
+                            <td class="p-3">9.1</td>
+                            <td class="p-3 font-mono">[21.4, 29.7]</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 font-bold">60度</td>
+                            <td class="p-3">16.2</td>
+                            <td class="p-3">11.0</td>
+                            <td class="p-3 font-mono">[11.2, 21.3]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-500 text-justified">※数値を見ると、角度が小さくなる（30度）につれて平均錯視量が増大していることが一目で分かります。</p>
+        </section>
+
+        <!-- 5. 条件間に「差がある」と言えるか？ -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                5. 条件間に「差がある」と言えるか？（推測統計と $t$ 検定）
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                平均値に数値上の差（30.8 vs 25.6 vs 16.2）が見られても、それが「たまたま実験の参加者のクセで生じた偶然の差」なのか、「矢羽の角度という条件の違いによって必然的に生じた本質的な差（有意差）」なのかを判定する必要があります。
+            </p>
+            <div class="bg-white border border-slate-200 p-5 rounded-xl my-4 text-sm sm:text-base space-y-3 shadow-sm">
+                <p class="font-bold text-teal-950">■ 対応のある $t$ 検定（Paired-samples t-test）</p>
+                <p class="text-slate-700 text-justified">
+                    今回は同一の参加者が3つの角度条件（30度・45度・60度）すべてを体験している（参加者内計画）ため、個人差の影響を取り除いて比較できる「対応のある $t$ 検定」を使用します。
+                </p>
+                <div class="bg-slate-50 p-3 rounded-lg text-xs sm:text-sm space-y-1">
+                    <p class="text-slate-700">・帰無仮説 ($H_0$)：「条件間に差はない（差は0である）」</p>
+                    <p class="text-slate-700">・対立仮説 ($H_1$)：「条件間に差がある」</p>
+                    <p class="text-slate-700">・$p$ 値（有意確率）：帰無仮説が正しいと仮定したときに、偶然このような大きな差が得られる確率。一般に $p < .05$（5%未満）であれば帰無仮説を棄却し、「統計的に有意な差がある」と判断します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 多重比較の危険性とボンフェローニ法 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                6. 多重比較の危険性とボンフェローニ（Bonferroni）法
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4 font-bold text-teal-950">
+                ここが今回の講義で最も重要な統計的ポイントです。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">多重比較の危険性（第1種の過誤の膨らみ）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                「本当は差がないのに、誤って『差がある』と判定してしまうエラー」を第1種の過誤（$\alpha$ エラー）と呼びます。通常、1回の $t$ 検定を行う際の有意水準は $\alpha = .05$（5%）に設定します。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-2">
+                しかし、今回の実験には3つの条件（30度・45度・60度）があるため、ペアの組み合わせは以下の3パターン存在します：
+            </p>
+            <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg text-xs sm:text-sm font-mono space-y-1 mb-4">
+                <p>1) 30度 vs 45度</p>
+                <p>2) 45度 vs 60度</p>
+                <p>3) 30度 vs 60度</p>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                もし、この3ペアに対して「有意水準 $\alpha = .05$ の通常の $t$ 検定」を3回繰り返すとどうなるでしょうか？ 検定を繰り返すごとにエラーを起こす確率が蓄積され、全体として少なくとも1回誤った判断を下してしまう確率（Familywise Error Rate）は、以下のように膨らんでしまいます：
+            </p>
+            <div class="bg-rose-50 border border-red-200 p-4 rounded-xl text-center text-sm sm:text-base font-mono my-4 text-red-900">
+                $\text{全体のエラー率} = 1 - (1 - .05)^3 \approx 14.3\%$
+            </div>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                つまり、5%に抑えているつもりだったエラー率が、約14.3%まで跳ね上がってしまう（多重比較の危険性）のです。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">対処法：ボンフェローニ（Bonferroni）補正</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                このエラー率の膨らみを防ぐ最もシンプルな方法がボンフェローニ法です。
+            </p>
+            <div class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm text-sm sm:text-base space-y-3">
+                <p class="text-slate-700 text-justified"><strong>・補正の仕組み：</strong> 全体のエラー率を5%（.05）以内に収めるために、1回あたりの検定で用いる基準（有意水準）を検定回数（$k=3$）で割って厳しくします。</p>
+                <div class="bg-teal-50 border border-teal-200 p-3 rounded-lg text-center font-bold text-teal-900 font-mono">
+                    調整後の有意水準 $\alpha' = \frac{.05}{3} \approx .0167 \ (\approx .016)$
+                </div>
+                <p class="text-slate-700 text-justified"><strong>・判定ルール：</strong> 各ペアの $t$ 検定で得られた $p$ 値が <strong class="highlight">.016（または .0167）未満</strong> であった場合のみ、「統計的に有意な差がある」と判定します。</p>
+            </div>
+        </section>
+
+        <!-- 7. 実験データ分析結果とレポート記述例 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                7. 実験データ分析結果とレポート記述例
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                実際に算出された数値を用いて、結果をレポートの「結果（Results）」セクションに記述するフォーマット例です。
+            </p>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl text-xs sm:text-sm font-mono space-y-2 mb-6 shadow-md">
+                <p class="text-teal-400 font-bold mb-1">【実際の分析結果（自由度 $df=20$）】</p>
+                <p>・30度条件 vs 45度条件：t(20) = 2.68, p = .015 → p = .015 < .016 であるため、有意差あり。</p>
+                <p>・45度条件 vs 60度条件：t(20) = 5.98, p < .001 → p < .016 であるため、有意差あり。</p>
+                <p>・30度条件 vs 60度条件：t(20) = 7.81, p < .001 → p < .016 であるため、有意差あり。</p>
+            </div>
+
+            <div class="bg-white border-2 border-teal-100 p-6 rounded-2xl shadow-sm text-sm sm:text-base leading-relaxed text-justified space-y-4">
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-2">【レポート形式の記述例】</p>
+                <p class="text-slate-800">
+                    矢羽の角度条件による錯視量の違いを検討するため、対応のある $t$ 検定を行った。なお、多重比較による1種の過誤を防ぐため、ボンフェローニ法を用い、有意水準を $\alpha = .016$ に調整した。
+                </p>
+                <p class="text-slate-800">
+                    分析の結果、30度条件（$M = 30.8, SD = 12.9$）は45度条件（$M = 25.6, SD = 9.1$）よりも有意に錯視量が大きかった（$t(20) = 2.68, p = .015$）。また、45度条件は60度条件（$M = 16.2, SD = 11.0$）よりも有意に錯視量が大きかった（$t(20) = 5.98, p < .001$）。さらに、30度条件と60度条件の間においても有意な差が認められ、30度条件の方が錯視量が大きかった（$t(20) = 7.81, p < .001$）。
+                </p>
+                <p class="text-slate-800 font-medium bg-teal-50/50 p-3 rounded-lg border border-teal-100">
+                    以上の結果から、矢羽の角度が小さく（鋭角に）なるほど、錯視量が有意に増加することが示された。
+                </p>
+            </div>
+        </section>
+
+        <!-- 8. 考察の執筆ガイドライン -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                8. 考察（Discussion）の執筆ガイドライン
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                レポートの考察セクションでは、以下の流れに沿って論理を展開します。
+            </p>
+            <div class="space-y-4 text-sm sm:text-base">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-900 mb-1">1. 結果の要約と仮説の検証</p>
+                    <p class="text-slate-600">「矢羽の角度が小さくなるほど錯視量が増加する」という実験結果が得られ、冒頭で立てた仮説（30度 ＞ 45度 ＞ 60度）が支持されたことを述べる。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-900 mb-1">2. 理論的解釈（グレゴリーの奥行き仮説との結びつけ）</p>
+                    <p class="text-slate-600">鋭角な矢羽ほど、脳はそれを「より深い奥行き構造」として空間マッピングしたため、視覚システムによる拡大補正（不適切な恒常性スケーリング）が強く働いたと解釈できることを論じる。</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-900 mb-1">3. 今後の課題・限界</p>
+                    <p class="text-slate-600">本実験では30度〜60度の範囲で検討したが、より極端な角度（例：15度や75度以上）や、直線・矢羽の長さを変化させた場合の検討が必要であることを提示する。</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200 my-12">
+
+        <!-- 休んだ人への振り返りチェック ＆ 出席・理解度送信フォーム -->
+        <section class="bg-white border border-slate-200 rounded-2xl shadow-md p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="bg-teal-600 text-white text-xs px-2.5 py-1 rounded-md mr-3">課題提出</span>
+                💡 振り返りチェック ＆ 出席・理解度送信フォーム
+            </h2>
+
+            <form id="lecture_form" onsubmit="submitForm(event)" class="space-y-6">
+                
+                <!-- 理解度振り返りチェックボックス -->
+                <div class="bg-teal-50/50 p-5 rounded-xl border border-teal-100 space-y-3">
+                    <p class="font-bold text-teal-950 text-sm sm:text-base mb-2">【理解度振り返りチェック】</p>
+                    
+                    <label class="flex items-start space-x-3 cursor-pointer text-sm text-slate-700">
+                        <input type="checkbox" id="chk1" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500 rounded">
+                        <span>1. 表（Table 1）の平均値・SD・95%信頼区間の意味と計算式を説明できる</span>
+                    </label>
+                    <label class="flex items-start space-x-3 cursor-pointer text-sm text-slate-700">
+                        <input type="checkbox" id="chk2" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500 rounded">
+                        <span>2. 「なぜ3回の $t$ 検定を行うときにボンフェローニ補正が必要なのか」を他人に説明できる</span>
+                    </label>
+                    <label class="flex items-start space-x-3 cursor-pointer text-sm text-slate-700">
+                        <input type="checkbox" id="chk3" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500 rounded">
+                        <span>3. グレゴリーの「奥行き仮説」と実験結果がどう対応しているか理解できた</span>
+                    </label>
+                </div>
+
+                <!-- 学籍番号 & 氏名入力 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="student_id" class="block text-sm font-bold text-slate-700 mb-2">学籍番号</label>
+                        <input type="text" id="student_id" required placeholder="例: 13（半角数字）" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                    <div>
+                        <label for="student_name" class="block text-sm font-bold text-slate-700 mb-2">氏 名</label>
+                        <input type="text" id="student_name" required placeholder="例: 四国 太郎" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                </div>
+
+                <!-- 質問・不明点 -->
+                <div>
+                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">質問・不明点（任意）</label>
+                    <textarea id="student_feedback" rows="4" placeholder="今回の復習内容（統計分析やレポート記述等）について、不明な点や質問があれば自由に入力してください。"
+                              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
+                </div>
+
+                <!-- 送信ボタン -->
+                <div class="pt-2">
+                    <button type="submit" id="submit_btn" 
+                            class="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-98 cursor-pointer text-sm sm:text-base">
+                        すべての項目を確認し、芝崎先生へ送信する
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800 mt-20">
+        <p>&copy; 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</p>
+    </footer>
+
+    <!-- ページ個別スクリプト：Formspree送信ロジック -->
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const studentId = document.getElementById("student_id").value.trim();
+            const studentName = document.getElementById("student_name").value.trim();
+            const feedback = document.getElementById("student_feedback").value.trim() || "特になし";
+            const btn = document.getElementById("submit_btn");
+
+            // チェックボックスの状態確認
+            const chk1 = document.getElementById("chk1").checked;
+            const chk2 = document.getElementById("chk2").checked;
+            const chk3 = document.getElementById("chk3").checked;
+
+            if (!chk1 || !chk2 || !chk3) {
+                alert("振り返りチェックボックスのすべての項目にチェックを入れてください。");
+                return;
+            }
+
+            const subjectLabel = document.getElementById("subject_label").innerText;
+            const lectureTitle = document.title;
+
+            // 送信データ構造の整形
+            const payloadData = {
+                "科目区分": subjectLabel,
+                "講義回": lectureTitle,
+                "学籍番号": studentId,
+                "氏名": studentName,
+                "理解度チェック": "全項目確認済み (3/3)",
+                "学生からの質問・感想": feedback
+            };
+
+            // ★FormspreeトークンIDをバインド
+            const FORMSPREE_ID = "xjgqbqnl"; 
+
+            btn.disabled = true;
+            btn.innerText = "送信中...";
+
+            // Formspreeのエンドポイントへ非同期POST通信
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payloadData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`正常に記録されました（学籍番号: ${studentId}）。第4回欠席フォロー完了として受領しました。`);
+                    btn.innerText = "送信完了";
+                } else {
+                    throw new Error("APIエラー");
+                }
+            })
+            .catch(error => {
+                console.error("Submission Error:", error);
+                alert("送信に失敗しました。時間をおいて再度送信ボタンを押してください。");
+                btn.disabled = false;
+                btn.innerText = "すべての項目を確認し、芝崎先生へ送信する";
+            });
+        }
+    </script>
+</body>
+</html>
