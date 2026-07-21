@@ -78,7 +78,7 @@
         <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
             <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
                 <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    本テキストは、第10回目の心理学実験の授業で実施した「収集したアンケートデータの実際の分析プロセス」について、各手順の必要性（理由）と具体的な計算方法（Excel関数）を分かりやすく解説したフォロー教材です。
+                    本テキストは、第10回目の心理学実験の授業で実施した「収集したアンケートデータの実際の分析プロセス」について、各手順の必要性（理由）と具体的な計算方法（Excel関数）を分かりやすく解説したフォロー教材です[cite: 1, 2]。
                 </p>
             </div>
         </div>
@@ -89,28 +89,28 @@
                 1. 今回のデータ分析の全体フロー
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                今回の授業では、実際にGoogleフォーム等で収集したアンケートデータを用い、以下の4つのステップでデータ分析を進めました。
+                今回の授業では、実際にGoogleフォーム等で収集したアンケートデータを用い、以下の4つのステップでデータ分析を進めました[cite: 1, 2]。
             </p>
 
             <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm text-sm sm:text-base space-y-4 font-medium">
                 <div class="flex items-center text-teal-900">
                     <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 1</span>
-                    データのクリーニング（欠損値・不注意回答の除外）
+                    データのクリーニング（欠損値・不注意回答の除外）[cite: 1, 2]
                 </div>
                 <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
                 <div class="flex items-center text-teal-900">
                     <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 2</span>
-                    得点化（尺度項目の合計値算出）
+                    得点化（尺度項目の合計値算出）[cite: 1, 2]
                 </div>
                 <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
                 <div class="flex items-center text-teal-900">
                     <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 3</span>
-                    調整変数（自己効力感）による群分け（中央値分割）
+                    調整変数（自己効力感）による群分け（中央値分割）[cite: 1, 2]
                 </div>
                 <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
                 <div class="flex items-center text-teal-900">
                     <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 4</span>
-                    群ごとの相関分析（仮説の検証と考察）
+                    群ごとの相関分析（仮説の検証と考察）[cite: 1, 2]
                 </div>
             </div>
         </section>
@@ -123,25 +123,25 @@
             
             <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                アンケート調査で得られた生データには、回答の途中で諦めてしまった「欠損値（空欄）」を含むデータや、設問文を読まずにすべて同じ数字を選んだり適当に回答したりした「不注意回答（ノイズ）」が含まれています。
+                アンケート調査で得られた生データには、回答の途中で諦めてしまった「欠損値（空欄）」を含むデータや、設問文を読まずにすべて同じ数字を選んだり適当に回答したりした「不注意回答（ノイズ）」が含まれています[cite: 2, 3]。
             </p>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                こうした無効データを残したまま分析を行うと、平均値や相関係数が歪み、間違った結論（研究のエラー）を導いてしまうため、分析前に「データのクリーニング（掃除）」を行うことが必須となります。
+                こうした無効データを残したまま分析を行うと、平均値や相関係数が歪み、間違った結論（研究のエラー）を導いてしまうため、分析前に「データのクリーニング（掃除）」を行うことが必須となります[cite: 2, 3]。
             </p>
 
             <h3 class="text-lg font-bold text-slate-800 mb-3">具体的な処理方法</h3>
             <div class="space-y-4 my-4 text-sm sm:text-base">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">■ 欠損値の削除</p>
-                    <p class="text-slate-700">必須項目に回答漏れがある行（参加者）をデータから削除します。</p>
+                    <p class="text-slate-700">必須項目に回答漏れがある行（参加者）をデータから削除します[cite: 2]。</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">■ IMC（Instructional Manipulation Check）項目の確認</p>
                     <p class="text-slate-700 mb-2">
-                        調査に紛れ込ませた「データ処理の都合上、この項目では『あてはまらない（1）』を選択してください」という質問を確認します。
+                        調査に紛れ込ませた「データ処理の都合上、この項目では『あてはまらない（1）』を選択してください」という質問を確認します[cite: 2, 3]。
                     </p>
                     <p class="text-xs text-rose-600 font-bold">
-                        ここで「1」以外の数値（2〜4）を選んでいる回答者は、質問文を読まずに回答したと判断し、データから削除します。
+                        ここで「1」以外の数値（2〜4）を選んでいる回答者は、質問文を読まずに回答したと判断し、データから削除します[cite: 2, 3]。
                     </p>
                 </div>
             </div>
@@ -155,25 +155,25 @@
             
             <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                心理学では、1つの心の概念（例：地震への備え）を1つの質問だけで測ると誤差が大きくなるため、複数の質問項目（例：3〜6項目）で多角的に測定します。分析を行うには、これら複数の項目の回答を1つにまとめた「代表値（合計点または平均点）」を計算して、「その人の備えの高さ」「その人の脅威感の強さ」として数値化（得点化）する必要があります。
+                心理学では、1つの心の概念（例：地震への備え）を1つの質問だけで測ると誤差が大きくなるため、複数の質問項目（例：3〜6項目）で多角的に測定します[cite: 2, 3]。分析を行うには、これら複数の項目の回答を1つにまとめた「代表値（合計点または平均点）」を計算して、「その人の備えの高さ」「その人の脅威感の強さ」として数値化（得点化）する必要があります[cite: 2, 3]。
             </p>
 
             <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（Excelでの関数）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                それぞれの構成概念に対応する項目の数値を足し合わせます。
+                それぞれの構成概念に対応する項目の数値を足し合わせます[cite: 2]。
             </p>
 
             <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl shadow-md text-xs sm:text-sm font-mono space-y-3 my-4">
                 <div>
-                    <p class="text-teal-400 font-bold mb-1">■ 独立変数（$X$）：脅威得点（4項目の合計）</p>
+                    <p class="text-teal-400 font-bold mb-1">■ 独立変数（$X$）：脅威得点（4項目の合計）[cite: 2]</p>
                     <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(L2:O2)</p>
                 </div>
                 <div>
-                    <p class="text-teal-400 font-bold mb-1">■ 調整変数（$M$）：自己効力感得点（4項目の合計）</p>
+                    <p class="text-teal-400 font-bold mb-1">■ 調整変数（$M$）：自己効力感得点（4項目の合計）[cite: 2]</p>
                     <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(P2:S2)</p>
                 </div>
                 <div>
-                    <p class="text-teal-400 font-bold mb-1">■ 従属変数（$Y$）：備え得点（6項目の合計）</p>
+                    <p class="text-teal-400 font-bold mb-1">■ 従属変数（$Y$）：備え得点（6項目の合計）[cite: 2]</p>
                     <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(F2:K2)</p>
                 </div>
             </div>
@@ -187,27 +187,27 @@
             
             <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                今回の研究仮説は、「地震への脅威感（恐怖）が備え行動に与える影響は、自己効力感（自分にも備えができるという自信）の高さによって変わる（調整される）」というものです。
+                今回の研究仮説は、「地震への脅威感（恐怖）が備え行動に与える影響は、自己効力感（自分にも備えができるという自信）の高さによって変わる（調整される）」というものです[cite: 2]。
             </p>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                本来、調整効果は高度な「交互作用分析（重回帰分析）」を用いて一度に計算しますが、今回は基礎的な分析手法として、自己効力感の高さでデータを「高群」と「低群」の2つに分割し、それぞれの群で『恐怖 $\rightarrow$ 行動』のつながりの強さを比較する手法をとります。
+                本来、調整効果は高度な「交互作用分析（重回帰分析）」を用いて一度に計算しますが、今回は基礎的な分析手法として、自己効力感の高さでデータを「高群」と「低群」の2つに分割し、それぞれの群で『恐怖 $\rightarrow$ 行動』のつながりの強さを比較する手法をとります[cite: 2]。
             </p>
 
             <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（中央値の算出と並び替え）</h3>
             <div class="bg-white border border-slate-200 p-5 rounded-xl text-sm sm:text-base space-y-4 shadow-sm my-4">
                 <div>
-                    <p class="font-bold text-teal-950 mb-1">1. 中央値（Median）の算出</p>
-                    <p class="text-slate-700 text-justified mb-2">全員の「自己効力感得点」の真ん中の値（中央値）を求めます。</p>
+                    <p class="font-bold text-teal-950 mb-1">1. 中央値（Median）の算出[cite: 2]</p>
+                    <p class="text-slate-700 text-justified mb-2">全員の「自己効力感得点」の真ん中の値（中央値）を求めます[cite: 2]。</p>
                     <p class="bg-slate-100 p-2 rounded text-xs font-mono text-teal-900 border border-slate-200">=MEDIAN(自己効力感得点の範囲)</p>
                 </div>
                 <div class="border-t border-slate-100 pt-3">
-                    <p class="font-bold text-teal-950 mb-1">2. データの並び替えと2群分割</p>
-                    <p class="text-slate-700 text-justified mb-2">Excelの「並べ替え」機能を使って、「自己効力感得点」を昇順（小さい順）に並べ替えます。</p>
+                    <p class="font-bold text-teal-950 mb-1">2. データの並び替えと2群分割[cite: 2]</p>
+                    <p class="text-slate-700 text-justified mb-2">Excelの「並べ替え」機能を使って、「自己効力感得点」を昇順（小さい順）に並べ替えます[cite: 2]。</p>
                     <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 pl-2">
-                        <li><strong>中央値以下のグループ：</strong> 「自己効力感 低群」</li>
-                        <li><strong>中央値を超えるグループ：</strong> 「自己効力感 高群」</li>
+                        <li><strong>中央値以下のグループ：</strong> 「自己効力感 低群」[cite: 2]</li>
+                        <li><strong>中央値を超えるグループ：</strong> 「自己効力感 高群」[cite: 2]</li>
                     </ul>
-                    <p class="text-xs text-slate-500 mt-2">※分かりやすいように、2つの群の間にExcel上で数行の空行をあけておきます。</p>
+                    <p class="text-xs text-slate-500 mt-2">※分かりやすいように、2つの群の間にExcel上で数行の空行をあけておきます[cite: 2]。</p>
                 </div>
             </div>
         </section>
@@ -220,34 +220,34 @@
             
             <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                分けた2つのグループごとに、「脅威得点（恐怖）」と「備え得点（行動）」の間の相関係数（$r$）を計算します。これにより、「自信がある人（高群）」と「自信がない人（低群）」とで、恐怖心が行動を促すパイプの太さ（相関の強さ）に違いがあるかを直接確かめることができます。
+                分けた2つのグループごとに、「脅威得点（恐怖）」と「備え得点（行動）」の間の相関係数（$r$）を計算します[cite: 2]。これにより、「自信がある人（高群）」と「自信がない人（低群）」とで、恐怖心が行動を促すパイプの太さ（相関の強さ）に違いがあるかを直接確かめることができます[cite: 2]。
             </p>
 
             <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（Excelでの関数）</h3>
             <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl shadow-md text-xs sm:text-sm font-mono space-y-3 my-4">
                 <div>
-                    <p class="text-teal-400 font-bold mb-1">■ 高群における相関係数</p>
+                    <p class="text-teal-400 font-bold mb-1">■ 高群における相関係数[cite: 2]</p>
                     <p class="bg-slate-800 p-2 rounded text-amber-300">=CORREL(高群の脅威得点範囲, 高群の備え得点範囲)</p>
                 </div>
                 <div>
-                    <p class="text-teal-400 font-bold mb-1">■ 低群における相関係数</p>
+                    <p class="text-teal-400 font-bold mb-1">■ 低群における相関係数[cite: 2]</p>
                     <p class="bg-slate-800 p-2 rounded text-amber-300">=CORREL(低群の脅威得点範囲, 低群の備え得点範囲)</p>
                 </div>
             </div>
 
             <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">【重要】分析結果の解釈と考察のやり方</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                今回は受講生から集めたデータであり、1グループあたりのサンプルサイズ（人数）が比較的小さいため、統計的有意性（$p$ 値）の白黒判定は行わず、相関係数（$r$）の値とその符号（方向性）に着目して考察を行いました。
+                今回は受講生から集めたデータであり、1グループあたりのサンプルサイズ（人数）が比較的小さいため、統計的有意性（$p$ 値）の白黒判定は行わず、相関係数（$r$）の値とその符号（方向性）に着目して考察を行いました[cite: 2]。
             </p>
 
             <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified space-y-3">
-                <p class="font-bold text-teal-950 border-b border-teal-200 pb-1">■ 仮説とデータが整合的（一致）と言えるパターン例</p>
+                <p class="font-bold text-teal-950 border-b border-teal-200 pb-1">■ 仮説とデータが整合的（一致）と言えるパターン例[cite: 2]</p>
                 <p class="text-slate-800">
-                    ・<strong>自己効力感 高群：</strong> $r = .35$ 程度（正の相関：危機感が高まるほど、しっかり備え行動をとる）<br>
-                    ・<strong>自己効力感 低群：</strong> $r = .10$ や負の値（無相関〜負の相関：いくら恐怖を感じても、自分には無理だと思って行動しない）
+                    ・<strong>自己効力感 高群：</strong> $r = .35$ 程度（正の相関：危機感が高まるほど、しっかり備え行動をとる）[cite: 2, 3]<br>
+                    ・<strong>自己効力感 低群：</strong> $r = .10$ や負の値（無相関〜負の相関：いくら恐怖を感じても、自分には無理だと思って行動しない）[cite: 2, 3]
                 </p>
                 <p class="text-slate-800 text-xs sm:text-sm text-slate-700 pt-2 border-t border-teal-200">
-                    もしこのような結果が得られれば、「自己効力感が低い人は、単に恐怖を煽るだけでは防災行動を起こさない」という保護動機理論の予測と整合的であると考察できます。
+                    もしこのような結果が得られれば、「自己効力感が低い人は、単に恐怖を煽るだけでは防災行動を起こさない」という保護動機理論の予測と整合的であると考察できます[cite: 2, 3]。
                 </p>
             </div>
         </section>
@@ -266,24 +266,24 @@
                 <!-- 問1 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問1】データ分析の最初に「IMC（Instructional Manipulation Check）項目」を用いて不注意回答を除外する理由として、最も適切なものはどれですか？
+                        【問1】データ分析の最初に「IMC（Instructional Manipulation Check）項目」を用いて不注意回答を除外する理由として、最も適切なものはどれですか？[cite: 2, 3]
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 参加者の名前や学籍番号を特定して個人情報を保護するため</span>
+                            <span class="text-slate-700">A) 参加者の名前や学籍番号を特定して個人情報を保護するため[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 設問文を読まずに適当に回答されたノイズデータを除外し、分析結果の歪みを防ぐため</span>
+                            <span class="text-slate-700">B) 設問文を読まずに適当に回答されたノイズデータを除外し、分析結果の歪みを防ぐため[cite: 2, 3]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) クロンバックのアルファ係数を強制的に1.0にするため</span>
+                            <span class="text-slate-700">C) クロンバックのアルファ係数を強制的に1.0にするため[cite: 2, 3]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) パラメトリック検定をノンパラメトリック検定に変換するため</span>
+                            <span class="text-slate-700">D) パラメトリック検定をノンパラメトリック検定に変換するため[cite: 2]</span>
                         </label>
                     </div>
                 </div>
@@ -291,24 +291,24 @@
                 <!-- 問2 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問2】今回の実験で、自己効力感（調整変数）の「高群」と「低群」の2つにデータを分割するために用いた統計量はどれですか？
+                        【問2】今回の実験で、自己効力感（調整変数）の「高群」と「低群」の2つにデータを分割するために用いた統計量はどれですか？[cite: 2]
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 平均値（Mean）</span>
+                            <span class="text-slate-700">A) 平均値（Mean）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 標準偏差（SD）</span>
+                            <span class="text-slate-700">B) 標準偏差（SD）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 中央値（Median）</span>
+                            <span class="text-slate-700">C) 中央値（Median）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 歪度（Skewness）</span>
+                            <span class="text-slate-700">D) 歪度（Skewness）[cite: 2]</span>
                         </label>
                     </div>
                 </div>
@@ -329,7 +329,7 @@
 
                 <!-- 演習結果の報告 -->
                 <div class="bg-teal-50/50 border border-teal-100 p-4 rounded-xl space-y-3">
-                    <p class="font-bold text-teal-950 text-sm sm:text-base">■ 演習結果の報告（実習で算出した相関係数）</p>
+                    <p class="font-bold text-teal-950 text-sm sm:text-base">■ 演習結果の報告（実習で算出した相関係数）[cite: 2]</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="r_high" class="block text-xs font-bold text-slate-700 mb-1">自己効力感 高群の相関係数 ($r$)</label>

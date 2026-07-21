@@ -78,7 +78,7 @@
         <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
             <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
                 <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    本テキストは、第11回目の心理学実験の授業を休んだ人が、授業で扱った「調査前にデータ分析方法を決めておくことの重要性」「ピアソンの相関分析の前提条件（正規性）」「ヒストグラム描画・歪度・尖度による正規性の見分け方」「正規分布に従わない場合の適切な相関分析の選択（スピアマン・ケンドール等）」「R言語を用いた実習と不適切な分析が招く誤解」について網羅的に学習できるように作成されたフォロー教材です[cite: 1, 2]。
+                    本テキストは、第11回目の心理学実験の授業を休んだ人が、授業で扱った「調査前にデータ分析方法を決めておくことの重要性」「ピアソンの相関分析の前提条件（正規性）」「ヒストグラム描画・歪度・尖度による正規性の見分け方」「正規分布に従わない場合の適切な相関分析の選択（スピアマン・ケンドール等）」「R言語を用いた実習と不適切な分析が招く誤解」について網羅的に学習できるように作成されたフォロー教材です。
                 </p>
             </div>
         </div>
@@ -89,26 +89,26 @@
                 1. なぜ「調査前に」データ分析方法を決めておくのか？
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                研究や調査を行う際、「データを取ってから、どう分析するか考える」のは極めて危険です[cite: 1, 2]。
+                研究や調査を行う際、「データを取ってから、どう分析するか考える」のは極めて危険です。
             </p>
 
             <div class="space-y-4 my-6 text-sm sm:text-base">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">■ 前提条件（仮定）の崩壊を防ぐため</p>
                     <p class="text-slate-700">
-                        多くの統計手法には「データがどのような分布をしているか」という前提条件が存在します[cite: 1, 2]。例えば、最も標準的な「ピアソンの積率相関係数」は、データが正規分布（左右対称の釣り鐘型の分布）に従っていることを前提としています[cite: 1, 2]。
+                        多くの統計手法には「データがどのような分布をしているか」という前提条件が存在します。例えば、最も標準的な「ピアソンの積率相関係数」は、データが正規分布（左右対称の釣り鐘型の分布）に従っていることを前提としています。
                     </p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">■ 研究倫理と客観性の担保（$p$-hacking の防止）</p>
                     <p class="text-slate-700">
-                        データを見てから都合の良い分析方法を選ぶと、本来存在しない効果を意図的に作り出してしまう（第1種の過誤を生む）リスクがあります[cite: 2, 3]。
+                        データを見てから都合の良い分析方法を選ぶと、本来存在しない効果を意図的に作り出してしまう（第1種の過誤を生む）リスクがあります。
                     </p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">■ データ取得後のトラブル防止</p>
                     <p class="text-slate-700">
-                        データが正規分布に従わない（著しく歪んでいる、外れ値がある、サンプルサイズが小さい）場合、事前に対処法を考えておかないと、集めたデータが無駄になってしまいます[cite: 1, 2]。
+                        データが正規分布に従わない（著しく歪んでいる、外れ値がある、サンプルサイズが小さい）場合、事前に対処法を考えておかないと、集めたデータが無駄になってしまいます。
                     </p>
                 </div>
             </div>
@@ -120,61 +120,61 @@
                 2. 正規分布とは？そしてそれを見分ける3つの指標
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                <strong class="highlight">正規分布（Normal Distribution）</strong>とは、平均値を中心に左右対称にデータが分布し、中央（平均値付近）に最もデータが集まり、両端（裾）に行くほどなだらかに減少する「釣り鐘型（ベルカーブ）」の分布です[cite: 1, 2]。
+                <strong class="highlight">正規分布（Normal Distribution）</strong>とは、平均値を中心に左右対称にデータが分布し、中央（平均値付近）に最もデータが集まり、両端（裾）に行くほどなだらかに減少する「釣り鐘型（ベルカーブ）」の分布です。
             </p>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                データが正規分布に従っているかを確認するため、以下の3つのステップを踏みます[cite: 1, 2]。
+                データが正規分布に従っているかを確認するため、以下の3つのステップを踏みます。
             </p>
 
             <div class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm text-sm sm:text-base mb-8 space-y-2 font-medium text-center">
-                <p class="text-teal-900">[Step 1] ヒストグラムを描いて視覚的に確認する[cite: 1, 2]</p>
+                <p class="text-teal-900">[Step 1] ヒストグラムを描いて視覚的に確認する</p>
                 <p class="text-slate-400">↓</p>
-                <p class="text-teal-900">[Step 2] 歪度（Skewness）を算出する（左右の偏り）[cite: 1, 2]</p>
+                <p class="text-teal-900">[Step 2] 歪度（Skewness）を算出する（左右の偏り）</p>
                 <p class="text-slate-400">↓</p>
-                <p class="text-teal-900">[Step 3] 尖度（Kurtosis）を算出する（上下のとがりと裾の厚み）[cite: 1, 2]</p>
+                <p class="text-teal-900">[Step 3] 尖度（Kurtosis）を算出する（上下のとがりと裾の厚み）</p>
             </div>
 
             <div class="space-y-6">
                 <!-- 指標① -->
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
-                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📊 指標①：ヒストグラム（Histogram）[cite: 1, 2]</p>
-                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> データの区間ごとの度数（人数）を棒グラフにしたもの[cite: 1, 2]。</p>
-                    <p class="text-slate-700 text-justified"><strong>視覚的確認：</strong> 山が中央に1つだけあり、左右均等になだらかな形をしているかを確認します[cite: 1, 2]。</p>
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📊 指標①：ヒストグラム（Histogram）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> データの区間ごとの度数（人数）を棒グラフにしたもの。</p>
+                    <p class="text-slate-700 text-justified"><strong>視覚的確認：</strong> 山が中央に1つだけあり、左右均等になだらかな形をしているかを確認します。</p>
                 </div>
 
                 <!-- 指標② -->
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
-                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📐 指標②：歪度（Skewness：ゆがみ）[cite: 1, 2]</p>
-                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「左右の偏り（左右非対称性）」を表す指標です[cite: 1, 2]。</p>
-                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">Excel関数： =SKEW(範囲)[cite: 1, 2]</p>
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📐 指標②：歪度（Skewness：ゆがみ）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「左右の偏り（左右非対称性）」を表す指標です。</p>
+                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">Excel関数： =SKEW(範囲)</p>
                     <div class="space-y-1 text-slate-700 text-xs sm:text-sm text-justified">
-                        <p>・<strong>歪度 $= 0$：</strong> 完全に左右対称（正規分布）[cite: 1, 2]。</p>
-                        <p>・<strong>正の値（歪度 $> 0$）：</strong> 山が左に偏り、右側に裾が長く伸びている分布（Positively Skewed）[cite: 1, 2]。</p>
-                        <p>・<strong>負の値（歪度 $< 0$）：</strong> 山が右に偏り、左側に裾が長く伸びている分布（Negatively Skewed）[cite: 1, 2]。</p>
+                        <p>・<strong>歪度 $= 0$：</strong> 完全に左右対称（正規分布）。</p>
+                        <p>・<strong>正の値（歪度 $> 0$）：</strong> 山が左に偏り、右側に裾が長く伸びている分布（Positively Skewed）。</p>
+                        <p>・<strong>負の値（歪度 $< 0$）：</strong> 山が右に偏り、左側に裾が長く伸びている分布（Negatively Skewed）。</p>
                     </div>
                     <div class="bg-teal-50/60 p-3 rounded-lg border border-teal-100 mt-3 text-xs sm:text-sm space-y-1">
-                        <p class="font-bold text-teal-950">【判定基準】[cite: 1, 2]</p>
-                        <p>・$|\text{歪度}| < 1$ ： ほぼ正規分布とみなせる[cite: 1, 2]。</p>
-                        <p>・$1 \le |\text{歪度}| < 2$ ： やや歪んでいる（注意が必要）[cite: 1, 2]。</p>
-                        <p>・$|\text{歪度}| \ge 2$ ： 著しく歪んでいる（深刻な非正規性）[cite: 1, 2]。</p>
+                        <p class="font-bold text-teal-950">【判定基準】</p>
+                        <p>・$|\text{歪度}| < 1$ ： ほぼ正規分布とみなせる。</p>
+                        <p>・$1 \le |\text{歪度}| < 2$ ： やや歪んでいる（注意が必要）。</p>
+                        <p>・$|\text{歪度}| \ge 2$ ： 著しく歪んでいる（深刻な非正規性）。</p>
                     </div>
                 </div>
 
                 <!-- 指標③ -->
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
-                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">🏔️ 指標③：尖度（Kurtosis：とがり）[cite: 1, 2]</p>
-                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「山の尖り具合」と「裾（両端）の厚さ」を表す指標です[cite: 1, 2]。</p>
-                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">Excel関数： =KURT(範囲)[cite: 1, 2]</p>
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">🏔️ 指標③：尖度（Kurtosis：とがり）</p>
+                    <p class="text-slate-700 text-justified mb-2"><strong>意味：</strong> 分布の「山の尖り具合」と「裾（両端）の厚さ」を表す指標です。</p>
+                    <p class="text-xs font-mono bg-slate-100 p-2 rounded text-teal-900 border border-slate-200 mb-3">Excel関数： =KURT(範囲)</p>
                     <div class="space-y-1 text-slate-700 text-xs sm:text-sm text-justified">
-                        <p>・<strong>尖度 $= 0$：</strong> 正規分布と同等の尖り具合[cite: 1, 2]。</p>
-                        <p>・<strong>正の値（尖度 $> 0$）：</strong> 正規分布よりも山が急峻で、中心と極端な両端（裾）にデータが集中している[cite: 1, 2]。</p>
-                        <p>・<strong>負の値（尖度 $< 0$）：</strong> 山が平らでのっぺりとした分布[cite: 1, 2]。</p>
+                        <p>・<strong>尖度 $= 0$：</strong> 正規分布と同等の尖り具合。</p>
+                        <p>・<strong>正の値（尖度 $> 0$）：</strong> 正規分布よりも山が急峻で、中心と極端な両端（裾）にデータが集中している。</p>
+                        <p>・<strong>負の値（尖度 $< 0$）：</strong> 山が平らでのっぺりとした分布。</p>
                     </div>
                     <div class="bg-teal-50/60 p-3 rounded-lg border border-teal-100 mt-3 text-xs sm:text-sm space-y-1">
-                        <p class="font-bold text-teal-950">【判定基準】[cite: 1, 2]</p>
-                        <p>・$|\text{尖度}| < 2$ ： 正規分布に近い[cite: 1, 2]。</p>
-                        <p>・$2 \le |\text{尖度}| < 7$ ： 尖りすぎているか平坦すぎる（注意が必要）[cite: 1, 2]。</p>
-                        <p>・$|\text{尖度}| \ge 7$ ： 極端な異常値が混入している、あるいは著しく特異な分布（深刻な非正規性）[cite: 1, 2]。</p>
+                        <p class="font-bold text-teal-950">【判定基準】</p>
+                        <p>・$|\text{尖度}| < 2$ ： 正規分布に近い。</p>
+                        <p>・$2 \le |\text{尖度}| < 7$ ： 尖りすぎているか平坦すぎる（注意が必要）。</p>
+                        <p>・$|\text{尖度}| \ge 7$ ： 極端な異常値が混入している、あるいは著しく特異な分布（深刻な非正規性）。</p>
                     </div>
                 </div>
             </div>
@@ -186,18 +186,18 @@
                 3. 今回の実験データ（南海トラフ地震データ）の現実
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                実際に前回のアンケートデータ（脅威得点、自己効力感得点、備え得点）のヒストグラムを描き、歪度・尖度を確認してみると、以下のような傾向が見られました[cite: 1, 2]。
+                実際に前回のアンケートデータ（脅威得点、自己効力感得点、備え得点）のヒストグラムを描き、歪度・尖度を確認してみると、以下のような傾向が見られました。
             </p>
 
             <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl text-sm sm:text-base space-y-3 mb-4">
-                <p class="font-bold text-amber-950">⚠️ 脅威得点における「天井効果」の発生[cite: 1, 2]</p>
+                <p class="font-bold text-amber-950">⚠️ 脅威得点における「天井効果」の発生</p>
                 <p class="text-slate-800 text-justified">
-                    ほとんどの学生が「15点〜16点（満点近く）」に集中しており、山が右側に大きく偏った著しく歪んだ分布を示している（天井効果）ことが判明しました[cite: 1, 2]。
+                    ほとんどの学生が「15点〜16点（満点近く）」に集中しており、山が右側に大きく偏った著しく歪んだ分布を示している（天井効果）ことが判明しました。
                 </p>
             </div>
 
             <p class="text-slate-700 leading-relaxed text-justified font-bold text-teal-950">
-                結論：今回のデータは「正規分布に従っていない」ことが判明しました。したがって、正規分布を前提とする「ピアソンの相関分析」をそのまま適用することは統計的に不適切です[cite: 1, 2]。
+                結論：今回のデータは「正規分布に従っていない」ことが判明しました。したがって、正規分布を前提とする「ピアソンの相関分析」をそのまま適用することは統計的に不適切です。
             </p>
         </section>
 
@@ -207,7 +207,7 @@
                 4. データに応じた各種相関係数の使い分け
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                データが正規分布に従わない場合、あるいは尺度の種類が異なる場合は、適切な相関係数を選択する必要があります[cite: 1, 2]。
+                データが正規分布に従わない場合、あるいは尺度の種類が異なる場合は、適切な相関係数を選択する必要があります。
             </p>
 
             <!-- 相関係数一覧テーブル -->
@@ -224,27 +224,27 @@
                         <tr class="hover:bg-slate-50">
                             <td class="p-3 font-bold text-teal-950">ピアソンの積率相関係数</td>
                             <td class="p-3">連続尺度（間隔・比例）</td>
-                            <td class="p-3">最も標準的。正規分布に従うことが必須前提[cite: 1, 2]。</td>
+                            <td class="p-3">最も標準的。正規分布に従うことが必須前提。</td>
                         </tr>
                         <tr class="hover:bg-slate-50">
                             <td class="p-3 font-bold text-teal-950">スピアマンの順位相関係数</td>
                             <td class="p-3">順序尺度（または連続）</td>
-                            <td class="p-3">ピアソンの順位版。正規分布を前提としない。外れ値に強い。サンプルサイズが大きい（$N > 100$ 程度）場合に安定[cite: 1, 2]。</td>
+                            <td class="p-3">ピアソンの順位版。正規分布を前提としない。外れ値に強い。サンプルサイズが大きい（$N > 100$ 程度）場合に安定。</td>
                         </tr>
                         <tr class="hover:bg-slate-50">
                             <td class="p-3 font-bold text-teal-950">ケンドールの順位相関係数 ($\tau$)</td>
                             <td class="p-3">順序尺度（または連続）</td>
-                            <td class="p-3">順位相関の一種。サンプルサイズが小さい（$N < 30 \sim 50$ 程度）場合や、同順位が多い場合にスピアマンより誤差が出にくい[cite: 1, 2]。</td>
+                            <td class="p-3">順位相関の一種。サンプルサイズが小さい（$N < 30 \sim 50$ 程度）場合や、同順位が多い場合にスピアマンより誤差が出にくい。</td>
                         </tr>
                         <tr class="hover:bg-slate-50">
                             <td class="p-3 font-bold text-teal-950">点二系列相関係数</td>
                             <td class="p-3">一方が連続、一方が二値</td>
-                            <td class="p-3">「性別（男/女）」と「テスト点数」のような組み合わせ[cite: 1, 2]。</td>
+                            <td class="p-3">「性別（男/女）」と「テスト点数」のような組み合わせ。</td>
                         </tr>
                         <tr class="hover:bg-slate-50">
                             <td class="p-3 font-bold text-teal-950">ファイ係数 ($\phi$)</td>
                             <td class="p-3">両方が二値</td>
-                            <td class="p-3">「Yes/No（$2 \times 2$ のクロス集計）」同士の関連性[cite: 1, 2]。</td>
+                            <td class="p-3">「Yes/No（$2 \times 2$ のクロス集計）」同士の関連性。</td>
                         </tr>
                     </tbody>
                 </table>
@@ -252,17 +252,17 @@
 
             <!-- フローチャート -->
             <div class="bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md space-y-4 my-6 text-sm sm:text-base">
-                <p class="text-amber-300 font-bold border-b border-slate-700 pb-2">💡 相関分析を選ぶフローチャート[cite: 1, 2]</p>
+                <p class="text-amber-300 font-bold border-b border-slate-700 pb-2">💡 相関分析を選ぶフローチャート</p>
                 <div class="space-y-3 text-slate-300 text-justified">
                     <p>
-                        <strong class="text-white">1. データが正規分布に従っているか？[cite: 1, 2]</strong><br>
-                        ・はい $\rightarrow$ **ピアソンの積率相関係数**を使用[cite: 1, 2]。<br>
-                        ・いいえ（歪んでいる・外れ値がある） $\rightarrow$ ノンパラメトリックな**順位相関係数**を使用[cite: 1, 2]。
+                        <strong class="text-white">1. データが正規分布に従っているか？</strong><br>
+                        ・はい $\rightarrow$ ピアソンの積率相関係数を使用。<br>
+                        ・いいえ（歪んでいる・外れ値がある） $\rightarrow$ ノンパラメトリックな順位相関係数を使用。
                     </p>
                     <p>
-                        <strong class="text-white">2. 正規分布に従わない場合、サンプルサイズ（$N$）は？[cite: 1, 2]</strong><br>
-                        ・$N > 100$ 程度 $\rightarrow$ **スピアマンの順位相関係数**が適している[cite: 1, 2]。<br>
-                        ・$N < 30 \sim 50$ 程度（今回の実験のように群分けして人数が少ない場合） $\rightarrow$ <strong class="highlight">ケンドールの順位相関係数 ($\tau$)</strong> が最も適している[cite: 1, 2]。
+                        <strong class="text-white">2. 正規分布に従わない場合、サンプルサイズ（$N$）は？</strong><br>
+                        ・$N > 100$ 程度 $\rightarrow$ スピアマンの順位相関係数が適している。<br>
+                        ・$N < 30 \sim 50$ 程度（今回の実験のように群分けして人数が少ない場合） $\rightarrow$ <strong class="highlight">ケンドールの順位相関係数 ($\tau$)</strong> が最も適している。
                     </p>
                 </div>
             </div>
@@ -274,13 +274,13 @@
                 5. 分析手法の違いが招く「間違った結論」の実証
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業では、実際にプログラミング言語 R を用い、同じデータに対して「ピアソンの相関」と「ケンドールの相関（タウ $\tau$）」の双方を計算して比較しました[cite: 1, 2]。
+                授業では、実際にプログラミング言語 R を用い、同じデータに対して「ピアソンの相関」と「ケンドールの相関（タウ $\tau$）」の双方を計算して比較しました。
             </p>
 
             <!-- 比較テーブル -->
             <div class="overflow-x-auto my-6">
                 <table class="w-full text-xs sm:text-sm text-left border-collapse bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
-                    <caption class="text-xs text-slate-500 text-left mb-2 font-mono">【比較結果】「脅威感 ($X$) $\rightarrow$ 防災への備え ($Y$)」の相関係数[cite: 1, 2]</caption>
+                    <caption class="text-xs text-slate-500 text-left mb-2 font-mono">【比較結果】「脅威感 ($X$) $\rightarrow$ 防災への備え ($Y$)」の相関係数</caption>
                     <thead class="bg-teal-900 text-white font-bold">
                         <tr>
                             <th class="p-3 border-b border-teal-800">グループ（自己効力感）</th>
@@ -304,13 +304,13 @@
             </div>
 
             <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified space-y-3">
-                <p class="font-bold text-teal-950 border-b border-teal-200 pb-1">⚠️ ここから学べる衝撃的な教訓[cite: 1, 2]</p>
+                <p class="font-bold text-teal-950 border-b border-teal-200 pb-1">⚠️ ここから学べる衝撃的な教訓</p>
                 <p class="text-slate-800">
-                    ・<strong>ピアソン（不適切）を使った場合：</strong> 低群で $r = -0.251$ という負の相関が出たため、「自信がない人は恐怖を感じるほど、逆に備えをしなくなる」というドラマチックな仮説通りに見えました[cite: 1, 2]。<br>
-                    ・<strong>ケンドール（適切）を使った場合：</strong> 非正規性や外れ値の影響を取り除いて正しく計算すると、低群も $\tau = +0.144$ となり、実際には高群とも差がない「単なる弱い正の相関（ほぼ無相関）」にすぎないことが発覚しました[cite: 1, 2]。
+                    ・<strong>ピアソン（不適切）を使った場合：</strong> 低群で $r = -0.251$ という負の相関が出たため、「自信がない人は恐怖を感じるほど、逆に備えをしなくなる」というドラマチックな仮説通りに見えました。<br>
+                    ・<strong>ケンドール（適切）を使った場合：</strong> 非正規性や外れ値の影響を取り除いて正しく計算すると、低群も $\tau = +0.144$ となり、実際には高群とも差がない「単なる弱い正の相関（ほぼ無相関）」にすぎないことが発覚しました。
                 </p>
                 <p class="text-slate-800 font-medium pt-2 border-t border-teal-200">
-                    <strong>まとめ：</strong> 前提条件を無視して不適切な統計分析を用いると、データに惑わされ、存在しないはずの現象を『事実』だと錯覚して間違った結論を導いてしまうのです[cite: 1, 2]。だからこそ、データを取得した後は必ず分布を検証し、適切な分析手法を選ばなければなりません[cite: 1, 2]。
+                    <strong>まとめ：</strong> 前提条件を無視して不適切な統計分析を用いると、データに惑わされ、存在しないはずの現象を『事実』だと錯覚して間違った結論を導いてしまうのです。だからこそ、データを取得した後は必ず分布を検証し、適切な分析手法を選ばなければなりません。
                 </p>
             </div>
         </section>
@@ -329,24 +329,24 @@
                 <!-- 問1 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問1】データの分布が左右非対称で大きく歪んでいる（正規性が保証されない）場合、分布の「左右の偏り」を表す統計指標として正しいものはどれですか？[cite: 1, 2]
+                        【問1】データの分布が左右非対称で大きく歪んでいる（正規性が保証されない）場合、分布の「左右の偏り」を表す統計指標として正しいものはどれですか？
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 尖度（Kurtosis）[cite: 1, 2]</span>
+                            <span class="text-slate-700">A) 尖度（Kurtosis）</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 歪度（Skewness）[cite: 1, 2]</span>
+                            <span class="text-slate-700">B) 歪度（Skewness）</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 標準偏差（Standard Deviation）[cite: 1, 2]</span>
+                            <span class="text-slate-700">C) 標準偏差（Standard Deviation）</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 自由度（Degrees of Freedom）[cite: 1, 2]</span>
+                            <span class="text-slate-700">D) 自由度（Degrees of Freedom）</span>
                         </label>
                     </div>
                 </div>
@@ -354,24 +354,24 @@
                 <!-- 問2 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問2】アンケートデータが正規分布に従わず、かつ1グループあたりのサンプルサイズが $N=200$ と十分に大きい場合、選択すべき最も適切な相関係数はどれですか？[cite: 1, 2]
+                        【問2】アンケートデータが正規分布に従わず、かつ1グループあたりのサンプルサイズが $N=200$ と十分に大きい場合、選択すべき最も適切な相関係数はどれですか？
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) ピアソンの積率相関係数[cite: 1, 2]</span>
+                            <span class="text-slate-700">A) ピアソンの積率相関係数</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) ケンドールの順位相関係数 ($\tau$)[cite: 1, 2]</span>
+                            <span class="text-slate-700">B) ケンドールの順位相関係数 ($\tau$)</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) スピアマンの順位相関係数[cite: 1, 2]</span>
+                            <span class="text-slate-700">C) スピアマンの順位相関係数</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) クロンバックのアルファ係数[cite: 1, 2]</span>
+                            <span class="text-slate-700">D) クロンバックのアルファ係数</span>
                         </label>
                     </div>
                 </div>
