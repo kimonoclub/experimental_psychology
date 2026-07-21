@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ポータルの自動スキャナーが収集・クレンジングするタイトルタグ -->
-    <title>心理学実験：第10回 尺度の吟味（妥当性と信頼性）とクロンバックのアルファ係数の算出（フォローアップ・学習テキスト）</title>
+    <title>心理学実験：第10回 アンケートデータのクリーニングから仮説検証（得点化・群分け・相関分析）までの一連の実践（フォローアップ・学習テキスト）</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- 数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
+    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
     <script>
         window.MathJax = {
             tex: {
@@ -55,7 +55,7 @@
         <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
             <div>
                 <p id="subject_label" class="text-xs font-bold text-teal-300 uppercase tracking-wider">心理学実験</p>
-                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第10回：尺度の吟味（妥当性と信頼性）とクロンバックのアルファ係数の算出</h1>
+                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第10回：アンケートデータのクリーニングから仮説検証（得点化・群分け・相関分析）までの一連の実践</h1>
             </div>
             <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">実験ポータルへ戻る</a>
         </div>
@@ -68,8 +68,8 @@
         <div class="text-center mb-16">
             <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第10回 フォローアップ・学習テキスト</p>
             <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                尺度の吟味（妥当性と信頼性）と<br class="hidden sm:inline">
-                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">クロンバックのアルファ係数の算出</span>
+                アンケートデータのクリーニングから<br class="hidden sm:inline">
+                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">仮説検証（得点化・群分け・相関分析）までの一連の実践</span>
             </h1>
             <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
         </div>
@@ -78,152 +78,177 @@
         <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
             <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
                 <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    本テキストは、第10回目の心理学実験の授業を休んだ人が、授業で扱った「心理学における見えない心の測り方」「尺度の妥当性と信頼性の違い」「確認困難な妥当性の理由」「クロンバックのアルファ係数の計算式の意味と実践」について、網羅的に学習できるように作成されたフォロー教材です。
+                    本テキストは、第10回目の心理学実験の授業で実施した「収集したアンケートデータの実際の分析プロセス」について、各手順の必要性（理由）と具体的な計算方法（Excel関数）を分かりやすく解説したフォロー教材です[cite: 1, 2]。
                 </p>
             </div>
         </div>
 
-        <!-- 1. 本時の導入：見えない「心」をどう測るか？ -->
+        <!-- 1. 今回のデータ分析の全体フロー -->
         <section class="mb-16">
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                1. 本時の導入：見えない「心」をどう測るか？
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                心理学が扱う「心」や「防災レジリエンス」は、物理的な距離や重さのように、そのまま目で見て測ることができません。そのため、見えない心を測るためには、適切な「尺度（質問紙）」を作る（あるいは選ぶ）ことが極めて重要になります。
-            </p>
-            <p class="text-slate-700 leading-relaxed text-justified">
-                第10回では、実際に測定に用いる質問紙として、松川ら（2024）が開発した<strong class="highlight">防災基礎力尺度（DRSi: Disaster Resilience Scale for Individuals）</strong>を題材に、そのクオリティを保証する「妥当性」と「信頼性」について学びました。
-            </p>
-        </section>
-
-        <!-- 2. 尺度の品質を支える2大基準：「妥当性」と「信頼性」 -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                2. 尺度の品質を支える2大基準：「妥当性」と「信頼性」
+                1. 今回のデータ分析の全体フロー
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                心理学の調査や実験で使われる質問紙が「良い尺度」であるためには、以下の2つの条件を満たしている必要があります。
+                今回の授業では、実際にGoogleフォーム等で収集したアンケートデータを用い、以下の4つのステップでデータ分析を進めました[cite: 1, 2]。
             </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base mb-6">
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-2">🎯 ① 妥当性（Validity）</p>
-                    <p class="text-slate-700 text-justified mb-2">
-                        <strong>定義：</strong> 尺度の<strong class="highlight">「正確性・的確性」</strong>、すなわち「測りたいターゲット（今回は防災レジリエンス）を、ちゃんと的を射て測れているか」の度合いです。
-                    </p>
-                    <p class="text-xs text-slate-600 leading-relaxed text-justified mb-2">
-                        <strong>【例え話】</strong> どんなに正確に「60kg」と毎回安定して表示してくれる体重計（信頼性は完璧）であっても、それを使って「身長」や「知能」を測ろうとしたら、それは測りたいものとは違うため、妥当性がないということになります。
-                    </p>
-                    <p class="text-xs font-bold text-teal-900">
-                        確かめる方法：探索的因子分析（EFA）や確認的因子分析（CFA）などを用いて、理論通りの構造になっているか検証します。
-                    </p>
+            <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm text-sm sm:text-base space-y-4 font-medium">
+                <div class="flex items-center text-teal-900">
+                    <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 1</span>
+                    データのクリーニング（欠損値・不注意回答の除外）[cite: 1, 2]
                 </div>
+                <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
+                <div class="flex items-center text-teal-900">
+                    <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 2</span>
+                    得点化（尺度項目の合計値算出）[cite: 1, 2]
+                </div>
+                <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
+                <div class="flex items-center text-teal-900">
+                    <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 3</span>
+                    調整変数（自己効力感）による群分け（中央値分割）[cite: 1, 2]
+                </div>
+                <div class="border-l-2 border-slate-200 ml-4 h-3"></div>
+                <div class="flex items-center text-teal-900">
+                    <span class="bg-teal-100 text-teal-800 text-xs px-2.5 py-1 rounded font-bold mr-3">Step 4</span>
+                    群ごとの相関分析（仮説の検証と考察）[cite: 1, 2]
+                </div>
+            </div>
+        </section>
 
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-2">🔄 ② 信頼性（Reliability）</p>
-                    <p class="text-slate-700 text-justified mb-2">
-                        <strong>定義：</strong> 尺度の<strong class="highlight">「一貫性・安定性」</strong>、すなわち「ブレのなさ」のことです。
+        <!-- 2. 【Step 1】データのクリーニング（無効データの除外） -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                2. 【Step 1】データのクリーニング（無効データの除外）
+            </h2>
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                アンケート調査で得られた生データには、回答の途中で諦めてしまった「欠損値（空欄）」を含むデータや、設問文を読まずにすべて同じ数字を選んだり適当に回答したりした「不注意回答（ノイズ）」が含まれています[cite: 2, 3]。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                こうした無効データを残したまま分析を行うと、平均値や相関係数が歪み、間違った結論（研究のエラー）を導いてしまうため、分析前に「データのクリーニング（掃除）」を行うことが必須となります[cite: 2, 3]。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mb-3">具体的な処理方法</h3>
+            <div class="space-y-4 my-4 text-sm sm:text-base">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ 欠損値の削除</p>
+                    <p class="text-slate-700">必須項目に回答漏れがある行（参加者）をデータから削除します[cite: 2]。</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ IMC（Instructional Manipulation Check）項目の確認</p>
+                    <p class="text-slate-700 mb-2">
+                        調査に紛れ込ませた「データ処理の都合上、この項目では『あてはまらない（1）』を選択してください」という質問を確認します[cite: 2, 3]。
                     </p>
-                    <p class="text-xs text-slate-600 leading-relaxed text-justified mb-2">
-                        <strong>【例え話】</strong> 体重計に乗るたびに「60kg、65kg、55kg」とコロコロ数値が変わったら、その体重計は信用できません。何度測っても、あるいは似たような質問に何度答えても、同じような安定した結果が返ってくる状態が「信頼性が高い」状態です。
-                    </p>
-                    <p class="text-xs font-bold text-teal-900">
-                        確かめる方法：再検査法や、今回実際に計算したクロンバックのアルファ係数を用います。
+                    <p class="text-xs text-rose-600 font-bold">
+                        ここで「1」以外の数値（2〜4）を選んでいる回答者は、質問文を読まずに回答したと判断し、データから削除します[cite: 2, 3]。
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- 3. 「確認困難な妥当性」とは何か？ -->
+        <!-- 3. 【Step 2】得点化（変数の合計値の算出） -->
         <section class="mb-16">
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                3. 「確認困難な妥当性」とは何か？
+                3. 【Step 2】得点化（変数の合計値の算出）
             </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                災害が実際に起きたときの行動やレジリエンスを測定する場合、事実上その妥当性をその場で直接<strong class="highlight">「確認することが難しい（確認困難な妥当性）」</strong>という問題に直面します。
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                心理学では、1つの心の概念（例：地震への備え）を1つの質問だけで測ると誤差が大きくなるため、複数の質問項目（例：3〜6項目）で多角的に測定します[cite: 2, 3]。分析を行うには、これら複数の項目の回答を1つにまとめた「代表値（合計点または平均点）」を計算して、「その人の備えの高さ」「その人の脅威感の強さ」として数値化（得点化）する必要があります[cite: 2, 3]。
             </p>
 
-            <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl text-sm sm:text-base space-y-3">
-                <p class="font-bold text-amber-950">⚠️ なぜ確認できないのか？</p>
-                <p class="text-slate-800 text-justified">
-                    防災行動や災害時の適応能力（レジリエンス）の高さは、実際に大災害（南海トラフ地震など）が発生したときに初めて発揮されるものです。しかし、「災害が起きる前」の平時にその測定を行わなければ意味がないため、実際の災害時における生死の分かれ目や被災後の行動データと、事前のアンケート結果をその場で直接突き合わせて正しさを証明することが、構造上極めて困難なのです。
-                </p>
-                <p class="text-xs text-slate-600 border-t border-amber-200 pt-2 text-justified">
-                    （※そのため、論文（Matsukawa et al., 2024）では、過去に被災経験がある人は得点が高くなることや、理論的な因子構造（CFA）の適合度を示すことで、間接的に妥当性を担保しています）
-                </p>
+            <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（Excelでの関数）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                それぞれの構成概念に対応する項目の数値を足し合わせます[cite: 2]。
+            </p>
+
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl shadow-md text-xs sm:text-sm font-mono space-y-3 my-4">
+                <div>
+                    <p class="text-teal-400 font-bold mb-1">■ 独立変数（$X$）：脅威得点（4項目の合計）[cite: 2]</p>
+                    <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(L2:O2)</p>
+                </div>
+                <div>
+                    <p class="text-teal-400 font-bold mb-1">■ 調整変数（$M$）：自己効力感得点（4項目の合計）[cite: 2]</p>
+                    <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(P2:S2)</p>
+                </div>
+                <div>
+                    <p class="text-teal-400 font-bold mb-1">■ 従属変数（$Y$）：備え得点（6項目の合計）[cite: 2]</p>
+                    <p class="bg-slate-800 p-2 rounded text-amber-300">=SUM(F2:K2)</p>
+                </div>
             </div>
         </section>
 
-        <!-- 4. 信頼性を確かめる2つの手法とクロンバックのアルファ係数 -->
+        <!-- 4. 【Step 3】調整変数（自己効力感）による群分け -->
         <section class="mb-16">
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                4. 信頼性を確かめる2つの手法とクロンバックのアルファ係数
+                4. 【Step 3】調整変数（自己効力感）による群分け
             </h2>
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                尺度にブレがないか（信頼性）を確認するための代表的な手法が2つあります。
+                今回の研究仮説は、「地震への脅威感（恐怖）が備え行動に与える影響は、自己効力感（自分にも備えができるという自信）の高さによって変わる（調整される）」というものです[cite: 2]。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                本来、調整効果は高度な「交互作用分析（重回帰分析）」を用いて一度に計算しますが、今回は基礎的な分析手法として、自己効力感の高さでデータを「高群」と「低群」の2つに分割し、それぞれの群で『恐怖 $\rightarrow$ 行動』のつながりの強さを比較する手法をとります[cite: 2]。
             </p>
 
-            <div class="space-y-3 text-sm sm:text-base mb-8">
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
-                    <p class="font-bold text-teal-950 mb-1">・再検査法（Test-retest reliability）</p>
-                    <p class="text-slate-700">同じ人に同じテストを時間を空けて2回行い、その結果の相関を見る方法。</p>
+            <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（中央値の算出と並び替え）</h3>
+            <div class="bg-white border border-slate-200 p-5 rounded-xl text-sm sm:text-base space-y-4 shadow-sm my-4">
+                <div>
+                    <p class="font-bold text-teal-950 mb-1">1. 中央値（Median）の算出[cite: 2]</p>
+                    <p class="text-slate-700 text-justified mb-2">全員の「自己効力感得点」の真ん中の値（中央値）を求めます[cite: 2]。</p>
+                    <p class="bg-slate-100 p-2 rounded text-xs font-mono text-teal-900 border border-slate-200">=MEDIAN(自己効力感得点の範囲)</p>
                 </div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
-                    <p class="font-bold text-teal-950 mb-1">・内的一貫性（Internal consistency）</p>
-                    <p class="text-slate-700">同じ概念を測る複数の質問項目同士が、どれくらい似たような動き（連動）をしているかを見る方法。その代表が<strong class="highlight">「クロンバックのアルファ係数（Cronbach's $\alpha$）」</strong>です。</p>
+                <div class="border-t border-slate-100 pt-3">
+                    <p class="font-bold text-teal-950 mb-1">2. データの並び替えと2群分割[cite: 2]</p>
+                    <p class="text-slate-700 text-justified mb-2">Excelの「並べ替え」機能を使って、「自己効力感得点」を昇順（小さい順）に並べ替えます[cite: 2]。</p>
+                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-700 space-y-1 pl-2">
+                        <li><strong>中央値以下のグループ：</strong> 「自己効力感 低群」[cite: 2]</li>
+                        <li><strong>中央値を超えるグループ：</strong> 「自己効力感 高群」[cite: 2]</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 mt-2">※分かりやすいように、2つの群の間にExcel上で数行の空行をあけておきます[cite: 2]。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 【Step 4】群ごとの相関分析と考察 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                5. 【Step 4】群ごとの相関分析と考察
+            </h2>
+            
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">なぜこの手順が必要か？（理由）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                分けた2つのグループごとに、「脅威得点（恐怖）」と「備え得点（行動）」の間の相関係数（$r$）を計算します[cite: 2]。これにより、「自信がある人（高群）」と「自信がない人（低群）」とで、恐怖心が行動を促すパイプの太さ（相関の強さ）に違いがあるかを直接確かめることができます[cite: 2]。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mb-3">計算方法（Excelでの関数）</h3>
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl shadow-md text-xs sm:text-sm font-mono space-y-3 my-4">
+                <div>
+                    <p class="text-teal-400 font-bold mb-1">■ 高群における相関係数[cite: 2]</p>
+                    <p class="bg-slate-800 p-2 rounded text-amber-300">=CORREL(高群の脅威得点範囲, 高群の備え得点範囲)</p>
+                </div>
+                <div>
+                    <p class="text-teal-400 font-bold mb-1">■ 低群における相関係数[cite: 2]</p>
+                    <p class="bg-slate-800 p-2 rounded text-amber-300">=CORREL(低群の脅威得点範囲, 低群の備え得点範囲)</p>
                 </div>
             </div>
 
-            <h3 class="text-lg font-bold text-slate-800 mb-3">■ クロンバックのアルファ係数の計算式とその意味</h3>
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">【重要】分析結果の解釈と考察のやり方</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業では、実際にアルファ係数を求める計算の仕組みを学びました。
+                今回は受講生から集めたデータであり、1グループあたりのサンプルサイズ（人数）が比較的小さいため、統計的有意性（$p$ 値）の白黒判定は行わず、相関係数（$r$）の値とその符号（方向性）に着目して考察を行いました[cite: 2]。
             </p>
 
-            <div class="bg-white border-2 border-teal-100 p-6 rounded-2xl shadow-sm text-center my-6">
-                <div class="text-xl sm:text-2xl font-bold font-mono text-teal-950 mb-4">
-                    $$\alpha = \frac{k}{k-1} \left( 1 - \frac{\sum \sigma_i^2}{\sigma_X^2} \right)$$
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 text-left">
-                    <div><strong class="text-teal-900 font-mono">$k$：</strong> 質問項目の数</div>
-                    <div><strong class="text-teal-900 font-mono">$\sigma_i^2$：</strong> 各質問項目ごとの回答のバラつき（分散）</div>
-                    <div><strong class="text-teal-900 font-mono">$\sigma_X^2$：</strong> 全項目を合計した「みんなの総合的な得点のバラつき（全体の分散）」</div>
-                </div>
-            </div>
-
-            <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified">
-                <p class="font-bold text-teal-950 mb-2">【直感的な仕組み】</p>
-                <p class="text-slate-800 mb-2">
-                    分母にある「全体のバラつき（$\sigma_X^2$）」に対して、分子にある「各項目のバラつきの足し算（$\sum \sigma_i^2$）」がどれくらい小さいかを見ています。
-                </p>
+            <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified space-y-3">
+                <p class="font-bold text-teal-950 border-b border-teal-200 pb-1">■ 仮説とデータが整合的（一致）と言えるパターン例[cite: 2]</p>
                 <p class="text-slate-800">
-                    すべての質問項目が同じ方向を向いてピタッと一致していれば、個々の項目のバラつきに比べて全体のバラつきが大きくなり、式全体の計算結果（$\alpha$）は <strong class="highlight">$1.0$ に近づきます</strong>（一般に $.70$ や $.80$ を超えていれば信頼性が高いとみなされます）。逆に、項目同士がバラバラの方向を向いていると $\alpha$ は低くなります。
+                    ・<strong>自己効力感 高群：</strong> $r = .35$ 程度（正の相関：危機感が高まるほど、しっかり備え行動をとる）[cite: 2, 3]<br>
+                    ・<strong>自己効力感 低群：</strong> $r = .10$ や負の値（無相関〜負の相関：いくら恐怖を感じても、自分には無理だと思って行動しない）[cite: 2, 3]
                 </p>
-            </div>
-        </section>
-
-        <!-- 5. 授業内演習から得られた重要な教訓：データからノイズを見つける -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                5. 授業内演習から得られた重要な教訓：データからノイズを見つける
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業では実際にDRSiのデータを使ってアルファ係数を算出する演習を行いました。そこで発覚した重要なポイントがあります。
-            </p>
-
-            <div class="space-y-4 my-6">
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
-                    <p class="font-bold text-teal-950 mb-1">❓ ある特定の項目を外すと、アルファ係数が上がる？</p>
-                    <p class="text-slate-700 text-justified">
-                        DRSiは全国1万人のデータで作られた非常に優れた尺度です。しかし、それを「大学生」という特定の集団にそのまま当てはめたとき、ライフスタイルの違い（例：持ち家ではなく賃貸や実家暮らしが中心であること、防災への関心の文脈の違いなど）から、一部の質問がうまく機能せず「ノイズ」になってしまうことがあります。
-                    </p>
-                </div>
-
-                <div class="bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md text-sm sm:text-base leading-relaxed text-justified">
-                    <p class="text-amber-300 font-bold border-b border-slate-700 pb-2 mb-2">💡 教訓</p>
-                    <p class="text-slate-300">
-                        誰かが開発した優れた尺度であっても、それをそのまま鵜呑みにするのではなく、**「自分たちの調査集団（サンプル）で測ったときに、本当に一貫した信頼できるデータになっているか？」**を疑い、データからノイズを見つけ出して吟味する姿勢が、心理学の実験・調査において極めて大切です。
-                    </p>
-                </div>
+                <p class="text-slate-800 text-xs sm:text-sm text-slate-700 pt-2 border-t border-teal-200">
+                    もしこのような結果が得られれば、「自己効力感が低い人は、単に恐怖を煽るだけでは防災行動を起こさない」という保護動機理論の予測と整合的であると考察できます[cite: 2, 3]。
+                </p>
             </div>
         </section>
 
@@ -241,24 +266,24 @@
                 <!-- 問1 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問1】尺度の「信頼性」の説明として、最も適切なものはどれですか？
+                        【問1】データ分析の最初に「IMC（Instructional Manipulation Check）項目」を用いて不注意回答を除外する理由として、最も適切なものはどれですか？[cite: 2, 3]
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 測りたいターゲットを、ちゃんと的を射て測れているか（正確性）</span>
+                            <span class="text-slate-700">A) 参加者の名前や学籍番号を特定して個人情報を保護するため[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 何度測定してもブレがなく、安定した結果が返ってくるか（一貫性）</span>
+                            <span class="text-slate-700">B) 設問文を読まずに適当に回答されたノイズデータを除外し、分析結果の歪みを防ぐため[cite: 2, 3]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 過去の被災経験データと直接突き合わせて正しさが証明されているか</span>
+                            <span class="text-slate-700">C) クロンバックのアルファ係数を強制的に1.0にするため[cite: 2, 3]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 独立変数と従属変数の関係性をボリュームのようにつまみで変えるか</span>
+                            <span class="text-slate-700">D) パラメトリック検定をノンパラメトリック検定に変換するため[cite: 2]</span>
                         </label>
                     </div>
                 </div>
@@ -266,24 +291,24 @@
                 <!-- 問2 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問2】クロンバックのアルファ係数（Cronbach's $\alpha$）を説明する記述として、誤っているものはどれですか？
+                        【問2】今回の実験で、自己効力感（調整変数）の「高群」と「低群」の2つにデータを分割するために用いた統計量はどれですか？[cite: 2]
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 尺度の一貫性（信頼性）を評価するための指標である。</span>
+                            <span class="text-slate-700">A) 平均値（Mean）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 項目数が多くなり、項目同士の連動性が高まるほど値は1.0に近づく。</span>
+                            <span class="text-slate-700">B) 標準偏差（SD）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 優れた尺度であっても、対象とする集団（サンプル）が変われば値が変わり、ノイズとなる項目を見出す手がかりになる。</span>
+                            <span class="text-slate-700">C) 中央値（Median）[cite: 2]</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 災害が起きたときの実際の行動と事前の予測が完全に一致しているかを直接証明する係数である。</span>
+                            <span class="text-slate-700">D) 歪度（Skewness）[cite: 2]</span>
                         </label>
                     </div>
                 </div>
@@ -302,10 +327,27 @@
                     </div>
                 </div>
 
+                <!-- 演習結果の報告 -->
+                <div class="bg-teal-50/50 border border-teal-100 p-4 rounded-xl space-y-3">
+                    <p class="font-bold text-teal-950 text-sm sm:text-base">■ 演習結果の報告（実習で算出した相関係数）[cite: 2]</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="r_high" class="block text-xs font-bold text-slate-700 mb-1">自己効力感 高群の相関係数 ($r$)</label>
+                            <input type="text" id="r_high" required placeholder="例: 0.35" 
+                                   class="w-full px-3 py-1.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm font-mono">
+                        </div>
+                        <div>
+                            <label for="r_low" class="block text-xs font-bold text-slate-700 mb-1">自己効力感 低群の相関係数 ($r$)</label>
+                            <input type="text" id="r_low" required placeholder="例: 0.10" 
+                                   class="w-full px-3 py-1.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm font-mono">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 質問・感想 -->
                 <div>
-                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">質問・感想（任意）</label>
-                    <textarea id="student_feedback" rows="4" placeholder="今回の復習内容（妥当性と信頼性、アルファ係数の計算やノイズ発見など）について、不明な点や感想があれば自由に入力してください。"
+                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">考察・感想（任意）</label>
+                    <textarea id="student_feedback" rows="4" placeholder="今回の演習（データのクリーニング、中央値分割、群ごとの相関分析と保護動機理論に基づく考察など）について、学んだことや感想を自由に入力してください。"
                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
                 </div>
 
@@ -333,16 +375,18 @@
 
             const studentId = document.getElementById("student_id").value.trim();
             const studentName = document.getElementById("student_name").value.trim();
+            const rHigh = document.getElementById("r_high").value.trim();
+            const rLow = document.getElementById("r_low").value.trim();
             const feedback = document.getElementById("student_feedback").value.trim() || "特になし";
             const btn = document.getElementById("submit_btn");
 
-            // 1. クイズの自動採点（問1: B, 問2: D）
+            // 1. クイズの自動採点（問1: B, 問2: C）
             let scoreCount = 0;
             const q1Answer = document.querySelector('input[name="q1"]:checked').value;
             const q2Answer = document.querySelector('input[name="q2"]:checked').value;
 
             if (q1Answer === "B") scoreCount++;
-            if (q2Answer === "D") scoreCount++;
+            if (q2Answer === "C") scoreCount++;
 
             const scoreRate = Math.floor((scoreCount / 2) * 100) + "%";
             const subjectLabel = document.getElementById("subject_label").innerText;
@@ -357,6 +401,8 @@
                 "クイズ得点率": scoreRate,
                 "問1解答": q1Answer,
                 "問2解答": q2Answer,
+                "高群の相関係数r": rHigh,
+                "低群の相関係数r": rLow,
                 "学生からの質問・感想": feedback
             };
 
