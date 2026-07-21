@@ -1,380 +1,85 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ポータルの自動スキャナーが収集・クレンジングするタイトルタグ -->
-    <title>心理学実験：第9回 南海トラフ地震を題材にした仮説の立て方と統計的処理の基礎（フォローアップ・学習テキスト）</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                ignoreHtmlClass: 'tex2jax_ignore',
-                processHtmlClass: 'tex2jax_process'
-            },
-            chtml: {
-                matchFontHeight: false
-            },
-            startup: {
-                pageReady: () => {
-                    return MathJax.startup.defaultPageReady().then(() => {
-                        console.log('MathJax initial typesetting complete');
-                    });
-                }
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
-    <style>
-        /* 学術的気品を表現するハイライト装飾 */
-        .highlight {
-            background: linear-gradient(transparent 60%, #fef08a 60%);
-            font-weight: 700;
-            color: #1e3a8a;
-        }
-        .text-justified {
-            text-align: justify;
-            text-justify: inter-character;
-        }
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Mincho ProN'; color: #0000e9; -webkit-text-stroke: #0000e9}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000; min-height: 18.0px}
+    p.p5 {margin: 0.0px 0.0px 12.0px 0.0px; text-align: justify; font: 12.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Mincho ProN'; color: #6d6d6d; -webkit-text-stroke: #6d6d6d; min-height: 18.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Hiragino Sans'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+    span.s1 {font-kerning: none}
+    span.s2 {text-decoration: underline ; font-kerning: none}
+    span.s3 {font-kerning: none; color: #172877; -webkit-text-stroke: 0px #172877}
+    span.s4 {font: 12.0px 'Apple Color Emoji'; font-kerning: none}
+    span.s5 {font: 18.0px 'Apple Color Emoji'; font-kerning: none}
+    span.s6 {font-kerning: none; background-color: #b3b3b3}
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased line-height-relaxed">
-
-    <!-- 講義ヘッダー -->
-    <header class="bg-gradient-to-r from-teal-900 to-slate-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div>
-                <p id="subject_label" class="text-xs font-bold text-teal-300 uppercase tracking-wider">心理学実験</p>
-                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第9回：南海トラフ地震を題材にした仮説の立て方と統計的処理の基礎</h1>
-            </div>
-            <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">実験ポータルへ戻る</a>
-        </div>
-    </header>
-
-    <!-- メインコンテンツ -->
-    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        
-        <!-- タイトルエリア -->
-        <div class="text-center mb-16">
-            <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第9回 フォローアップ・学習テキスト</p>
-            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                南海トラフ地震を題材にした<br class="hidden sm:inline">仮説の立て方と統計的処理の基礎
-            </h1>
-            <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
-        </div>
-
-        <!-- リード文 -->
-        <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
-            <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
-                <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    本テキストは、第9回目の心理学実験の授業を欠席した人が、授業で扱った「南海トラフ地震の防災行動に関する仮説構築」「変数の定義（独立変数・従属変数・調整変数・媒介変数）」「剰余変数の統制」「分析手法の事前明記（多重比較のボンフェローニ法、非パラメトリック検定への言及）」について網羅的に学習できるように作成されたフォロー教材です。
-                </p>
-            </div>
-        </div>
-
-        <!-- 1. 本時の導入 -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                1. 本時の導入：なぜ地震の脅威を知りながら備えない人がいるのか？
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                日本全国において、家具の固定や備蓄といった災害への完全な備えを実施している割合は、約3割〜4割程度にとどまっています。心理学的な疑問として、「地震が来たら危ない、怖いと知っている（認知）にもかかわらず、なぜ『行動する人』と『行動しない人』に分かれるのか？」というデータ上のバラつきが存在します。
-            </p>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                <strong class="highlight">保護動機理論（Protection Motivation Theory）</strong>では、人は危険（脅威）に直面したとき、脳内で以下の2つの評価を同時に行うとされています：
-            </p>
-            <div class="bg-white border border-slate-200 p-5 rounded-xl my-4 text-sm sm:text-base space-y-3 shadow-sm">
-                <p class="text-slate-700 text-justified"><strong class="text-teal-950">・脅威評価：</strong> 「その危険は、自分にとってどれくらい深刻か？（生起確率や重大性）」</p>
-                <p class="text-slate-700 text-justified"><strong class="text-teal-950">・対処評価：</strong> 「自分はその危険に対して、有効な対策を取れるか？（対処有効性や自己効力感）」</p>
-            </div>
-            <p class="text-slate-700 leading-relaxed text-justified">
-                「怖い（脅威評価が高い）」という感情が高まるだけでは、具体的なやり方が分からず自分には無理だと絶望してしまうと、かえって不安を打ち消すために「見ないふりをする（逃避）」という行動につながることがあります。そこで今回の授業では、「自分に自信がなくて、あまりにも大きな不安だと何も出来なくなる人（自己効力感の個人差）に着目し、何が行動を左右しているのか」を検証するための仮説構築を行いました。
-            </p>
-        </section>
-
-        <!-- 2. 4つの変数の分類と今回の実験における位置づけ -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                2. 4つの変数の分類と今回の実験における位置づけ
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                心理学の研究や実験・調査を行う際、扱う概念を明確に整理するために以下の4つの変数を定義します。
-            </p>
-
-            <div class="space-y-4 text-sm sm:text-base mb-6">
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-1">① 独立変数（Independent Variable）</p>
-                    <p class="text-slate-600 text-xs mb-2">定義：結果に影響を与える「原因」となる変数。研究者が変化させたり、グループ分けに用いたりする要因。</p>
-                    <p class="text-slate-700 text-justified"><strong>今回の位置づけ：</strong> 個人の「脅威評価（地震の恐怖心）」や「自己効力感（自分にも対策ができるという自信）」など。</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-1">② 従属変数（Dependent Variable）</p>
-                    <p class="text-slate-600 text-xs mb-2">定義：独立変数の影響を受けて「変化する結果」となる変数。測定・観察する対象。</p>
-                    <p class="text-slate-700 text-justified"><strong>今回の位置づけ：</strong> 実際の防災行動の程度（例：「自宅の家具の固定（転倒防止）」の実行度など）。</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-1">③ 調整変数（Moderating Variable）</p>
-                    <p class="text-slate-600 text-xs mb-2">定義：独立変数と従属変数の関係性に影響を与え、その関係を「強めたり弱めたり（条件付け）」する第3の変数。</p>
-                    <p class="text-slate-700 text-justified"><strong>今回の位置づけ：</strong> 授業後半で検討した「住んでいる地域（沿岸部住民か、内陸部住民か）」など。住む場所（環境のリスクの性質）によって、恐怖心や自己効力感が防災行動に与える影響の仕組み（メカニズム）が変わるため、調整変数として機能します。</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <p class="font-bold text-teal-950 mb-1">④ 媒介変数（Mediating Variable）</p>
-                    <p class="text-slate-600 text-xs mb-2">定義：独立変数が従属変数に影響を与えるときの「通り道（メカニズム）」となる変数。「なぜなら〜だから」を説明する変数。</p>
-                    <p class="text-slate-700 text-justified"><strong>今回の説明：</strong> 「脅威評価が高まる $\rightarrow$ （不安のあまりパニックになる／冷静に対策を考えるといった心理的プロセス） $\rightarrow$ 防災行動に結びつく」といった、間をつなぐメカニズムに相当します。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. 剰余変数とその統制 -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                3. 剰余変数（Confounding / Extraneous Variables）とその統制
-            </h2>
-            
-            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）剰余変数とは何か？</h3>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                独立変数以外にも、従属変数（防災行動）に意図せず影響を与えてしまう「余計な変数」のことを剰余変数と呼びます。例えば、防災行動の多寡を調べるとき、参加者の「経済的余裕（お金があるから家具固定の業者を呼べる）」や「持ち家か賃貸か（賃貸だと壁に穴を開けられない）」といった要因がこれに当たります。
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（2）剰余変数を取り除く（統制する）方法</h3>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                実験や調査の結果に歪みを生じさせないために、以下の方法で剰余変数をコントロールします。
-            </p>
-            <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl text-sm sm:text-base space-y-3">
-                <p class="text-slate-700 text-justified"><strong class="text-slate-900">・実験室実験の場合：</strong> 物理的な環境を均一にする、ランダム化（無作為割当て）を行う。</p>
-                <div class="border-t border-slate-200 pt-3">
-                    <p class="text-slate-900 font-bold mb-1">・質問紙調査（今回の手法）の場合：</p>
-                    <ul class="list-disc list-inside text-slate-700 space-y-1 pl-2">
-                        <li><strong class="text-teal-900">統制変数として測定する：</strong> 「持ち家ですか、賃貸ですか」「世帯収入はどれくらいですか」といった質問項目をあらかじめアンケートに含めておき、統計的にその影響を取り除く（共分散分析などを行う）。</li>
-                        <li><strong class="text-teal-900">対象者を絞る・揃える：</strong> 特別の条件に限定して調査を行う。</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. 調査前の分析手法の明記と倫理的配慮 -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                4. 調査前の分析手法の明記と倫理的配慮
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                科学的研究、特に心理学の調査においては、「データを見る前に、どのような分析を行うのかをあらかじめ研究計画書（プレ・レジストレーション等）に明記しておくこと」が倫理的・科学的観点から極めて重要です。 「データを見てから都合の良い分析方法を選ぶ（$p$-hacking）」ことを防ぎ、客観的な検証の信頼性を担保するためです。
-            </p>
-
-            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）今回の分析プラン：調整変数によるグループ分けと相関分析</h3>
-            <div class="bg-white border border-slate-200 p-4 rounded-xl text-sm sm:text-base space-y-2 mb-4">
-                <p class="text-slate-700"><strong class="text-teal-900">・グループ分け：</strong> 調整変数（例：沿岸部住民 vs 内陸部住民）によってデータを2つのグループに分割します。</p>
-                <p class="text-slate-700"><strong class="text-teal-900">・相関分析：</strong> それぞれのグループ内で、「自己効力感（または脅威評価）」と「防災行動の得点」の間にどのような関係があるかを、相関分析（ピアソンの積率相関係数など）を用いて検討します。</p>
-            </div>
-
-            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（2）正規性が保証されない場合の対処（ノンパラメトリック検定）</h3>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                相関分析（特に一般的なピアソンの相関）を行う前提として、データが「正規分布」に従っていること（正規性）が求められます。 もし、アンケートの回答が極端に偏っており、正規性が保証されない（正規分布から大きく外れている）と事前に予想される場合、あるいはデータが順序尺度である場合は、以下のような<strong class="highlight">ノンパラメトリック検定（順序相関）</strong>を用いることをあらかじめ計画しておきます。
-            </p>
-            <div class="bg-teal-50 border border-teal-200 p-4 rounded-xl font-mono text-xs sm:text-sm text-teal-950 space-y-1 mb-4">
-                <p>・スピアマンの順位相関係数（Spearman's rank correlation coefficient）</p>
-                <p>・ケンドールの順位相関係数（Kendall's tau）</p>
-            </div>
-            <p class="text-slate-700 leading-relaxed text-justified">
-                これらを「正規性が満たされない場合の代替案」としてあらかじめ想定しておくことが、厳密な研究デザインには不可欠です。
-            </p>
-        </section>
-
-        <!-- 5. ボンフェローニ補正についての補足 -->
-        <section class="mb-16">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
-                5. ボンフェローニ（Bonferroni）補正についての補足
-            </h2>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業内で触れられた「複数の検定を行う際のエラー率の調整」についておさらいします。
-            </p>
-            <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                例えば、10個の項目についてそれぞれグループ間で比較する「10回の $t$ 検定」を行う場合、全体の有意水準（第1種の過誤を犯す確率）を5%（.05）に抑えるためには、1回あたりの検定の基準を厳しくしなければなりません。
-            </p>
-            <div class="bg-white border border-slate-200 p-5 rounded-xl text-center text-sm sm:text-base font-mono my-4 shadow-sm">
-                単純なボンフェローニ法： $\alpha' = \frac{0.05}{10} = 0.005 \ (0.5\%)$
-            </div>
-            <p class="text-slate-700 leading-relaxed text-justified text-xs text-slate-500">
-                （※なお、授業内で言及があったホルム（Holm）法は、ボンフェローニ法よりも統計的な検出力（見落としにくさ）を高めた、段階的な多重比較の修正法です）
-            </p>
-        </section>
-
-        <hr class="border-slate-200 my-12">
-
-        <!-- 理解度確認テスト ＆ 出席・提出フォーム -->
-        <section class="bg-white border border-slate-200 rounded-2xl shadow-md p-6 sm:p-8">
-            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
-                <span class="bg-teal-600 text-white text-xs px-2.5 py-1 rounded-md mr-3">課題提出</span>
-                💡 理解度確認テスト ＆ 出席・提出フォーム
-            </h2>
-
-            <form id="lecture_form" onsubmit="submitForm(event)" class="space-y-6">
-                
-                <!-- 問1 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
-                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問1】今回の研究において、住民の「住む場所（沿岸部か内陸部か）」はどの変数に分類されますか？
-                    </p>
-                    <div class="space-y-3 text-sm sm:text-base">
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 独立変数</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 従属変数</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 調整変数</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 媒介変数</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- 問2 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
-                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問2】相関分析を行う際、データの「正規性」が保証されない場合に用いるべき手法として適切なものはどれですか？
-                    </p>
-                    <div class="space-y-3 text-sm sm:text-base">
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) パラメトリックなピアソンの相関分析をそのまま押し切る</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) ノンパラメトリックな手法（スピアマンの順位相関係数など）を用いる</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) すべてのデータを強制的に正規分布に書き換える</span>
-                        </label>
-                        <label class="flex items-start space-x-3 cursor-pointer">
-                            <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 多重比較のボンフェローニ補正をかける</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- 学籍番号 & 氏名入力 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="student_id" class="block text-sm font-bold text-slate-700 mb-2">学籍番号</label>
-                        <input type="text" id="student_id" required placeholder="例: 13（半角数字）" 
-                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
-                    </div>
-                    <div>
-                        <label for="student_name" class="block text-sm font-bold text-slate-700 mb-2">氏 名</label>
-                        <input type="text" id="student_name" required placeholder="例: 四国 太郎" 
-                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
-                    </div>
-                </div>
-
-                <!-- 質問・感想 -->
-                <div>
-                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">質問・感想（任意）</label>
-                    <textarea id="student_feedback" rows="4" placeholder="今回の復習内容（変数の分類や仮説設定、統計的手法など）について、不明な点や感想があれば自由に入力してください。"
-                              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
-                </div>
-
-                <!-- 送信ボタン -->
-                <div class="pt-2">
-                    <button type="submit" id="submit_btn" 
-                            class="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-98 cursor-pointer text-sm sm:text-base">
-                        すべての内容を理解し、芝崎先生へ送信する
-                    </button>
-                </div>
-            </form>
-        </section>
-
-    </main>
-
-    <!-- フッター -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800 mt-20">
-        <p>&copy; 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</p>
-    </footer>
-
-    <!-- ページ個別スクリプト：Formspree送信ロジック -->
-    <script>
-        function submitForm(event) {
-            event.preventDefault();
-
-            const studentId = document.getElementById("student_id").value.trim();
-            const studentName = document.student_name ? document.getElementById("student_name").value.trim() : "";
-            const feedback = document.getElementById("student_feedback").value.trim() || "特になし";
-            const btn = document.getElementById("submit_btn");
-
-            // 1. クイズの自動採点（問1: C, 問2: B）
-            let scoreCount = 0;
-            const q1Answer = document.querySelector('input[name="q1"]:checked').value;
-            const q2Answer = document.querySelector('input[name="q2"]:checked').value;
-
-            if (q1Answer === "C") scoreCount++;
-            if (q2Answer === "B") scoreCount++;
-
-            const scoreRate = Math.floor((scoreCount / 2) * 100) + "%";
-            const subjectLabel = document.getElementById("subject_label").innerText;
-            const lectureTitle = document.title;
-
-            // 送信データ構造の整形
-            const payloadData = {
-                "科目区分": subjectLabel,
-                "講義回": lectureTitle,
-                "学籍番号": studentId,
-                "氏名": studentName,
-                "クイズ得点率": scoreRate,
-                "問1解答": q1Answer,
-                "問2解答": q2Answer,
-                "学生からの質問・感想": feedback
-            };
-
-            // ★FormspreeトークンIDをバインド
-            const FORMSPREE_ID = "xjgqbqnl"; 
-
-            btn.disabled = true;
-            btn.innerText = "送信中...";
-
-            // Formspreeのエンドポイントへ非同期POST通信
-            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payloadData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert(`正常に記録されました（学籍番号: ${studentId}、得点率: ${scoreRate}）。第9回欠席フォロー完了として受領しました。`);
-                    btn.innerText = "送信完了";
-                } else {
-                    throw new Error("APIエラー");
-                }
-            })
-            .catch(error => {
-                console.error("Submission Error:", error);
-                alert("送信に失敗しました。時間をおいて再度送信ボタンを押してください。");
-                btn.disabled = false;
-                btn.innerText = "すべての内容を理解し、芝崎先生へ送信する";
-            });
-        }
-    </script>
+<body>
+<p class="p1"><span class="s1">心理学実験</span></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>第9回：尺度の吟味（妥当性と信頼性）とクロンバックのアルファ係数の算出</b></span></h1>
+<p class="p3"><span class="s2"><a href="file:///Users/yshiba/Downloads/%E5%BF%83%E7%90%86%E5%AD%A6%E5%AE%9F%E9%A8%93/index.html">実験ポータルへ戻る</a></span></p>
+<p class="p1"><span class="s1">第9回 フォローアップ・学習テキスト</span></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>尺度の吟味（妥当性と信頼性）と<br>
+クロンバックのアルファ係数の算出</b></span></h1>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1">本テキストは、第10回目の心理学実験の授業を休んだ人が、授業で扱った「心理学における見えない心の測り方」「尺度の妥当性と信頼性の違い」「確認困難な妥当性の理由」「クロンバックのアルファ係数の計算式の意味と実践」について、網羅的に学習できるように作成されたフォロー教材です。</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>1. 本時の導入：見えない「心」をどう測るか？</b></span></h2>
+<p class="p5"><span class="s1">心理学が扱う「心」や「防災レジリエンス」は、物理的な距離や重さのように、そのまま目で見て測ることができません。そのため、見えない心を測るためには、適切な「尺度（質問紙）」を作る（あるいは選ぶ）ことが極めて重要になります。</span></p>
+<p class="p5"><span class="s1">第10回では、実際に測定に用いる質問紙として、松川ら（2024）が開発した</span><span class="s3"><b>防災基礎力尺度（DRSi: Disaster Resilience Scale for Individuals）</b></span><span class="s1">を題材に、そのクオリティを保証する「妥当性」と「信頼性」について学びました。</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>2. 尺度の品質を支える2大基準：「妥当性」と「信頼性」</b></span></h2>
+<p class="p5"><span class="s1">心理学の調査や実験で使われる質問紙が「良い尺度」であるためには、以下の2つの条件を満たしている必要があります。</span></p>
+<p class="p1"><span class="s4">🎯</span><span class="s1"> ① 妥当性（Validity）</span></p>
+<p class="p5"><span class="s1"><b>定義：</b> 尺度の</span><span class="s3"><b>「正確性・的確性」</b></span><span class="s1">、すなわち「測りたいターゲット（今回は防災レジリエンス）を、ちゃんと的を射て測れているか」の度合いです。</span></p>
+<p class="p5"><span class="s1"><b>【例え話】</b> どんなに正確に「60kg」と毎回安定して表示してくれる体重計（信頼性は完璧）であっても、それを使って「身長」や「知能」を測ろうとしたら、それは測りたいものとは違うため、妥当性がないということになります。</span></p>
+<p class="p1"><span class="s1">確かめる方法：探索的因子分析（EFA）や確認的因子分析（CFA）などを用いて、理論通りの構造になっているか検証します。</span></p>
+<p class="p1"><span class="s4">🔄</span><span class="s1"> ② 信頼性（Reliability）</span></p>
+<p class="p5"><span class="s1"><b>定義：</b> 尺度の</span><span class="s3"><b>「一貫性・安定性」</b></span><span class="s1">、すなわち「ブレのなさ」のことです。</span></p>
+<p class="p5"><span class="s1"><b>【例え話】</b> 体重計に乗るたびに「60kg、65kg、55kg」とコロコロ数値が変わったら、その体重計は信用できません。何度測っても、あるいは似たような質問に何度答えても、同じような安定した結果が返ってくる状態が「信頼性が高い」状態です。</span></p>
+<p class="p1"><span class="s1">確かめる方法：再検査法や、今回実際に計算したクロンバックのアルファ係数を用います。</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>3. 「確認困難な妥当性」とは何か？</b></span></h2>
+<p class="p5"><span class="s1">災害が実際に起きたときの行動やレジリエンスを測定する場合、事実上その妥当性をその場で直接</span><span class="s3"><b>「確認することが難しい（確認困難な妥当性）」</b></span><span class="s1">という問題に直面します。</span></p>
+<p class="p1"><span class="s4">⚠️</span><span class="s1"> なぜ確認できないのか？</span></p>
+<p class="p5"><span class="s1">防災行動や災害時の適応能力（レジリエンス）の高さは、実際に大災害（南海トラフ地震など）が発生したときに初めて発揮されるものです。しかし、「災害が起きる前」の平時にその測定を行わなければ意味がないため、実際の災害時における生死の分かれ目や被災後の行動データと、事前のアンケート結果をその場で直接突き合わせて正しさを証明することが、構造上極めて困難なのです。</span></p>
+<p class="p5"><span class="s1">（※そのため、論文（Matsukawa et al., 2024）では、過去に被災経験がある人は得点が高くなることや、理論的な因子構造（CFA）の適合度を示すことで、間接的に妥当性を担保しています）</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>4. 信頼性を確かめる2つの手法とクロンバックのアルファ係数</b></span></h2>
+<p class="p5"><span class="s1">尺度にブレがないか（信頼性）を確認するための代表的な手法が2つあります。</span></p>
+<p class="p5"><span class="s1">・再検査法（Test-retest reliability）</span></p>
+<p class="p5"><span class="s1">同じ人に同じテストを時間を空けて2回行い、その結果の相関を見る方法。</span></p>
+<p class="p5"><span class="s1">・内的一貫性（Internal consistency）</span></p>
+<p class="p5"><span class="s1">同じ概念を測る複数の質問項目同士が、どれくらい似たような動き（連動）をしているかを見る方法。その代表が</span><span class="s3"><b>「クロンバックのアルファ係数（Cronbach's $\alpha$）」</b></span><span class="s1">です。</span></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>■ クロンバックのアルファ係数の計算式とその意味</b></span></h3>
+<p class="p5"><span class="s1">授業では、実際にアルファ係数を求める計算の仕組みを学びました。</span></p>
+<p class="p8"><span class="s1">$$\alpha = \frac{k}{k-1} \left( 1 - \frac{\sum \sigma_i^2}{\sigma_X^2} \right)$$</span></p>
+<p class="p8"><span class="s1"><b>$k$：</b> 質問項目の数</span></p>
+<p class="p8"><span class="s1"><b>$\sigma_i^2$：</b> 各質問項目ごとの回答のバラつき（分散）</span></p>
+<p class="p8"><span class="s1"><b>$\sigma_X^2$：</b> 全項目を合計した「みんなの総合的な得点のバラつき（全体の分散）」</span></p>
+<p class="p5"><span class="s1">【直感的な仕組み】</span></p>
+<p class="p5"><span class="s1">分母にある「全体のバラつき（$\sigma_X^2$）」に対して、分子にある「各項目のバラつきの足し算（$\sum \sigma_i^2$）」がどれくらい小さいかを見ています。</span></p>
+<p class="p5"><span class="s1">すべての質問項目が同じ方向を向いてピタッと一致していれば、個々の項目のバラつきに比べて全体のバラつきが大きくなり、式全体の計算結果（$\alpha$）は </span><span class="s3"><b>$1.0$ に近づきます</b></span><span class="s1">（一般に $.70$ や $.80$ を超えていれば信頼性が高いとみなされます）。逆に、項目同士がバラバラの方向を向いていると $\alpha$ は低くなります。</span></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>5. 授業内演習から得られた重要な教訓：データからノイズを見つける</b></span></h2>
+<p class="p5"><span class="s1">授業では実際にDRSiのデータを使ってアルファ係数を算出する演習を行いました。そこで発覚した重要なポイントがあります。</span></p>
+<p class="p1"><span class="s4">❓</span><span class="s1"> ある特定の項目を外すと、アルファ係数が上がる？</span></p>
+<p class="p5"><span class="s1">DRSiは全国1万人のデータで作られた非常に優れた尺度です。しかし、それを「大学生」という特定の集団にそのまま当てはめたとき、ライフスタイルの違い（例：持ち家ではなく賃貸や実家暮らしが中心であること、防災への関心の文脈の違いなど）から、一部の質問がうまく機能せず「ノイズ」になってしまうことがあります。</span></p>
+<p class="p5"><span class="s4">💡</span><span class="s1"> 教訓</span></p>
+<p class="p5"><span class="s1">誰かが開発した優れた尺度であっても、それをそのまま鵜呑みにするのではなく、**「自分たちの調査集団（サンプル）で測ったときに、本当に一貫した信頼できるデータになっているか？」**を疑い、データからノイズを見つけ出して吟味する姿勢が、心理学の実験・調査において極めて大切です。</span></p>
+<p class="p9"><span class="s1"></span><br></p>
+<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px 'Hiragino Mincho ProN'; -webkit-text-stroke: #000000"><span class="s1"><b>課題提出 </b></span><span class="s5">💡</span><span class="s1"><b> 理解度確認テスト ＆ 出席・提出フォーム</b></span></h2>
+<p class="p1"><span class="s1">【問1】尺度の「信頼性」の説明として、最も適切なものはどれですか？</span></p>
+<p class="p8"><span class="s1">A) 測りたいターゲットを、ちゃんと的を射て測れているか（正確性） B) 何度測定してもブレがなく、安定した結果が返ってくるか（一貫性） C) 過去の被災経験データと直接突き合わせて正しさが証明されているか D) 独立変数と従属変数の関係性をボリュームのようにつまみで変えるか</span></p>
+<p class="p1"><span class="s1">【問2】クロンバックのアルファ係数（Cronbach's $\alpha$）を説明する記述として、誤っているものはどれですか？</span></p>
+<p class="p8"><span class="s1">A) 尺度の一貫性（信頼性）を評価するための指標である。 B) 項目数が多くなり、項目同士の連動性が高まるほど値は1.0に近づく。 C) 優れた尺度であっても、対象とする集団（サンプル）が変われば値が変わり、ノイズとなる項目を見出す手がかりになる。 D) 災害が起きたときの実際の行動と事前の予測が完全に一致しているかを直接証明する係数である。</span></p>
+<p class="p8"><span class="s1">学籍番号</span></p>
+<p class="p8"><span class="s1">氏 名</span></p>
+<p class="p8"><span class="s1">質問・感想（任意）</span></p>
+<p class="p10"><span class="s6">すべての内容を理解し、芝崎先生へ送信する</span></p>
+<p class="p1"><span class="s1">© 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</span></p>
 </body>
 </html>
