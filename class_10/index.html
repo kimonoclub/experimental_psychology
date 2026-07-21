@@ -9,7 +9,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
+    <!-- 数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
     <script>
         window.MathJax = {
             tex: {
@@ -68,7 +68,8 @@
         <div class="text-center mb-16">
             <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第10回 フォローアップ・学習テキスト</p>
             <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                尺度の吟味（妥当性と信頼性）と<br class="hidden sm:inline">クロンバックのアルファ係数の算出
+                尺度の吟味（妥当性と信頼性）と<br class="hidden sm:inline">
+                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">クロンバックのアルファ係数の算出</span>
             </h1>
             <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
         </div>
@@ -77,7 +78,7 @@
         <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
             <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
                 <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-                    本テキストは、第10回目の心理学実験の授業を休んだ人が、授業で扱った「心理学における見えない心の測り方」「尺度の妥当性と信頼性の違い」「確認困難な妥当性の理由」「クロンバックのアルファ係数の計算式の意味と実践」について、網羅的に学習できるように作成されたフォロー教材です[cite: 2]。
+                    本テキストは、第10回目の心理学実験の授業を休んだ人が、授業で扱った「心理学における見えない心の測り方」「尺度の妥当性と信頼性の違い」「確認困難な妥当性の理由」「クロンバックのアルファ係数の計算式の意味と実践」について、網羅的に学習できるように作成されたフォロー教材です。
                 </p>
             </div>
         </div>
@@ -88,10 +89,10 @@
                 1. 本時の導入：見えない「心」をどう測るか？
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                心理学が扱う「心」や「防災レジリエンス」は、物理的な距離や重さのように、そのまま目で見て測ることができません[cite: 2]。そのため、見えない心を測るためには、適切な「尺度（質問紙）」を作る（あるいは選ぶ）ことが極めて重要になります[cite: 2]。
+                心理学が扱う「心」や「防災レジリエンス」は、物理的な距離や重さのように、そのまま目で見て測ることができません。そのため、見えない心を測るためには、適切な「尺度（質問紙）」を作る（あるいは選ぶ）ことが極めて重要になります。
             </p>
             <p class="text-slate-700 leading-relaxed text-justified">
-                第10回では、実際に測定に用いる質問紙として、松川ら（2024）が開発した**防災基礎力尺度（DRSi: Disaster Resilience Scale for Individuals）**を題材に、そのクオリティを保証する「妥当性」と「信頼性」について学びました[cite: 2]。
+                第10回では、実際に測定に用いる質問紙として、松川ら（2024）が開発した<strong class="highlight">防災基礎力尺度（DRSi: Disaster Resilience Scale for Individuals）</strong>を題材に、そのクオリティを保証する「妥当性」と「信頼性」について学びました。
             </p>
         </section>
 
@@ -101,33 +102,33 @@
                 2. 尺度の品質を支える2大基準：「妥当性」と「信頼性」
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-6">
-                心理学の調査や実験で使われる質問紙が「良い尺度」であるためには、以下の2つの条件を満たしている必要があります[cite: 2]。
+                心理学の調査や実験で使われる質問紙が「良い尺度」であるためには、以下の2つの条件を満たしている必要があります。
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base mb-6">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
                     <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-2">🎯 ① 妥当性（Validity）</p>
                     <p class="text-slate-700 text-justified mb-2">
-                        <strong>定義：</strong> 尺度の<strong class="highlight">「正確性・的確性」</strong>、すなわち「測りたいターゲット（今回は防災レジリエンス）を、ちゃんと的を射て測れているか」の度合いです[cite: 2]。
+                        <strong>定義：</strong> 尺度の<strong class="highlight">「正確性・的確性」</strong>、すなわち「測りたいターゲット（今回は防災レジリエンス）を、ちゃんと的を射て測れているか」の度合いです。
                     </p>
                     <p class="text-xs text-slate-600 leading-relaxed text-justified mb-2">
-                        <strong>【例え話】</strong> どんなに正確に「60kg」と毎回安定して表示してくれる体重計（信頼性は完璧）であっても、それを使って「身長」や「知能」を測ろうとしたら、それは測りたいものとは違うため、妥当性がないということになります[cite: 2]。
+                        <strong>【例え話】</strong> どんなに正確に「60kg」と毎回安定して表示してくれる体重計（信頼性は完璧）であっても、それを使って「身長」や「知能」を測ろうとしたら、それは測りたいものとは違うため、妥当性がないということになります。
                     </p>
                     <p class="text-xs font-bold text-teal-900">
-                        確かめる方法：探索的因子分析（EFA）や確認的因子分析（CFA）などを用いて、理論通りの構造になっているか検証します[cite: 2, 3]。
+                        確かめる方法：探索的因子分析（EFA）や確認的因子分析（CFA）などを用いて、理論通りの構造になっているか検証します。
                     </p>
                 </div>
 
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
                     <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-2">🔄 ② 信頼性（Reliability）</p>
                     <p class="text-slate-700 text-justified mb-2">
-                        <strong>定義：</strong> 尺度の<strong class="highlight">「一貫性・安定性」</strong>、すなわち「ブレのなさ」のことです[cite: 2]。
+                        <strong>定義：</strong> 尺度の<strong class="highlight">「一貫性・安定性」</strong>、すなわち「ブレのなさ」のことです。
                     </p>
                     <p class="text-xs text-slate-600 leading-relaxed text-justified mb-2">
-                        <strong>【例え話】</strong> 体重計に乗るたびに「60kg、65kg、55kg」とコロコロ数値が変わったら、その体重計は信用できません[cite: 2]。何度測っても、あるいは似たような質問に何度答えても、同じような安定した結果が返ってくる状態が「信頼性が高い」状態です[cite: 2]。
+                        <strong>【例え話】</strong> 体重計に乗るたびに「60kg、65kg、55kg」とコロコロ数値が変わったら、その体重計は信用できません。何度測っても、あるいは似たような質問に何度答えても、同じような安定した結果が返ってくる状態が「信頼性が高い」状態です。
                     </p>
                     <p class="text-xs font-bold text-teal-900">
-                        確かめる方法：再検査法や、今回実際に計算したクロンバックのアルファ係数を用います[cite: 2]。
+                        確かめる方法：再検査法や、今回実際に計算したクロンバックのアルファ係数を用います。
                     </p>
                 </div>
             </div>
@@ -139,16 +140,16 @@
                 3. 「確認困難な妥当性」とは何か？
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                災害が実際に起きたときの行動やレジリエンスを測定する場合、事実上その妥当性をその場で直接<strong class="highlight">「確認することが難しい（確認困難な妥当性）」</strong>という問題に直面します[cite: 3]。
+                災害が実際に起きたときの行動やレジリエンスを測定する場合、事実上その妥当性をその場で直接<strong class="highlight">「確認することが難しい（確認困難な妥当性）」</strong>という問題に直面します。
             </p>
 
             <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl text-sm sm:text-base space-y-3">
-                <p class="font-bold text-amber-950">⚠️ なぜ確認できないのか？[cite: 3]</p>
+                <p class="font-bold text-amber-950">⚠️ なぜ確認できないのか？</p>
                 <p class="text-slate-800 text-justified">
-                    防災行動や災害時の適応能力（レジリエンス）の高さは、実際に大災害（南海トラフ地震など）が発生したときに初めて発揮されるものです[cite: 3]。しかし、「災害が起きる前」の平時にその測定を行わなければ意味がないため、実際の災害時における生死の分かれ目や被災後の行動データと、事前のアンケート結果をその場で直接突き合わせて正しさを証明することが、構造上極めて困難なのです[cite: 3]。
+                    防災行動や災害時の適応能力（レジリエンス）の高さは、実際に大災害（南海トラフ地震など）が発生したときに初めて発揮されるものです。しかし、「災害が起きる前」の平時にその測定を行わなければ意味がないため、実際の災害時における生死の分かれ目や被災後の行動データと、事前のアンケート結果をその場で直接突き合わせて正しさを証明することが、構造上極めて困難なのです。
                 </p>
                 <p class="text-xs text-slate-600 border-t border-amber-200 pt-2 text-justified">
-                    （※そのため、論文（Matsukawa et al., 2024）では、過去に被災経験がある人は得点が高くなることや、理論的な因子構造（CFA）の適合度を示すことで、間接的に妥当性を担保しています[cite: 3]）
+                    （※そのため、論文（Matsukawa et al., 2024）では、過去に被災経験がある人は得点が高くなることや、理論的な因子構造（CFA）の適合度を示すことで、間接的に妥当性を担保しています）
                 </p>
             </div>
         </section>
@@ -159,23 +160,23 @@
                 4. 信頼性を確かめる2つの手法とクロンバックのアルファ係数
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                尺度にブレがないか（信頼性）を確認するための代表的な手法が2つあります[cite: 2]。
+                尺度にブレがないか（信頼性）を確認するための代表的な手法が2つあります。
             </p>
 
             <div class="space-y-3 text-sm sm:text-base mb-8">
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">・再検査法（Test-retest reliability）</p>
-                    <p class="text-slate-700">同じ人に同じテストを時間を空けて2回行い、その結果の相関を見る方法[cite: 2]。</p>
+                    <p class="text-slate-700">同じ人に同じテストを時間を空けて2回行い、その結果の相関を見る方法。</p>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-justified">
                     <p class="font-bold text-teal-950 mb-1">・内的一貫性（Internal consistency）</p>
-                    <p class="text-slate-700">同じ概念を測る複数の質問項目同士が、どれくらい似たような動き（連動）をしているかを見る方法[cite: 3]。その代表が<strong class="highlight">「クロンバックのアルファ係数（Cronbach's $\alpha$）」</strong>です[cite: 2, 3]。</p>
+                    <p class="text-slate-700">同じ概念を測る複数の質問項目同士が、どれくらい似たような動き（連動）をしているかを見る方法。その代表が<strong class="highlight">「クロンバックのアルファ係数（Cronbach's $\alpha$）」</strong>です。</p>
                 </div>
             </div>
 
-            <h3 class="text-lg font-bold text-slate-800 mb-3">■ クロンバックのアルファ係数の計算式とその意味[cite: 2]</h3>
+            <h3 class="text-lg font-bold text-slate-800 mb-3">■ クロンバックのアルファ係数の計算式とその意味</h3>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業では、実際にアルファ係数を求める計算の仕組みを学びました[cite: 2]。
+                授業では、実際にアルファ係数を求める計算の仕組みを学びました。
             </p>
 
             <div class="bg-white border-2 border-teal-100 p-6 rounded-2xl shadow-sm text-center my-6">
@@ -183,19 +184,19 @@
                     $$\alpha = \frac{k}{k-1} \left( 1 - \frac{\sum \sigma_i^2}{\sigma_X^2} \right)$$
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 text-left">
-                    <div><strong class="text-teal-900 font-mono">$k$：</strong> 質問項目の数[cite: 2]</div>
-                    <div><strong class="text-teal-900 font-mono">$\sigma_i^2$：</strong> 各質問項目ごとの回答のバラつき（分散）[cite: 2]</div>
-                    <div><strong class="text-teal-900 font-mono">$\sigma_X^2$：</strong> 全項目を合計した「みんなの総合的な得点のバラつき（全体の分散）」[cite: 2]</div>
+                    <div><strong class="text-teal-900 font-mono">$k$：</strong> 質問項目の数</div>
+                    <div><strong class="text-teal-900 font-mono">$\sigma_i^2$：</strong> 各質問項目ごとの回答のバラつき（分散）</div>
+                    <div><strong class="text-teal-900 font-mono">$\sigma_X^2$：</strong> 全項目を合計した「みんなの総合的な得点のバラつき（全体の分散）」</div>
                 </div>
             </div>
 
             <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified">
-                <p class="font-bold text-teal-950 mb-2">【直感的な仕組み】[cite: 2]</p>
+                <p class="font-bold text-teal-950 mb-2">【直感的な仕組み】</p>
                 <p class="text-slate-800 mb-2">
-                    分母にある「全体のバラつき（$\sigma_X^2$）」に対して、分子にある「各項目のバラつきの足し算（$\sum \sigma_i^2$）」がどれくらい小さいかを見ています[cite: 2]。
+                    分母にある「全体のバラつき（$\sigma_X^2$）」に対して、分子にある「各項目のバラつきの足し算（$\sum \sigma_i^2$）」がどれくらい小さいかを見ています。
                 </p>
                 <p class="text-slate-800">
-                    すべての質問項目が同じ方向を向いてピタッと一致していれば、個々の項目のバラつきに比べて全体のバラつきが大きくなり、式全体の計算結果（$\alpha$）は <strong class="highlight">$1.0$ に近づきます</strong>（一般に $.70$ や $.80$ を超えていれば信頼性が高いとみなされます）[cite: 2]。逆に、項目同士がバラバラの方向を向いていると $\alpha$ は低くなります[cite: 2]。
+                    すべての質問項目が同じ方向を向いてピタッと一致していれば、個々の項目のバラつきに比べて全体のバラつきが大きくなり、式全体の計算結果（$\alpha$）は <strong class="highlight">$1.0$ に近づきます</strong>（一般に $.70$ や $.80$ を超えていれば信頼性が高いとみなされます）。逆に、項目同士がバラバラの方向を向いていると $\alpha$ は低くなります。
                 </p>
             </div>
         </section>
@@ -206,21 +207,21 @@
                 5. 授業内演習から得られた重要な教訓：データからノイズを見つける
             </h2>
             <p class="text-slate-700 leading-relaxed text-justified mb-4">
-                授業では実際にDRSiのデータを使ってアルファ係数を算出する演習を行いました[cite: 2]。そこで発覚した重要なポイントがあります[cite: 2]。
+                授業では実際にDRSiのデータを使ってアルファ係数を算出する演習を行いました。そこで発覚した重要なポイントがあります。
             </p>
 
             <div class="space-y-4 my-6">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-sm sm:text-base">
-                    <p class="font-bold text-teal-950 mb-1">❓ ある特定の項目を外すと、アルファ係数が上がる？[cite: 2]</p>
+                    <p class="font-bold text-teal-950 mb-1">❓ ある特定の項目を外すと、アルファ係数が上がる？</p>
                     <p class="text-slate-700 text-justified">
-                        DRSiは全国1万人のデータで作られた非常に優れた尺度です[cite: 2, 3]。しかし、それを「大学生」という特定の集団にそのまま当てはめたとき、ライフスタイルの違い（例：持ち家ではなく賃貸や実家暮らしが中心であること、防災への関心の文脈の違いなど）から、一部の質問がうまく機能せず「ノイズ」になってしまうことがあります[cite: 2, 3]。
+                        DRSiは全国1万人のデータで作られた非常に優れた尺度です。しかし、それを「大学生」という特定の集団にそのまま当てはめたとき、ライフスタイルの違い（例：持ち家ではなく賃貸や実家暮らしが中心であること、防災への関心の文脈の違いなど）から、一部の質問がうまく機能せず「ノイズ」になってしまうことがあります。
                     </p>
                 </div>
 
                 <div class="bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md text-sm sm:text-base leading-relaxed text-justified">
-                    <p class="text-amber-300 font-bold border-b border-slate-700 pb-2 mb-2">💡 教訓[cite: 2]</p>
+                    <p class="text-amber-300 font-bold border-b border-slate-700 pb-2 mb-2">💡 教訓</p>
                     <p class="text-slate-300">
-                        誰かが開発した優れた尺度であっても、それをそのまま鵜呑みにするのではなく、**「自分たちの調査集団（サンプル）で測ったときに、本当に一貫した信頼できるデータになっているか？」**を疑い、データからノイズを見つけ出して吟味する姿勢が、心理学の実験・調査において極めて大切です[cite: 2]。
+                        誰かが開発した優れた尺度であっても、それをそのまま鵜呑みにするのではなく、**「自分たちの調査集団（サンプル）で測ったときに、本当に一貫した信頼できるデータになっているか？」**を疑い、データからノイズを見つけ出して吟味する姿勢が、心理学の実験・調査において極めて大切です。
                     </p>
                 </div>
             </div>
@@ -240,24 +241,24 @@
                 <!-- 問1 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問1】尺度の「信頼性」の説明として、最も適切なものはどれですか？[cite: 2]
+                        【問1】尺度の「信頼性」の説明として、最も適切なものはどれですか？
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 測りたいターゲットを、ちゃんと的を射て測れているか（正確性）[cite: 2]</span>
+                            <span class="text-slate-700">A) 測りたいターゲットを、ちゃんと的を射て測れているか（正確性）</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 何度測定してもブレがなく、安定した結果が返ってくるか（一貫性）[cite: 2]</span>
+                            <span class="text-slate-700">B) 何度測定してもブレがなく、安定した結果が返ってくるか（一貫性）</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 過去の被災経験データと直接突き合わせて正しさが証明されているか[cite: 3]</span>
+                            <span class="text-slate-700">C) 過去の被災経験データと直接突き合わせて正しさが証明されているか</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 独立変数と従属変数の関係性をボリュームのようにつまみで変えるか[cite: 2]</span>
+                            <span class="text-slate-700">D) 独立変数と従属変数の関係性をボリュームのようにつまみで変えるか</span>
                         </label>
                     </div>
                 </div>
@@ -265,24 +266,24 @@
                 <!-- 問2 -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
                     <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
-                        【問2】クロンバックのアルファ係数（Cronbach's $\alpha$）を説明する記述として、誤っているものはどれですか？[cite: 2, 3]
+                        【問2】クロンバックのアルファ係数（Cronbach's $\alpha$）を説明する記述として、誤っているものはどれですか？
                     </p>
                     <div class="space-y-3 text-sm sm:text-base">
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">A) 尺度の一貫性（信頼性）を評価するための指標である[cite: 2, 3]。</span>
+                            <span class="text-slate-700">A) 尺度の一貫性（信頼性）を評価するための指標である。</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">B) 項目数が多くなり、項目同士の連動性が高まるほど値は1.0に近づく[cite: 2]。</span>
+                            <span class="text-slate-700">B) 項目数が多くなり、項目同士の連動性が高まるほど値は1.0に近づく。</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">C) 優れた尺度であっても、対象とする集団（サンプル）が変われば値が変わり、ノイズとなる項目を見出す手がかりになる[cite: 2]。</span>
+                            <span class="text-slate-700">C) 優れた尺度であっても、対象とする集団（サンプル）が変われば値が変わり、ノイズとなる項目を見出す手がかりになる。</span>
                         </label>
                         <label class="flex items-start space-x-3 cursor-pointer">
                             <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
-                            <span class="text-slate-700">D) 災害が起きたときの実際の行動と事前の予測が完全に一致しているかを直接証明する係数である[cite: 3]。</span>
+                            <span class="text-slate-700">D) 災害が起きたときの実際の行動と事前の予測が完全に一致しているかを直接証明する係数である。</span>
                         </label>
                     </div>
                 </div>
