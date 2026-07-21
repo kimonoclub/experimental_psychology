@@ -3,111 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心理学実験：研究倫理と分散分析の数学的本質</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ポータルの自動スキャナーが収集・クレンジングするタイトルタグ -->
+    <title>心理学実験：第6回 データが語る「嘘」を見抜く ―相関の基礎から疑似相関・因果関係・偏相関の計算まで―（フォローアップ・学習テキスト）</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- ★数式を確実に自動レンダリングさせるための MathJax 設定と CDN -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            chtml: {
+                matchFontHeight: false
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax initial typesetting complete');
+                    });
+                }
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
-        :root { --primary-color: #1a3022; --accent-color: #af5239; --bg-color: #f6f8f6; --text-color: #2b3530; }
-        body { background-color: #e2e7e4; color: var(--text-color); font-family: 'Noto Serif JP', serif; line-height: 1.9; padding: 40px 20px; }
-        .book-container { background-color: var(--bg-color); max-width: 840px; margin: 0 auto; padding: 80px 90px; box-shadow: 0 15px 45px rgba(27, 41, 33, 0.15); }
-        h1, h2, h3 { color: var(--primary-color); font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
-        .bold-text { font-weight: 700; color: var(--primary-color); }
-        .highlight { border-bottom: 2px solid rgba(175, 82, 57, 0.3); font-weight: 700; color: var(--primary-color); }
-        .definition-box { background: #fff; border-left: 4px solid var(--primary-color); border: 1px solid #d8e0da; border-radius: 0 8px 8px 0; padding: 25px 30px; margin: 30px 0; }
-        .assignment-section { background-color: var(--primary-color); color: #fff; padding: 60px 50px; border-radius: 12px; margin-top: 100px; }
-        .submit-btn { background-color: var(--accent-color); color: #fff; border: none; padding: 18px 40px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: 700; margin-top: 20px; }
-        .math-block { background: #eef2ef; padding: 15px; margin: 20px 0; border-radius: 8px; font-family: monospace; }
+        /* 学術的気品を表現するハイライト装飾 */
+        .highlight {
+            background: linear-gradient(transparent 60%, #fef08a 60%);
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .text-justified {
+            text-align: justify;
+            text-justify: inter-character;
+        }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased line-height-relaxed">
 
-<div class="book-container">
-    <header class="text-center mb-16">
-        <h1 class="text-4xl mb-4">心理学実験 第6回</h1>
-        <p class="text-xl text-accent-color italic">研究倫理の深層と分散分析の数学的本質</p>
+    <!-- 講義ヘッダー -->
+    <header class="bg-gradient-to-r from-teal-900 to-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <p id="subject_label" class="text-xs font-bold text-teal-300 uppercase tracking-wider">心理学実験</p>
+                <h1 id="lecture_title" class="text-sm sm:text-base font-bold text-white mt-0.5">第6回：データが語る「嘘」を見抜く ―相関・疑似相関・因果関係・偏相関―</h1>
+            </div>
+            <a href="../index.html" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">実験ポータルへ戻る</a>
+        </div>
     </header>
 
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">第1部：研究倫理 ―人間を扱う研究者の責務―</h2>
-        <p>心理学実験において「倫理」とは、単なる事務的な手続きではありません。それは、研究の成果そのものの科学的信頼性を保証する根幹です。私たちは人間を対象にデータを収集しますが、そこには常に「人間としての尊厳」という不可侵の領域が存在します。</p>
+    <!-- メインコンテンツ -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
         
-        <h3 class="text-xl font-bold mt-8 mb-4">1. 研究倫理の具体的ケーススタディ</h3>
-        <p>以下の事例は、研究目的と参加者の保護が衝突する代表的なケースです。</p>
-        <ul class="list-disc pl-6 mb-6">
-            <li class="mb-2"><strong>ケースA（欺瞞と同意）</strong>: 実験目的を偽る「欺瞞」は、参加者の自己決定権を侵害します。何を行うのか可能な限り正確に伝える同意が必要です。</li>
-            <li class="mb-2"><strong>ケースB（心理的ストレス）</strong>: 実験後に長期間のストレスを抱えさせるような実験は、研究の代償として不適切です。徹底したデブリーフィングが不可欠です。</li>
-            <li class="mb-2"><strong>ケースC（データ管理）</strong>: 学籍番号と得点を紐付けたままの管理は重大な倫理違反です。匿名化の徹底は研究者の資質そのものです。</li>
-            <li class="mb-2"><strong>ケースD（上下関係と強制）</strong>: 教員と学生という上下関係を悪用し、成績とリンクさせる示唆を行うことは、参加者の「拒否権」を奪う行為です。</li>
-            <li class="mb-2"><strong>ケースE（評価のフィードバック）</strong>: 専門外の研究者が安易に診断的フィードバックを行うことは、参加者の自己概念を傷つけるリスクがあります。</li>
-        </ul>
-        <p>参加者は実験のための「道具」ではなく、真理を追究する「協力者」です。この対等な関係こそが、研究倫理の第一歩となります。</p>
-    </section>
-
-    <section class="mb-12">
-        <h2 class="text-2xl mb-6">第2部：分散分析の論理 ―ノイズとシグナルの分離―</h2>
-        <p>分散分析（ANOVA）は、実験における「平均値の差」が偶然か、意味のあるものかを判別する手法です。</p>
-        
-        <h3 class="text-xl font-bold mt-8 mb-4">1. F値の哲学 ―ノイズに対するシグナルの比率―</h3>
-        <div class="math-block">
-            F値 ＝ シグナル（意味のある変化） / ノイズ（偶然のバラつき）
-        </div>
-        <p>F値が大きければ大きいほど、「偶然のノイズよりも、条件による効果（シグナル）が上回っている」と解釈できます。</p>
-
-        <h3 class="text-xl font-bold mt-8 mb-4">2. 平方和（SS）の分解</h3>
-        <div class="definition-box">
-            <p><strong class="bold-text">SStotal（全平方和）</strong>: 実験全体のバラつき総量。</p>
-            <p><strong class="bold-text">SSa（要因平方和）</strong>: 条件の違いによって生まれた「意味のあるズレ（シグナル）」。</p>
-            <p><strong class="bold-text">SSs（参加者平方和）</strong>: 個人差によるズレ。</p>
-            <p><strong class="bold-text">SSer（残差平方和）</strong>: 説明できない「純粋なノイズ」。</p>
+        <!-- タイトルエリア -->
+        <div class="text-center mb-16">
+            <p class="text-teal-600 font-bold tracking-widest text-xs sm:text-sm uppercase mb-3">第6回 フォローアップ・学習テキスト</p>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                データが語る「嘘」を見抜く<br class="hidden sm:inline">
+                <span class="text-xl sm:text-2xl text-slate-600 font-normal block mt-2">―相関の基礎から疑似相関・因果関係・偏相関の計算まで―</span>
+            </h1>
+            <div class="w-16 h-1 bg-teal-600 mx-auto rounded"></div>
         </div>
 
-        <h3 class="text-xl font-bold mt-8 mb-4">3. 平均平方（MS）とF値の算出</h3>
-        <div class="math-block">
-            MS（平均平方） ＝ SS（平方和） / df（自由度）<br>
-            F値 ＝ MSa / MSer
+        <!-- 導入・概要リード文 -->
+        <div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-white">
+            <div class="p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-slate-50 text-justified">
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                    本テキストは、第6回目の心理学実験の授業を休んだ人が、「相関分析の基礎」「疑似相関（見かけ上の相関）の仕組み」「因果関係の成立条件」「偏相関分析の意味と計算方法」について、イチから論理的に理解できるように作成されたフォロー教材です[cite: 1, 2]。
+                </p>
+            </div>
         </div>
-        <p>平方和を自由度で割ることで、公平な比較が可能になります。</p>
 
-        <h3 class="text-xl font-bold mt-8 mb-4">4. ExcelとHADの活用</h3>
-        <p>Excelでは、`F.DIST.RT(F値, 自由度a, 自由度er)` 関数で「p値」を算出します。心理統計ソフト「HAD」を使えば、データセットを流し込むだけでこの煩雑な計算と判定を自動で行ってくれます。これは、皆さんが「何が心理的効果を引き起こしたか」という解釈の深度に集中するための強力な武器となります。</p>
-    </section>
+        <!-- 1. 相関分析の基礎（復習） -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                1. 相関分析の基礎（復習）
+            </h2>
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）相関関係と因果関係の違い</h3>
+            <div class="space-y-4 text-sm sm:text-base mb-6">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ 相関関係（Correlation）</p>
+                    <p class="text-slate-700 mb-2">
+                        2つの現象（変数 $A$ と $B$）の間に「片方が変化すると、もう片方も連動して変化する」という直線的な関係があること（範囲：$-1.0 \sim +1.0$）[cite: 1, 2]。
+                    </p>
+                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 space-y-1 pl-2">
+                        <li><strong>正の相関：</strong> $A$ が高いほど、$B$ も高い[cite: 1, 2]。</li>
+                        <li><strong>負の相関：</strong> $A$ が高いほど、$B$ は低い[cite: 1, 2]。</li>
+                    </ul>
+                </div>
 
-    <section class="assignment-section">
-        <h2 class="text-2xl mb-6 text-white"><i class="fa-solid fa-pen-to-square"></i> 確認テスト</h2>
-        <form id="submission-form">
-            <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問1：欺瞞を用いた際、実験後に必ず行うべきことは何ですか？</p>
-                <label class="block mb-2"><input type="radio" name="q1" value="0"> 1. 実験結果を参加者に伝え、知能の診断を行う</label>
-                <label class="block mb-2"><input type="radio" name="q1" value="1"> 2. デブリーフィングを行い、真実の説明と心のケアを行う</label>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-justified">
+                    <p class="font-bold text-teal-950 mb-1">■ 因果関係（Causality）</p>
+                    <p class="text-slate-700">
+                        一方の変数（原因）が、もう一方の変数（結果）を直接変化させている関係[cite: 1, 2]。
+                    </p>
+                </div>
             </div>
-            <div class="mb-6 bg-white/10 p-5 rounded-lg">
-                <p class="font-bold mb-3">問2：分散分析における「F値」の分母「ノイズ」とは何を指しますか？</p>
-                <label class="block mb-2"><input type="radio" name="q2" value="0"> 1. すべての条件の平均値が一致している状態</label>
-                <label class="block mb-2"><input type="radio" name="q2" value="1"> 2. 個人差や測定誤差などの「偶然のバラつき」</label>
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 font-bold">学籍番号</label>
-                <input type="text" id="student-id" placeholder="例：24A000" required class="w-full p-3 rounded text-black">
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 font-bold">質問・感想</label>
-                <textarea id="question" rows="3" class="w-full p-3 rounded text-black"></textarea>
-            </div>
-            <button type="button" class="submit-btn" onclick="sendMail()">提出する</button>
-        </form>
-    </section>
-</div>
 
-<script>
-    function sendMail() {
-        const studentId = document.getElementById('student-id').value;
-        const q1 = document.querySelector('input[name="q1"]:checked');
-        const q2 = document.querySelector('input[name="q2"]:checked');
-        if (!studentId || !q1 || !q2) { alert('すべて入力してください'); return; }
-        const score = Math.floor((( (q1.value === "1") + (q2.value === "1") ) / 2) * 100);
-        const body = encodeURIComponent(`学籍番号:${studentId}\n得点:${score}点\n\n【質問・感想】\n${document.getElementById('question').value}`);
-        window.location.href = `mailto:yoshinori-shibasaki@shikoku-u.ac.jp?subject=[フォローアップ提出]${studentId}&body=${body}`;
-    }
-</script>
+            <div class="bg-teal-50 border border-teal-200 p-4 rounded-xl font-bold text-teal-950 text-center text-sm sm:text-base">
+                ⚠️ 重要ポイント：「相関関係があるからといって、因果関係があるとは限らない」[cite: 1, 2]
+            </div>
+        </section>
+
+        <!-- 2. 疑似相関（見かけ上の相関）とは？ -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                2. 疑似相関（見かけ上の相関）とは？
+            </h2>
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）疑似相関（Spurious Correlation）の定義</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-6">
+                一見すると変数 $X$ と変数 $Y$ の間に強い相関関係があるように見えても、実は共通する「第三の変数 $Z$」が存在しており、$X$ と $Y$ の間には直接的な因果関係が全く存在しない（または極めて弱い）状態を<strong class="highlight">「疑似相関（見かけ上の相関）」</strong>と呼びます[cite: 1, 2]。
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（2）日常に潜む具体例</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                授業で扱った具体的な事例を見てみましょう[cite: 1, 2]。
+            </p>
+
+            <div class="space-y-4 my-6 text-sm sm:text-base">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📌 事例1：夜間照明と子どもの近視（Quinn et al., 1999）[cite: 1, 2]</p>
+                    <p class="text-slate-700 text-justified mb-1"><strong>見かけ上の相関：</strong> 夜、部屋の照明をつけて寝る子どもほど、近視になりやすい（暗い部屋: 10% / 豆電球: 34% / 明るい部屋: 55%）[cite: 1, 2]。</p>
+                    <p class="text-xs text-rose-600 font-bold mb-2">$\rightarrow$ 誤った結論：「夜間照明が近視の原因だ！」[cite: 1, 2]</p>
+                    <p class="text-slate-700 text-justified font-bold text-teal-900">隠れた真犯人（第三の変数 $Z$）：「両親が近視かどうか（遺伝傾向）」[cite: 1, 2]</p>
+                    <p class="text-xs text-slate-600 text-justified mt-1">
+                        <strong>メカニズム：</strong> 近視の両親は夜間に部屋を明るくする傾向があり、同時に遺伝によって子どもも近視になりやすい。照明と近視の間に直接の因果関係はなかった（Zadnik et al., 2000）[cite: 1, 2]。
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📌 事例2：アイスクリームの売上と水難事故[cite: 1, 2]</p>
+                    <p class="text-slate-700 text-justified mb-1"><strong>見かけ上の相関：</strong> アイスの売上が増えると、水難事故（プールや海での事故）が増える[cite: 1, 2]。</p>
+                    <p class="text-slate-700 text-justified font-bold text-teal-900">隠れた真犯人（$Z$）：「気温 / 季節（夏であること）」[cite: 1, 2]</p>
+                    <p class="text-xs text-slate-600 text-justified mt-1">
+                        <strong>メカニズム：</strong> 気温が高い（夏である）からアイスが売れ、同時に気温が高いから海やプールに行く人が増えて事故が増える[cite: 1, 2]。
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📌 事例3：靴のサイズと読解力[cite: 1, 2]</p>
+                    <p class="text-slate-700 text-justified mb-1"><strong>見かけ上の相関：</strong> 靴のサイズが大きい子どもほど、読解力テストの点数が高い[cite: 1, 2]。</p>
+                    <p class="text-slate-700 text-justified font-bold text-teal-900">隠れた真犯人（$Z$）：「年齢 / 発達段階」[cite: 1, 2]</p>
+                    <p class="text-xs text-slate-600 text-justified mt-1">
+                        <strong>メカニズム：</strong> 年齢が上がる（成長する）ほど足が大きくなり、同時に読解力も身につく[cite: 1, 2]。
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="font-bold text-teal-950 mb-2 border-b border-slate-100 pb-1">📌 事例4：外国人の割合とコロナ罹患率（沖縄県の例）[cite: 1, 2]</p>
+                    <p class="text-slate-700 text-justified mb-1"><strong>見かけ上の相関：</strong> 外国人の割合が高い地域ほど、コロナ罹患率が高い[cite: 1, 2]。</p>
+                    <p class="text-slate-700 text-justified font-bold text-teal-900">隠れた真犯人（$Z$）：「人口密度 / 都市化の程度（または基地周辺の人口動態）」[cite: 1, 2]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 疑似相関かどうかをどう論理的に導くか？ -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                3. 疑似相関かどうかをどう論理的に導くか？
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                データ（相関係数 $r$）を見たときに、それが「本物の関係」なのか「疑似相関」なのかを見抜くためには、理論的・論理的な思考プロセスが必要です[cite: 1, 2]。
+            </p>
+
+            <div class="bg-slate-900 text-slate-100 p-6 rounded-2xl shadow-md text-sm sm:text-base space-y-4">
+                <p class="text-amber-300 font-bold border-b border-slate-700 pb-2">🔍 疑似相関を見ぬく3つのチェックリスト[cite: 1, 2]</p>
+                <div class="space-y-3 text-slate-300 text-justified">
+                    <p>
+                        <strong class="text-white">1. メカニズムの妥当性を疑う：</strong>
+                        「$X$ が $Y$ を変化させる直接的な物理的・心理的メカニズムは説明できるか？」と問いかける（例：電気をつけただけで目の眼球の形が変わるのか？ $\rightarrow$ 生理学的に不自然）[cite: 1, 2]。
+                    </p>
+                    <p>
+                        <strong class="text-white">2. 共通の原因（第三の変数 $Z$）を探す：</strong>
+                        「$X$ と $Y$ の両方に同時に影響を与えるような背景（年齢、性別、季節、地域、遺伝、経済状況など）はないか？」を考える[cite: 1, 2]。
+                    </p>
+                    <p>
+                        <strong class="text-white">3. 統計的に $Z$ を取り除いて（固定して）再分析する：</strong>
+                        第三の変数 $Z$ の影響を数式上で「引き算」したあとも、$X$ と $Y$ の関係が残るかを確認する（これが後述の偏相関分析）[cite: 1, 2]。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 因果関係を主張するための3つの必須条件 -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                4. 因果関係を主張するための3つの必須条件
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                心理学や科学において、単なる相関ではなく「$X$ が原因で $Y$ が結果である（因果関係がある）」と主張するためには、以下の3つの条件をすべて満たす必要があります[cite: 1, 2]。
+            </p>
+
+            <div class="bg-white border-2 border-teal-100 p-6 rounded-2xl shadow-sm my-6 text-sm sm:text-base space-y-3 text-justified">
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-2">【因果関係の3条件】[cite: 1, 2]</p>
+                <p class="text-slate-800"><strong>① 共変関係（相関の存在）：</strong> $X$ と $Y$ が連動して変化していること[cite: 1, 2]。</p>
+                <p class="text-slate-800"><strong>② 時間的先後関係：</strong> 原因 $X$ が「先」に起こり、結果 $Y$ が「後」に生じること[cite: 1, 2]。</p>
+                <p class="text-slate-800"><strong>③ 他要因（$Z$）の排除：</strong> 第三の変数 $Z$（剰余変数）の影響がすべて否定されていること[cite: 1, 2]。</p>
+            </div>
+
+            <p class="text-slate-700 leading-relaxed text-justified">
+                <strong>なぜ相関分析だけでは不十分なのか？</strong><br>
+                相関係数 $r$ を計算しただけでは、条件①（共変関係）しか証明できていません[cite: 1, 2]。時間の前後関係（どちらが原因か）が不明であり、第三の変数 $Z$ による疑似相関の可能性（条件③）が残るため、相関＝因果と結論づけるのは科学的エラー（誤謬）となります[cite: 1, 2]。
+            </p>
+        </section>
+
+        <!-- 5. 偏相関（Partial Correlation）とは？ -->
+        <section class="mb-16">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 border-l-4 border-teal-600 pl-4 mb-6">
+                5. 偏相関（Partial Correlation）とは？
+            </h2>
+            <h3 class="text-lg font-bold text-slate-800 mt-6 mb-3">（1）偏相関のコンセプト</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                相関係数 $r_{xy}$ だけでは、第三の変数 $Z$ による「汚染」を防げません[cite: 1, 2]。
+                <strong class="highlight">偏相関分析（Partial Correlation Analysis）</strong>とは、数式を用いて「第三の変数 $Z$ の影響を統計的に取り除き（一定にコントロール・固定し）、純粋な $X$ と $Y$ だけの間の関連性」を抽出する手法です[cite: 1, 2]。
+            </p>
+
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs sm:text-sm space-y-1 mb-6 text-justified">
+                <p class="text-slate-700">・<strong>通常の相関 $r_{xy}$：</strong> $Z$ の影響が含まれた「見かけの相関」[cite: 1, 2]。</p>
+                <p class="text-slate-700">・<strong>偏相関係数 $r_{xy \cdot z}$：</strong> $Z$ の影響を引き算・消去した「純粋な相関」[cite: 1, 2]。</p>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（2）偏相関の計算方法と数式</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-2">
+                $X$（変数1）、$Y$（変数2）、$Z$（コントロールしたい第三の変数）の3つの変数があるとき、各ペアの通常の相関係数を $r_{xy}, r_{xz}, r_{yz}$ とします[cite: 1, 2]。
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                このとき、$Z$ の影響を除外した $X$ と $Y$ の偏相関係数 $r_{xy \cdot z}$ の公式は以下の通りです[cite: 1, 2]。
+            </p>
+
+            <div class="bg-white border-2 border-teal-100 p-6 rounded-2xl shadow-sm text-center my-6">
+                <div class="text-xl sm:text-2xl font-bold font-mono text-teal-950 mb-3">
+                    $$r_{xy \cdot z} = \frac{r_{xy} - r_{xz} r_{yz}}{\sqrt{1 - r_{xz}^2} \sqrt{1 - r_{yz}^2}}$$
+                </div>
+                <div class="text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 text-left space-y-2 text-justified">
+                    <p><strong>💡 数式の意味：</strong></p>
+                    <p>・<strong>分子 ($r_{xy} - r_{xz} r_{yz}$)：</strong> 元の相関 $r_{xy}$ から、「$Z$ を経由して生じている見かけ上の影響（$r_{xz} \times r_{yz}$）」を引き算しています[cite: 1, 2]。</p>
+                    <p>・<strong>分母 ($\sqrt{1 - r_{xz}^2} \sqrt{1 - r_{yz}^2}$)：</strong> $X$ と $Y$ それぞれから「$Z$ によって説明できる部分」を取り除いたあとの、残りのばらつきの大きさを揃えて標準化しています[cite: 1, 2]。</p>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mt-8 mb-3">（3）授業での実習事例：コーヒー売上の謎（資料5）</h3>
+            <p class="text-slate-700 leading-relaxed text-justified mb-4">
+                授業では「気温が高くなると、コーヒーは売れなくなるのか？」というデータを検証しました[cite: 1, 2]。
+            </p>
+
+            <div class="bg-white border border-slate-200 p-5 rounded-xl my-4 text-sm sm:text-base space-y-3 shadow-sm">
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-1">■ 測定データと通常の相関係数[cite: 1, 2]</p>
+                <p class="text-slate-700">・$X$（気温）と $Y$（コーヒー売上）の相関： $r_{xy} = -0.22$ （負の相関：気温が上がるとコーヒーが売れない？）[cite: 1, 2]</p>
+                <p class="text-slate-700">・$X$（気温）と $Z$（日照時間）の相関： $r_{yz} = 0.51$[cite: 1, 2]</p>
+                <p class="text-slate-700">・$Z$（日照時間）と $Y$（コーヒー売上）の相関： $r_{xz} = -0.16$[cite: 1, 2]</p>
+
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-1 pt-2">■ 偏相関の計算（日照時間 $Z$ の影響を除外）[cite: 1, 2]</p>
+                <div class="bg-teal-50/50 p-3 rounded-lg font-mono text-xs sm:text-sm text-teal-900 text-center">
+                    $$r_{xy \cdot z} = \frac{-0.22 - (-0.16 \times 0.51)}{\sqrt{1 - (-0.16)^2} \sqrt{1 - 0.51^2}} \approx -0.16$$
+                </div>
+
+                <p class="font-bold text-teal-950 border-b border-slate-100 pb-1 pt-2">■ Excelでの入力式[cite: 1, 2]</p>
+                <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs overflow-x-auto">
+                    =(-0.22 - (-0.16 * 0.51)) / (SQRT(1 - (-0.16)^2) * SQRT(1 - 0.51^2))
+                </div>
+            </div>
+
+            <div class="bg-teal-50/60 border border-teal-100 p-5 rounded-xl text-sm sm:text-base leading-relaxed text-justified">
+                <p class="font-bold text-teal-950 mb-1">■ 考察・解釈[cite: 1, 2]</p>
+                <p class="text-slate-800 mb-2">
+                    ・<strong>分析前（$r = -0.22$）：</strong> 「気温が高いとコーヒーが売れない」という強い負の印象[cite: 1, 2]。<br>
+                    ・<strong>偏相関分析後（$r_{xy \cdot z} = -0.16$）：</strong> 「日照時間（晴れの日）」の影響を取り除くと、負の相関は弱まった[cite: 1, 2]。
+                </p>
+                <p class="text-slate-800">
+                    <strong>結論：</strong> 最初の相関には、「日差しが強くて暑い日は冷たい飲料が好まれる」という日照時間による見かけ上の影響が混ざっていました[cite: 1, 2]。偏相関を使うことで、データの「見た目上の嘘」に騙されずに済むようになります[cite: 1, 2]。
+                </p>
+            </div>
+        </section>
+
+        <hr class="border-slate-200 my-12">
+
+        <!-- 理解度確認テスト ＆ 出席・提出フォーム -->
+        <section class="bg-white border border-slate-200 rounded-2xl shadow-md p-6 sm:p-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                <span class="bg-teal-600 text-white text-xs px-2.5 py-1 rounded-md mr-3">課題提出</span>
+                💡 理解度確認テスト ＆ 出席・提出フォーム
+            </h2>
+
+            <form id="lecture_form" onsubmit="submitForm(event)" class="space-y-6">
+                
+                <!-- 問1 -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問1】ある地域で「消防車の出動台数（$X$）」と「火災の損害額（$Y$）」の間に強い正の相関が認められました。この相関の裏に隠れている「第三の変数（$Z$）」として最も適切なものはどれですか？[cite: 1, 2]
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">A) 消防署の予算[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">B) 火災の規模（火事の大きさ）[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">C) 消防士の人数[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">D) 地域の気温[cite: 1, 2]</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 問2 -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-150">
+                    <p class="font-bold text-slate-800 text-sm sm:text-base mb-3">
+                        【問2】相関関係から「因果関係」を主張するために満たすべき3つの条件の組み合わせとして正しいものはどれですか？[cite: 1, 2]
+                    </p>
+                    <div class="space-y-3 text-sm sm:text-base">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="A" required class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">A) 相関の存在、サンプルの多さ、標準偏差の小ささ[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">B) 相関の存在（共変関係）、時間的先後関係、他要因（第三の変数 $Z$）の排除[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">C) 偏相関係数が1.0であること、サンプルサイズが100以上であること、t検定の実行[cite: 1, 2]</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="D" class="w-4 h-4 mt-1 text-teal-600 focus:ring-teal-500">
+                            <span class="text-slate-700">D) 正の相関であること、散布図が直線であること、p値が0.05以上であること[cite: 1, 2]</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 学籍番号 & 氏名入力 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="student_id" class="block text-sm font-bold text-slate-700 mb-2">学籍番号</label>
+                        <input type="text" id="student_id" required placeholder="例: 13（半角数字）" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                    <div>
+                        <label for="student_name" class="block text-sm font-bold text-slate-700 mb-2">氏 名</label>
+                        <input type="text" id="student_name" required placeholder="例: 四国 太郎" 
+                               class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800">
+                    </div>
+                </div>
+
+                <!-- 質問・感想 -->
+                <div>
+                    <label for="student_feedback" class="block text-sm font-bold text-slate-700 mb-2">質問・感想（任意）</label>
+                    <textarea id="student_feedback" rows="4" placeholder="今回の復習内容（疑似相関の仕組みや偏相関分析の計算、因果関係の3条件など）について、不明な点や感想があれば自由に入力してください。"
+                              class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-slate-800 text-sm sm:text-base"></textarea>
+                </div>
+
+                <!-- 送信ボタン -->
+                <div class="pt-2">
+                    <button type="submit" id="submit_btn" 
+                            class="w-full sm:w-auto bg-teal-700 hover:bg-teal-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-98 cursor-pointer text-sm sm:text-base">
+                        すべての内容を理解し、芝崎先生へ送信する
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800 mt-20">
+        <p>&copy; 2026 四国大学 心理学実験 講義ポータル All Rights Reserved.</p>
+    </footer>
+
+    <!-- ページ個別スクリプト：Formspree送信ロジック -->
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const studentId = document.getElementById("student_id").value.trim();
+            const studentName = document.getElementById("student_name").value.trim();
+            const feedback = document.getElementById("student_feedback").value.trim() || "特になし";
+            const btn = document.getElementById("submit_btn");
+
+            // 1. クイズの自動採点（問1: B, 問2: B）
+            let scoreCount = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked').value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked').value;
+
+            if (q1Answer === "B") scoreCount++;
+            if (q2Answer === "B") scoreCount++;
+
+            const scoreRate = Math.floor((scoreCount / 2) * 100) + "%";
+            const subjectLabel = document.getElementById("subject_label").innerText;
+            const lectureTitle = document.title;
+
+            // 送信データ構造の整形
+            const payloadData = {
+                "科目区分": subjectLabel,
+                "講義回": lectureTitle,
+                "学籍番号": studentId,
+                "氏名": studentName,
+                "クイズ得点率": scoreRate,
+                "問1解答": q1Answer,
+                "問2解答": q2Answer,
+                "学生からの質問・感想": feedback
+            };
+
+            // ★FormspreeトークンIDをバインド
+            const FORMSPREE_ID = "xjgqbqnl"; 
+
+            btn.disabled = true;
+            btn.innerText = "送信中...";
+
+            // Formspreeのエンドポイントへ非同期POST通信
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payloadData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`正常に記録されました（学籍番号: ${studentId}、得点率: ${scoreRate}）。第6回欠席フォロー完了として受領しました。`);
+                    btn.innerText = "送信完了";
+                } else {
+                    throw new Error("APIエラー");
+                }
+            })
+            .catch(error => {
+                console.error("Submission Error:", error);
+                alert("送信に失敗しました。時間をおいて再度送信ボタンを押してください。");
+                btn.disabled = false;
+                btn.innerText = "すべての内容を理解し、芝崎先生へ送信する";
+            });
+        }
+    </script>
 </body>
 </html>
